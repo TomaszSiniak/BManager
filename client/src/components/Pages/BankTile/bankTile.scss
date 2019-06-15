@@ -1,0 +1,15 @@
+.BankTile {
+  padding: 20px;
+  background:yellow;
+  margin: 30px;
+  position: relative;
+}
+.CloseIcon {
+  background: blue;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 40px;
+  width: 40px;
+  pointer-events: visiblePainted;
+}
