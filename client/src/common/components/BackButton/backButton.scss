@@ -1,0 +1,26 @@
+@import '../../../styles/variables.scss';
+
+.BackButton {
+  display: flex;
+  background: none;
+  border: none;
+  height: 40px;
+  color: $accent-color;
+  outline: none;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  margin-bottom: 30px;
+  figure {
+    width: 20px;
+    height: 20px;
+  }
+  p {
+    line-height: 30px;
+    font-size: 20px;
+    margin-left: 10px;
+  }
+}
+.BackButton:hover {
+  transform: scale(1.05);
+  transition: all .2s ease-in-out;
+}

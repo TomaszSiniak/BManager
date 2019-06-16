@@ -8,14 +8,14 @@ const BankTile = (props) => {
   const handleRemoveBank = () => {
     props.removeBank(props.item.id)
   }
-
   return ( 
     <div className={styles.BankTile}>
       <Link
+        className={styles.BankTileLink}
         to={`/accounts/${props.item.bankName}`}
       >
-        <div>Nazwa: {props.item.bankName}</div>
-        <div>Id: {props.item.id}</div>
+        <div>Bank: {props.item.bankName}</div>
+        <div>Aktywne konta: {props.item.accounts.length}</div>
       </Link>
       <figure className={styles.CloseIcon} onClick={handleRemoveBank}>
         <img src={closeIcon} alt=""/>

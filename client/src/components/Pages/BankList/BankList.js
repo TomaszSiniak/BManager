@@ -4,6 +4,7 @@ import BankTile from '../BankTile/BankTile';
 import AddItemInput from '../../../common/components/AddItemInput/AddItemInput';
 import { addBank, removeBank } from '../../../actions/accountActions';
 import uuid from 'uuid';
+import styles from './bankList.scss';
 import { get } from 'lodash';
 
 class BankList extends Component {
@@ -63,13 +64,19 @@ class BankList extends Component {
     const { bankList } = this.props;
     return (
       <div>
+      <div className={styles.SectionName}>Konta Osobiste</div>
         <AddItemInput
           buttonText={buttonText}
           addAction={this.onSubmit}
           handleInput={this.handleBankNameInput}
           buttonDisabled={this.buttonDisabled}
         />
-        <div>
+        {bankList.length === 0 ?
+          (<div className={styles.EmptyBankListInfo}>Nie masz żadnych banków na swojej liście...</div>)
+          :
+          (<div className={styles.BankListTitle}>Twoja lista:</div>)
+        }
+        <div className={styles.BankList}>
           {bankList.map(item => {
             return <BankTile item={item} key={item.id} removeBank={this.props.removeBank} />
           })}

@@ -1,0 +1,38 @@
+@import '../../../styles/variables.scss';
+.AddItemForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid $line-separate-color;
+}
+.AddItemInput{
+  line-height: 20px;
+  padding: 10px 0;
+  font-size: 20px;
+  text-indent: 8px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.AddItemBtn{
+  width: 200px;
+  margin: 30px auto;
+  font-size: 20px; 
+  padding: 10px;
+  outline: none;
+  background: $accent-color;
+  border: none;
+  border-radius: 3px;
+  color: $accent-text-color;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  cursor: pointer;
+  transition: all .2s ease-out;
+}
+.AddItemBtn:hover {
+  transform: scale(1.02);
+  transition: all .2s ease-in;
+}
