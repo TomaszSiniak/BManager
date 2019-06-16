@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles/main.scss';
-import Header from './layout/Header/Header';
+import Navbar from './layout/Navbar/Navbar';
 import MainContent from './layout/MainContent/MainContentContainer';
 import { connect } from 'react-redux';
 import { toggleMenu } from './actions/appActions';
@@ -8,7 +8,7 @@ import { toggleMenu } from './actions/appActions';
 const App = (props) => {
   return (
     <div className={styles.AppContainer}>
-      <Header toggleMenu={props.toggleMenu} />
+      <Navbar toggleMenu={props.toggleMenu} />
       <MainContent toggleMenu={props.toggleMenu} />
     </div>
   )

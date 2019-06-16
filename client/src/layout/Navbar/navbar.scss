@@ -3,6 +3,8 @@
   height: 50px;
   background: $background-main-dark;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  display: flex;
+  justify-content: flex-end;
 }
 
 .IconContainer {
@@ -11,4 +13,9 @@
   left: 10px;
   width: 40px;
   height: 40px;
+}
+
+.LinksWrapper {
+  display: flex;
+  flex-direction: row;
 }

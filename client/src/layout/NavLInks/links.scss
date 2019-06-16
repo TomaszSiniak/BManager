@@ -1,0 +1,11 @@
+.LoggedInLinkWrapper,.LoggedOutLinkWrapper {
+  display: flex;
+  list-style-type: none;
+}
+
+li > .LinkItem {
+  text-decoration: none;
+  line-height: 50px;
+  font-size: 20px;
+  padding: 0 10px;
+}

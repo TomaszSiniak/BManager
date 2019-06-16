@@ -1,8 +1,10 @@
 import React from 'react';
-import styles from './header.scss';
+import styles from './Navbar.scss';
 import menuIcon from '../../assets/images/menu.svg';
+import LoggedInLinks from '../NavLinks/LoggedInLinks';
+import LoggedOutLinks from '../NavLinks/LoggedOutLinks';
 
-const Header = (props) => {
+const Navbar = (props) => {
 
   const showMenu = () => {
     props.toggleMenu();
@@ -12,8 +14,12 @@ const Header = (props) => {
       <figure className={styles.IconContainer} onClick={showMenu}>
         <img src={menuIcon} />
       </figure>
+      <div className={styles.LinksWrapper}>
+        <LoggedInLinks />
+        <LoggedOutLinks />
+      </div>
     </div>
   )
 }
 
-export default Header;
+export default Navbar;
