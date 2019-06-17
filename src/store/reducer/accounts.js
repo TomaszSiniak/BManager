@@ -44,7 +44,6 @@ const accountReducer = (state=INITIAL_STATE, action ) => {
           return item;
         })
       }
-      return { ...state }
     default:
       return state;
   }

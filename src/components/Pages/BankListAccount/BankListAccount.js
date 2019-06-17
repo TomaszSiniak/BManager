@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AddItemInput from '../../../common/components/AddItemInput/AddItemInput';
 import AccountListItem from '../../../components/Pages/Accounts/AccountListItem/AccountListItem';
 import uuid from 'uuid';
-import { addAccount, removeAccount } from '../../../actions/accountActions';
+import { addAccount, removeAccount } from '../../../store/actions/accountActions';
 import { get } from 'lodash';
 import { connect } from 'react-redux';
 import styles from './bankListAccounts.scss';

@@ -3,7 +3,7 @@ import styles from './styles/main.scss';
 import Navbar from './layout/Navbar/Navbar';
 import MainContent from './layout/MainContent/MainContentContainer';
 import { connect } from 'react-redux';
-import { toggleMenu } from './actions/appActions';
+import { toggleMenu } from './store/actions/appActions';
 
 const App = (props) => {
   return (

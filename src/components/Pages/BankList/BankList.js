@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BankTile from '../BankTile/BankTile';
 import AddItemInput from '../../../common/components/AddItemInput/AddItemInput';
-import { addBank, removeBank } from '../../../actions/accountActions';
+import { addBank, removeBank } from '../../../store/actions/accountActions';
 import uuid from 'uuid';
 import styles from './bankList.scss';
 import { get } from 'lodash';
