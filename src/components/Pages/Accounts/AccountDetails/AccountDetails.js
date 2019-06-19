@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EditAccountModal from '../../../Modal/EditAccount/EditAccount';
 import Portal from '../../../Portal/Modal'; 
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { get } from 'lodash';
 
 class AccountDetails extends Component {
@@ -17,6 +18,8 @@ class AccountDetails extends Component {
 
   render() {
     const { accountName, status, openDate } = this.props.account[0];
+    const { auth } = this.props;
+    if(!auth.uid) return <Redirect to="/login" />
     return (
       <div>
         <div>Nazwa: {accountName}</div>
@@ -47,7 +50,8 @@ const mapStateToProps = (state, props)=> {
       if(item.bankName === name){
         return item.accounts.find(account => account.id === accountId);
       }
-    })
+    }),
+    auth: state.firebase.auth
   }
 }
 

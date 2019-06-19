@@ -5,6 +5,7 @@ import uuid from 'uuid';
 import { addAccount, removeAccount } from '../../../store/actions/accountActions';
 import { get } from 'lodash';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import styles from './bankListAccounts.scss';
 
 class BankListAccount extends Component {
@@ -58,7 +59,8 @@ class BankListAccount extends Component {
 
   render () {
     const buttonText = "Dodaj nowe konto";
-    const { accountsList } = this.props;
+    const { accountsList, auth } = this.props;
+    if(!auth.uid) return <Redirect to='/login' />
     return (
       <div>
         <div className={styles.BankName}>{this.props.match.params.bankName}</div>
@@ -93,6 +95,7 @@ const mapStateToProps = (state, props) => {
   const name = get(props, 'match.params.bankName', null)
   return {
     accountsList: name ? state.accounts.bankList.find(item => item.bankName === name) : {},
+    auth: state.firebase.auth
   }
 }
 

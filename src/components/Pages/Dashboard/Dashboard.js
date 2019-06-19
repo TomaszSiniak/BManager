@@ -1,9 +1,13 @@
 import React from 'react';
 import dollarIcon from '../../../assets/images/dollar.svg';
 import styles from './dashboard.scss';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 class Dashboard extends React.Component {
   render () {
+    const { auth } = this.props;
+    if(!auth.uid) return <Redirect to="/login" />
     return (
       <div className={styles.DashboardContainer}>
         <div className={styles.DashboardTitle}>Witaj w BManager!</div>
@@ -16,4 +20,10 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth,
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard);

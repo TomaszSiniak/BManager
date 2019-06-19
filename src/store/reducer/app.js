@@ -1,4 +1,4 @@
-import { TOGGLE_MENU } from '../actions/appActions';
+import { TOGGLE_MENU, CLOSE_MENU } from '../actions/appActions';
 
 const INITIAL_STATE = {
   isLoaded: false,
@@ -12,6 +12,11 @@ const App = (state= INITIAL_STATE, action) => {
         ...state,
         isMenuVisible: !state.isMenuVisible,
       }
+    case CLOSE_MENU:
+        return {
+          ...state,
+          isMenuVisible: false,
+        }
     default:
       return state;
   }

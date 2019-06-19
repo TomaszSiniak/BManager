@@ -16,4 +16,6 @@ const AppContainer =() => {
   )
 }
 
-ReactDOM.render(<AppContainer />, document.querySelector('#root'));
+store.firebaseAuthIsReady.then(() => {
+  ReactDOM.render(<AppContainer />, document.querySelector('#root'));
+});

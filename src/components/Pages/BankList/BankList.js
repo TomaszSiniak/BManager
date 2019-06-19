@@ -6,6 +6,7 @@ import { addBank, removeBank } from '../../../store/actions/accountActions';
 import uuid from 'uuid';
 import styles from './bankList.scss';
 import { get } from 'lodash';
+import { Redirect } from 'react-router-dom'
 
 class BankList extends Component {
 
@@ -61,7 +62,8 @@ class BankList extends Component {
 
   render() {
     const buttonText="Dodaj bank";
-    const { bankList } = this.props;
+    const { bankList, auth } = this.props;
+    if(!auth.uid) return <Redirect to='/login' />
     return (
       <div>
       <div className={styles.SectionName}>Konta Osobiste</div>
@@ -88,7 +90,8 @@ class BankList extends Component {
  
 const mapStateToProps = state => {
   return {
-    bankList: state.accounts.bankList
+    bankList: state.accounts.bankList,
+    auth: state.firebase.auth
   }
 }
 
