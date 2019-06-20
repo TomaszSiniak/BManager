@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BankTile from '../BankTile/BankTile';
 import AddItemInput from '../../../common/components/AddItemInput/AddItemInput';
-import { addBank, removeBank } from '../../../store/actions/accountActions';
-import uuid from 'uuid';
+import { addBank, removeBank } from '../../../store/actions/bankActions';
 import styles from './bankList.scss';
 import { get } from 'lodash';
 import { Redirect } from 'react-router-dom'
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+
 
 class BankList extends Component {
 
@@ -15,7 +17,7 @@ class BankList extends Component {
   }
 
   handleBankNameInput = (e) => {
-    const bankName =  e.target.value.trim();
+    const bankName = e.target.value.trim();
     this.setState({
       bankName,
     })
@@ -23,50 +25,47 @@ class BankList extends Component {
 
   checkBankExist = (name) => {
     let result = false;
-     this.props.bankList.find(item => {
+    this.props.bankList.find(item => {
       if (item.bankName.toLowerCase() === name.toLowerCase()) {
         result = true;
       }
     })
-    return result
+    return result;
   }
 
   onSubmit = (e) => {
     e.preventDefault();
     const data = {
-      id: uuid(),
       bankName: this.state.bankName,
-      accounts: []
     }
     const checkBank = this.checkBankExist(this.state.bankName);
-
-    if(!checkBank) {
+    if (!checkBank) {
       this.props.addBank(data);
       this.buttonDisabled();
     }
   }
 
   buttonDisabled = () => {
-    const bankName = get(this.state,'bankName', null);
-    if(!bankName) {
+    const bankName = get(this.state, 'bankName', null);
+    if (!bankName) {
       return true
     }
     return false;
   }
 
-  handleChange(date) {
+  handleChange (date) {
     this.setState({
       startDate: date
     });
   }
 
-  render() {
-    const buttonText="Dodaj bank";
+  render () {
+    const buttonText = "Dodaj bank";
     const { bankList, auth } = this.props;
-    if(!auth.uid) return <Redirect to='/login' />
+    if (!auth.uid) return <Redirect to='/login' />
     return (
       <div>
-      <div className={styles.SectionName}>Konta Osobiste</div>
+        <div className={styles.SectionName}>Konta Osobiste</div>
         <AddItemInput
           buttonText={buttonText}
           addAction={this.onSubmit}
@@ -80,17 +79,19 @@ class BankList extends Component {
         }
         <div className={styles.BankList}>
           {bankList.map(item => {
-            return <BankTile item={item} key={item.id} removeBank={this.props.removeBank} />
+            return <BankTile item={item} key={item.bankId} removeBank={this.props.removeBank} />
           })}
         </div>
       </div>
     );
   }
 }
- 
+
 const mapStateToProps = state => {
+  const id = state.firebase.auth.uid;
+  const list = get(state.firestore.ordered, 'banks', []);
   return {
-    bankList: state.accounts.bankList,
+    bankList: list.filter(item => item.authorId === id),
     auth: state.firebase.auth
   }
 }
@@ -102,4 +103,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BankList);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([{ collection: 'banks' }]),
+)(BankList);

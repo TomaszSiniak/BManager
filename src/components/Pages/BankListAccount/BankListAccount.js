@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AddItemInput from '../../../common/components/AddItemInput/AddItemInput';
 import AccountListItem from '../../../components/Pages/Accounts/AccountListItem/AccountListItem';
 import uuid from 'uuid';
-import { addAccount, removeAccount } from '../../../store/actions/accountActions';
+import { addAccount, removeAccount } from '../../../store/actions/bankActions';
 import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -92,9 +92,9 @@ class BankListAccount extends Component {
   }
 }
 const mapStateToProps = (state, props) => {
-  const name = get(props, 'match.params.bankName', null)
+  // const name = get(props, 'match.params.bankName', null)
   return {
-    accountsList: name ? state.accounts.bankList.find(item => item.bankName === name) : {},
+    // accountsList: name ? state.accounts.list.find(item => item.bankName === name) : {},
     auth: state.firebase.auth
   }
 }

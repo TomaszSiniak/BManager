@@ -1,7 +1,6 @@
 import { TOGGLE_MENU, CLOSE_MENU } from '../actions/appActions';
 
 const INITIAL_STATE = {
-  isLoaded: false,
   isMenuVisible: false,
 }
 
