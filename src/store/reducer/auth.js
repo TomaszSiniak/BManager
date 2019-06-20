@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, LOGOUT_ERROR } from '../actions/authActions';
+import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, LOGOUT_ERROR, USER_REGISTER_ERROR, USER_REGISTER_SUCCESS } from '../actions/authActions';
 
 const initialState = {
   authError: null,
@@ -26,6 +26,17 @@ const AuthReducer = (state=initialState, action) => {
         ...state,
         authError: null
       }
+    case USER_REGISTER_ERROR:
+      return {
+        ...state,
+        authError: action.error.message
+      }
+      case USER_REGISTER_SUCCESS:
+          return {
+            ...state,
+            user: action.data,
+            authError: null,
+          }
     default:
       return state;
   }
