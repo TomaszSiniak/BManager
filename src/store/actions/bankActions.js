@@ -4,9 +4,6 @@ export const REMOVE_BANK = 'REMOVE_BANK';
 export const REMOVE_BANK_ERROR = 'REMOVE_BANK_ERROR';
 export const LOAD_BANK = 'LOAD_BANK';
 
-export const ADD_ACCOUNT = 'ADD_ACCOUNT';
-export const REMOVE_ACCOUNT = 'REMOVE_ACCOUNT';
-
 export const loadBank = data => {
   console.log(data)
 }
@@ -34,7 +31,7 @@ export const addBank = data => {
   }
 }
 
-export const removeBank = id => {
+export const removeBank = (id, bankName) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
 
@@ -45,21 +42,6 @@ export const removeBank = id => {
       .catch(error => {
         dispatch({ REMOVE_BANK_ERROR, error })
       })
-  }
-}
 
-export const addAccount = (bankName, data) => {
-  return {
-    type: 'ADD_ACCOUNT',
-    bankName,
-    data,
-  }
-}
-
-export const removeAccount = (id, name) => {
-  return {
-    type: 'REMOVE_ACCOUNT',
-    id,
-    name,
   }
 }

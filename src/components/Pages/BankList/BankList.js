@@ -61,6 +61,7 @@ class BankList extends Component {
 
   render () {
     const buttonText = "Dodaj bank";
+    const placeholderText ="Nazwa banku"
     const { bankList, auth } = this.props;
     if (!auth.uid) return <Redirect to='/login' />
     return (
@@ -71,6 +72,7 @@ class BankList extends Component {
           addAction={this.onSubmit}
           handleInput={this.handleBankNameInput}
           buttonDisabled={this.buttonDisabled}
+          placeholder={placeholderText}
         />
         {bankList.length === 0 ?
           (<div className={styles.EmptyBankListInfo}>Nie masz żadnych banków na swojej liście...</div>)

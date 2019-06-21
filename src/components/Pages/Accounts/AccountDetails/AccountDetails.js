@@ -4,6 +4,8 @@ import Portal from '../../../Portal/Modal';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { get } from 'lodash';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 class AccountDetails extends Component {
   state= {
@@ -17,7 +19,7 @@ class AccountDetails extends Component {
   }
 
   render() {
-    const { accountName, status, openDate } = this.props.account[0];
+    const { accountName, status, openDate } = this.props.account;
     const { auth } = this.props;
     if(!auth.uid) return <Redirect to="/login" />
     return (
@@ -28,7 +30,7 @@ class AccountDetails extends Component {
         <button onClick={this.handleEditModal}>Edytuj</button>
         {this.state.isEditModalOpen && (
           <Portal>
-            <EditAccountModal item ={this.props.account[0]} closeModal={this.handleEditModal} />
+            <EditAccountModal item ={this.props.account} closeModal={this.handleEditModal} />
           </Portal>
         )}
       </div>
@@ -43,16 +45,16 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = (state, props)=> {
-  const accountId = get(props, 'match.params.accountId', {});
-  const name = get(props, 'match.params.bankName', 'default name');
+  const accountId = get(props, 'match.params.accountId', '');
+  const accounts = get(state.firestore.ordered, 'accounts', []);
+  const account = accounts.find(item => item.id === accountId)
   return {
-    account: state.accounts.bankList.map(item => {
-      if(item.bankName === name){
-        return item.accounts.find(account => account.id === accountId);
-      }
-    }),
+    account: account,
     auth: state.firebase.auth
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountDetails);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([{'collection':'accounts'}])
+)(AccountDetails);

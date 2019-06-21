@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../../store/actions/authActions';
 import { Redirect } from 'react-router-dom';
+import styles from '../../../styles/main.scss';
 
 class Login extends Component {
   state = {
@@ -29,10 +30,12 @@ class Login extends Component {
     if(auth.uid) return <Redirect to="/" />
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input name="email" type="text" onChange={this.handleInputChange} />
-          <input name="password" type="password" onChange={this.handleInputChange} />
-          <button>Zaloguj!</button>
+        <form className={styles.LoginForm} onSubmit={this.handleSubmit}>
+          <label className={styles.LoginFormLabel}>Email:</label>
+          <input className={styles.LoginFormInput} name="email" type="text" onChange={this.handleInputChange} />
+          <label className={styles.LoginFormLabel}>Hasło:</label>
+          <input className={styles.LoginFormInput} name="password" type="password" onChange={this.handleInputChange} />
+          <button className={styles.LoginFormButton}>Zaloguj!</button>
           {authError && <p>{authError}</p>}
         </form>
       </div>

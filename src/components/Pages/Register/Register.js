@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../../store/actions/authActions';
+import styles from '../../../styles/main.scss';
 
 class Register extends Component {
 
@@ -28,16 +29,16 @@ class Register extends Component {
     if (auth.uid) return <Redirect to="/" />
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="firstName">First Name:</label>
-          <input name="firstName" id="firstName" onChange={this.handleInput} />
-          <label htmlFor="lastName">Last Name:</label>
-          <input name="lastName" id="lastName" onChange={this.handleInput} />
-          <label htmlFor="password">Password:</label>
-          <input type="password" name="password" id="password" onChange={this.handleInput} />
-          <label htmlFor="email">Email:</label>
-          <input type="email" name="email" id="email" onChange={this.handleInput} />
-          <button>Dupa</button>
+        <form className={styles.RegisterForm} onSubmit={this.handleSubmit}>
+          <label className={styles.RegisterFormLabel} htmlFor="firstName">First Name:</label>
+          <input className={styles.RegisterFormInput}  name="firstName" id="firstName" onChange={this.handleInput} />
+          <label className={styles.RegisterFormLabel} htmlFor="lastName">Last Name:</label>
+          <input className={styles.RegisterFormInput}  name="lastName" id="lastName" onChange={this.handleInput} />
+          <label className={styles.RegisterFormLabel} htmlFor="password">Password:</label>
+          <input className={styles.RegisterFormInput}  type="password" name="password" id="password" onChange={this.handleInput} />
+          <label className={styles.RegisterFormLabel} htmlFor="email">Email:</label>
+          <input className={styles.RegisterFormInput}  type="email" name="email" id="email" onChange={this.handleInput} />
+          <button className={styles.RegisterFormButton}>Zarejestruj</button>
         </form>
       </div>
     )

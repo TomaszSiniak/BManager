@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import AddItemInput from '../../../common/components/AddItemInput/AddItemInput';
 import AccountListItem from '../../../components/Pages/Accounts/AccountListItem/AccountListItem';
-import uuid from 'uuid';
-import { addAccount, removeAccount } from '../../../store/actions/bankActions';
+import { addAccount, removeAccount } from '../../../store/actions/accountActions';
 import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import styles from './bankListAccounts.scss';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 class BankListAccount extends Component {
   state = {
@@ -25,21 +26,22 @@ class BankListAccount extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const data = {
-      id: uuid(),
       accountName: this.state.accountName,
       status: this.state.status,
       openDate: this.state.openDate,
     }
+    
+    // this.props.addAccount(data, this.props.match.params.bankName);
 
     const checkAccount = this.checkAccountExist(this.state.accountName);
     if (!checkAccount) {
-      this.props.addAccount(this.props.match.params.bankName, data);
+      this.props.addAccount(data, this.props.match.params.bankName);
     }
   }
 
   checkAccountExist = (name) => {
     let result = false;
-    const accounts = get(this.state, 'data.accounts', [])
+    const accounts = get(this.props, 'accountsList', [])
     accounts.find(item => {
       if (item.accountName.toLowerCase() === name.toLowerCase()) {
         result = true;
@@ -59,8 +61,9 @@ class BankListAccount extends Component {
 
   render () {
     const buttonText = "Dodaj nowe konto";
+    const placeholderText = "Nazwa konta";
     const { accountsList, auth } = this.props;
-    if(!auth.uid) return <Redirect to='/login' />
+    if (!auth.uid) return <Redirect to='/login' />
     return (
       <div>
         <div className={styles.BankName}>{this.props.match.params.bankName}</div>
@@ -69,14 +72,16 @@ class BankListAccount extends Component {
           addAction={this.onSubmit}
           handleInput={this.handleBankNameInput}
           buttonDisabled={this.buttonDisabled}
+          placeholder={placeholderText}
         />
-        {accountsList.accounts.length === 0 ?
+
+        {accountsList.length === 0 ?
           (<div className={styles.EmptyAccountListInfo}>Nie masz żadnych kont w tym banku...</div>)
           :
           (<div className={styles.AccountListTitle}>Twoje konta:</div>)
         }
         <div>
-          {accountsList.accounts.map(item => {
+          {accountsList.map(item => {
             return (
               <AccountListItem
                 item={item}
@@ -86,24 +91,33 @@ class BankListAccount extends Component {
               />
             )
           })}
+
         </div>
+
       </div>
     );
   }
 }
 const mapStateToProps = (state, props) => {
-  // const name = get(props, 'match.params.bankName', null)
+  const id = state.firebase.auth.uid;
+  const accounts = get(state.firestore.ordered, 'accounts', []);
+  const name = get(props, 'match.params.bankName', '');
+  const filterById = accounts.filter(item => item.authorId === id);
+  const filteredAccounts = filterById.filter(item => item.bankName.toLowerCase() === name.toLowerCase());
   return {
-    // accountsList: name ? state.accounts.list.find(item => item.bankName === name) : {},
+    accountsList: filteredAccounts,
     auth: state.firebase.auth
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    addAccount: (name, data) => dispatch(addAccount(name, data)),
+    addAccount: (data, name) => dispatch(addAccount(data, name)),
     remove: (id, name) => dispatch(removeAccount(id, name))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BankListAccount);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([{ 'collection': 'accounts' }])
+)(BankListAccount);
