@@ -1,5 +1,6 @@
 export const TOGGLE_MENU = 'TOGGLE_MENU';
 export const CLOSE_MENU = 'CLOSE_MENU';
+export const TOGGLE_PROMPT_MODAL = 'TOGGLE_PROMPT_MODAL';
 
 export const toggleMenu = () => {
   return {
@@ -9,5 +10,11 @@ export const toggleMenu = () => {
 export const closeMenu = () => {
   return {
     type: 'CLOSE_MENU',
+  }
+}
+
+export const togglePromptModal = () => {
+  return {
+    type: 'TOGGLE_PROMPT_MODAL',
   }
 }

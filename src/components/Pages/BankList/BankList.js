@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import BankTile from '../BankTile/BankTile';
 import AddItemInput from '../../../common/components/AddItemInput/AddItemInput';
 import { addBank, removeBank } from '../../../store/actions/bankActions';
+import { togglePromptModal } from '../../../store/actions/appActions';
+import PromptModal from '../../../components/Modal/Prompt/Prompt';
+import Portal from '../../Portal/Modal';
 import styles from './bankList.scss';
 import '../../../styles/main.scss';
 import { get } from 'lodash';
@@ -15,6 +18,7 @@ class BankList extends Component {
 
   state = {
     bankName: null,
+    removeId: null,
   }
 
   handleBankNameInput = (e) => {
@@ -59,11 +63,17 @@ class BankList extends Component {
       startDate: date
     });
   }
+  handleTogglePromptModal = id => {
+    this.setState({
+      removeId: id,
+    })
+    this.props.togglePromptModal();
+  }
 
   render () {
     const buttonText = "Dodaj bank";
     const placeholderText ="Nazwa banku"
-    const { bankList, auth } = this.props;
+    const { bankList, auth, removeBank,togglePromptModal } = this.props;
     if (!auth.uid) return <Redirect to='/login' />
     return (
       <div className={styles.ContentWrapper} >
@@ -83,9 +93,22 @@ class BankList extends Component {
        
         <div className={styles.BankList}>
           {bankList.map(item => {
-            return <BankTile item={item} key={item.id} removeBank={this.props.removeBank} />
+            return <BankTile 
+              item={item}
+              key={item.id}
+              togglePromptModal= {this.handleTogglePromptModal}
+              />
           })}
-          </div>
+          {this.props.isPromptModalVisible && (
+            <Portal>
+              <PromptModal
+                removeId={this.state.removeId}
+                remove={removeBank}
+                togglePromptModal={togglePromptModal}
+              />
+            </Portal>
+          )}
+        </div>
       </div>
     );
   }
@@ -97,6 +120,7 @@ const mapStateToProps = state => {
     bankList: list,
     auth: state.firebase.auth,
     userId: state.firebase.auth.uid,
+    isPromptModalVisible: state.app.isPromptModalVisible,
   }
 }
 
@@ -104,6 +128,7 @@ const mapDispatchToProps = dispatch => {
   return {
     addBank: (data) => dispatch(addBank(data)),
     removeBank: (id) => dispatch(removeBank(id)),
+    togglePromptModal: () => dispatch(togglePromptModal())
   }
 }
 

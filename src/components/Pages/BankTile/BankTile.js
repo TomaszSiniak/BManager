@@ -4,10 +4,11 @@ import styles from './bankTile.scss';
 import closeIcon from '../../../assets/images/close.svg';
 
 const BankTile = (props) => {
-  
-  const handleRemoveBank = () => {
-    props.removeBank(props.item.id)
+
+  const setIdToRemove = () => {
+    props.togglePromptModal(props.item.id)
   }
+
   return ( 
     <div className={styles.BankTile}>
       <Link
@@ -17,7 +18,7 @@ const BankTile = (props) => {
         <div>Bank: {props.item.bankName}</div>
         <div>Aktywne konta: 0</div>
       </Link>
-      <figure className={styles.CloseIcon} onClick={handleRemoveBank}>
+      <figure className={styles.CloseIcon} onClick={setIdToRemove}>
         <img src={closeIcon} alt=""/>
       </figure>
     </div>

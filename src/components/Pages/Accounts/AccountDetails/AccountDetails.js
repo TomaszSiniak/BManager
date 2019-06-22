@@ -47,7 +47,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = (state, props)=> {
   const accountId = get(props, 'match.params.accountId', '');
   const accounts = get(state.firestore.ordered, 'accounts', []);
-  const account = accounts.find(item => item.id === accountId)
+  const account = accounts.length > 0 && accounts.find(item => item.id === accountId)
   return {
     account: account,
     auth: state.firebase.auth

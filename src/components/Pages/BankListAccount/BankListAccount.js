@@ -61,7 +61,7 @@ class BankListAccount extends Component {
   render () {
     const buttonText = "Dodaj nowe konto";
     const placeholderText = "Nazwa konta";
-    const { accountsList, auth } = this.props;
+    const { accountsList, auth, isPromptModalVisible } = this.props;
     if (!auth.uid) return <Redirect to='/login' />
     return (
       <div className={styles.ContentWrapper}>
@@ -108,7 +108,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => {
   return {
     addAccount: (data, name) => dispatch(addAccount(data, name)),
-    remove: (id, name) => dispatch(removeAccount(id, name))
+    remove: (id, name) => dispatch(removeAccount(id, name)),
   }
 }
 
