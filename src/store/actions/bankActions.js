@@ -37,11 +37,10 @@ export const removeBank = (id, bankName) => {
 
     firestore.collection('banks').doc(id).delete()
       .then(() => {
-        dispatch({ type: REMOVE_BANK})
+        dispatch({ type: REMOVE_BANK })
       })
       .catch(error => {
         dispatch({ REMOVE_BANK_ERROR, error })
       })
-
   }
 }

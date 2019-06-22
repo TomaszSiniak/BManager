@@ -8,7 +8,6 @@ class Register extends Component {
 
   state = {
     firstName: null,
-    lastName: null,
     password: null,
     email: null,
   }
@@ -30,14 +29,12 @@ class Register extends Component {
     return (
       <div>
         <form className={styles.RegisterForm} onSubmit={this.handleSubmit}>
-          <label className={styles.RegisterFormLabel} htmlFor="firstName">First Name:</label>
-          <input className={styles.RegisterFormInput}  name="firstName" id="firstName" onChange={this.handleInput} />
-          <label className={styles.RegisterFormLabel} htmlFor="lastName">Last Name:</label>
-          <input className={styles.RegisterFormInput}  name="lastName" id="lastName" onChange={this.handleInput} />
-          <label className={styles.RegisterFormLabel} htmlFor="password">Password:</label>
-          <input className={styles.RegisterFormInput}  type="password" name="password" id="password" onChange={this.handleInput} />
+          <label className={styles.RegisterFormLabel} htmlFor="firstName">Imię:</label>
+          <input className={styles.RegisterFormInput}  name="firstName"  onChange={this.handleInput} />
+          <label className={styles.RegisterFormLabel} htmlFor="password">Hasło:</label>
+          <input className={styles.RegisterFormInput}  type="password" name="password" onChange={this.handleInput} />
           <label className={styles.RegisterFormLabel} htmlFor="email">Email:</label>
-          <input className={styles.RegisterFormInput}  type="email" name="email" id="email" onChange={this.handleInput} />
+          <input className={styles.RegisterFormInput}  type="email" name="email"  onChange={this.handleInput} />
           <button className={styles.RegisterFormButton}>Zarejestruj</button>
         </form>
       </div>

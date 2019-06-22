@@ -1,5 +1,10 @@
+@import '../../../styles/variables.scss';
+
 .BankList {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 .SectionName {
   font-size: 25px;
@@ -14,4 +19,12 @@
 .BankListTitle {
   text-align: left;
   margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .ContentWrapper {
+    padding: 50px;
+    background: $background-white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
 }

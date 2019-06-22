@@ -30,8 +30,7 @@ class BankListAccount extends Component {
       status: this.state.status,
       openDate: this.state.openDate,
     }
-    
-    // this.props.addAccount(data, this.props.match.params.bankName);
+
 
     const checkAccount = this.checkAccountExist(this.state.accountName);
     if (!checkAccount) {
@@ -65,7 +64,7 @@ class BankListAccount extends Component {
     const { accountsList, auth } = this.props;
     if (!auth.uid) return <Redirect to='/login' />
     return (
-      <div>
+      <div className={styles.ContentWrapper}>
         <div className={styles.BankName}>{this.props.match.params.bankName}</div>
         <AddItemInput
           buttonText={buttonText}
@@ -91,22 +90,18 @@ class BankListAccount extends Component {
               />
             )
           })}
-
         </div>
-
       </div>
     );
   }
 }
 const mapStateToProps = (state, props) => {
-  const id = state.firebase.auth.uid;
+
   const accounts = get(state.firestore.ordered, 'accounts', []);
-  const name = get(props, 'match.params.bankName', '');
-  const filterById = accounts.filter(item => item.authorId === id);
-  const filteredAccounts = filterById.filter(item => item.bankName.toLowerCase() === name.toLowerCase());
   return {
-    accountsList: filteredAccounts,
-    auth: state.firebase.auth
+    accountsList: accounts,
+    auth: state.firebase.auth,
+    userId: state.firebase.auth.uid,
   }
 }
 
@@ -119,5 +114,12 @@ const mapDispatchToProps = dispatch => {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{ 'collection': 'accounts' }])
+  firestoreConnect(props => [
+    { collection: 'accounts',
+      where: [
+        ['authorId', '==', `${props.userId}`],
+        ['bankName', '==', `${props.match.params.bankName}`]
+      ],
+    }
+  ])
 )(BankListAccount);

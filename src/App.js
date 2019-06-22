@@ -6,6 +6,11 @@ import { connect } from 'react-redux';
 import { toggleMenu } from './store/actions/appActions';
 
 const App = (props) => {
+  
+  const width = window.innerWidth;
+  if(width > 768) {
+    props.toggleMenu();
+  }
   return (
     <div className={styles.AppContainer}>
       <Navbar toggleMenu={props.toggleMenu} />

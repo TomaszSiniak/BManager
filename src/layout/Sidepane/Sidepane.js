@@ -6,7 +6,7 @@ const Sidepane = (props) => {
   return (
     <div className={styles.SidepaneContainer}>
       <div className={styles.Sidepane}>
-        <Menu toggleMenu={props.toggleMenu}/>
+        <Menu toggleMenu={props.toggleMenu} />
       </div>
     </div>
   )

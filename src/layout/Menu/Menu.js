@@ -7,12 +7,19 @@ import homeIcon from '../../assets/images/home.svg';
 import styles from './menu.scss';
 
 const Menu = (props) => {
+
+  const width = window.innerWidth;
+  const handleShowMenu = () => {
+    if(width < 768) {
+      props.toggleMenu();
+    }
+  }
   return (
     <Fragment>
       <Link
         className={styles.MenuLink}
         to="/"
-        onClick={props.toggleMenu}
+        onClick={handleShowMenu}
       >
         <figure>
           <img src={homeIcon} alt="" />
@@ -22,7 +29,7 @@ const Menu = (props) => {
       <Link
         className={styles.MenuLink}
         to="/accounts"
-        onClick={props.toggleMenu}
+        onClick={handleShowMenu}
       >
         <figure>
           <img src={accountIcon} alt="" />
@@ -32,7 +39,7 @@ const Menu = (props) => {
       <Link
         className={styles.MenuLink}
         to="/cards"
-        onClick={props.toggleMenu}
+        onClick={handleShowMenu}
       >
         <figure>
           <img src={cardIcon} alt="" />
@@ -42,7 +49,7 @@ const Menu = (props) => {
       <Link
         className={styles.MenuLink}
         to="/patronite"
-        onClick={props.toggleMenu}
+        onClick={handleShowMenu}
       >
         <figure>
           <img src={moneyIcon} alt="" />

@@ -4,6 +4,7 @@ import BankTile from '../BankTile/BankTile';
 import AddItemInput from '../../../common/components/AddItemInput/AddItemInput';
 import { addBank, removeBank } from '../../../store/actions/bankActions';
 import styles from './bankList.scss';
+import '../../../styles/main.scss';
 import { get } from 'lodash';
 import { Redirect } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase';
@@ -65,7 +66,7 @@ class BankList extends Component {
     const { bankList, auth } = this.props;
     if (!auth.uid) return <Redirect to='/login' />
     return (
-      <div>
+      <div className={styles.ContentWrapper} >
         <div className={styles.SectionName}>Konta Osobiste</div>
         <AddItemInput
           buttonText={buttonText}
@@ -77,35 +78,40 @@ class BankList extends Component {
         {bankList.length === 0 ?
           (<div className={styles.EmptyBankListInfo}>Nie masz żadnych banków na swojej liście...</div>)
           :
-          (<div className={styles.BankListTitle}>Twoja lista:</div>)
+          (<div className={styles.BankListTitle}>Lista banków:</div>)
         }
+       
         <div className={styles.BankList}>
           {bankList.map(item => {
-            return <BankTile item={item} key={item.bankId} removeBank={this.props.removeBank} />
+            return <BankTile item={item} key={item.id} removeBank={this.props.removeBank} />
           })}
-        </div>
+          </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const id = state.firebase.auth.uid;
   const list = get(state.firestore.ordered, 'banks', []);
   return {
-    bankList: list.filter(item => item.authorId === id),
-    auth: state.firebase.auth
+    bankList: list,
+    auth: state.firebase.auth,
+    userId: state.firebase.auth.uid,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     addBank: (data) => dispatch(addBank(data)),
-    removeBank: (id) => dispatch(removeBank(id))
+    removeBank: (id) => dispatch(removeBank(id)),
   }
 }
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{ collection: 'banks' }]),
+  firestoreConnect(props => [
+    { collection: 'banks', where: [
+      'authorId', '==', `${props.userId}`
+    ]}
+  ]),
 )(BankList);

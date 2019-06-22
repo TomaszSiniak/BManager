@@ -1,0 +1,22 @@
+
+.TransitionGroup {
+  width: 100%;
+}
+.sectionEnter {
+  opacity: 0;
+}
+
+.sectionEnterActive {
+  opacity: 1;
+  transition: all 600ms;
+}
+
+.sectionExit {
+  opacity: 1;
+}
+
+.sectionExitActive {
+  opacity: 1;
+  display: none;
+  transition: opacity 600ms;
+}

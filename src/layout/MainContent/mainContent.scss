@@ -1,8 +1,20 @@
-.MainContent {
+.MainContentWrapper {
   position:relative;
   width: 100%;
   height: 100%;
-  padding:10px;
   box-sizing: border-box;
-  padding-top: 60px;
+  padding-top: 50px;
+  display: flex;
+}
+
+.MainContent {
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .MainContent {
+    padding: 20px;
+  }
 }

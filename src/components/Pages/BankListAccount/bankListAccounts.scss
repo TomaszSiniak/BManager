@@ -13,3 +13,9 @@
   text-align: left;
   margin-bottom: 20px;
 }
+
+@media screen and (min-width: 768px) {
+  .ContentWrapper {
+    padding: 50px;
+  }
+}
