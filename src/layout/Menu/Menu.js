@@ -15,7 +15,7 @@ const Menu = (props) => {
     }
   }
   return (
-    <Fragment>
+    <div className={styles.MenuWrapper}>
       <Link
         className={styles.MenuLink}
         to="/"
@@ -57,7 +57,7 @@ const Menu = (props) => {
         <p>Patronite</p>
       </Link>
 
-    </Fragment>
+    </div>
   )
 }
 

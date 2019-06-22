@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+
+.UserWrapper {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $line-separate-color;
+  margin: 20px 10px 0;
+  padding-bottom: 20px;
+}
+
+.ImgWrapper {
+  width: 75px;
+  height: 75px;
+  border: none;
+  margin-right: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+}
