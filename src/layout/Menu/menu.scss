@@ -6,7 +6,7 @@
   padding-left: 10px;
   display: flex;
   border-bottom: 2px solid transparent;
-  transition: all .1s ease-out;
+  transition: all .2s ease-out;
   box-sizing: border-box;
   figure {
     width: 30px;
@@ -18,8 +18,7 @@
   }
 }
 .MenuLink:hover {
-  background: $background-main-dark;
-  border-bottom: 2px solid $accent-color;
+  border-bottom: 1px solid $accent-color;
   transform: scale(1.02);
-  transition: all .1s ease-in;
+  transition: all .2s ease-in;
 }

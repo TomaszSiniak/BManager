@@ -10,9 +10,11 @@ const AccountListItem = (props) => {
   return (
     <div className={styles.AccountListItem}>
       <Link to={`/accounts/${props.name}/${props.item.id}`} className={styles.AccountListItemLink}>
-        <div>Nazwa konta: {props.item.accountName}</div>
-        <div>Data Otwarcia: {props.item.openDate}</div>
-        <div>Status: {props.item.status}</div>
+        <div className={styles.AccountName}>{props.item.accountName}</div>
+        <div className={styles.AccountInfo}>
+          <div>Data Otwarcia: {props.item.openDate}</div>
+          <div>Status: {props.item.status}</div>
+        </div>
       </Link>
       <figure className={styles.CloseIcon} onClick={handleRemoveAccount}>
         <img src={closeIcon} alt='' />

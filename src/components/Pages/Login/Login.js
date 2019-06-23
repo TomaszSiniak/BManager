@@ -31,10 +31,9 @@ class Login extends Component {
     return (
       <div>
         <form className={styles.LoginForm} onSubmit={this.handleSubmit}>
-          <label className={styles.LoginFormLabel}>Email:</label>
-          <input className={styles.LoginFormInput} name="email" type="text" onChange={this.handleInputChange} />
-          <label className={styles.LoginFormLabel}>Hasło:</label>
-          <input className={styles.LoginFormInput} name="password" type="password" onChange={this.handleInputChange} />
+          <div className={styles.SectionName}>Login:</div>
+          <input className={styles.LoginFormInput} placeholder="Email" name="email" type="text" onChange={this.handleInputChange} />
+          <input className={styles.LoginFormInput} placeholder="Hasło" name="password" type="password" onChange={this.handleInputChange} />
           <button className={styles.LoginFormButton}>Zaloguj!</button>
           {authError && <p>{authError}</p>}
         </form>

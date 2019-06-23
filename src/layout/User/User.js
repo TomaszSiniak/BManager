@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { get } from 'lodash';
-import pooIcon from '../../assets/images/poo.svg';
+import userIcon from '../../assets/images/user.svg';
 import styles from './user.scss';
 
 const User = (props) => {
@@ -9,7 +9,7 @@ const User = (props) => {
   return (
     <div className={styles.UserWrapper}>
       <figure className={styles.ImgWrapper}>
-        <img src={pooIcon} />
+        <img src={userIcon} />
       </figure>
       <div className={styles.Name}>Welcome, {name}!</div>
     </div>
@@ -17,7 +17,6 @@ const User = (props) => {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     user: state.firebase.profile,
   }

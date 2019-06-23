@@ -10,14 +10,22 @@
   transition: all .2s ease-in-out;
   cursor: pointer;
   margin-bottom: 30px;
+  margin-left:-5px;
   figure {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
   }
   p {
     line-height: 30px;
-    font-size: 20px;
-    margin-left: 10px;
+    font-size: 16px;
   }
 }
 .BackButton:hover {

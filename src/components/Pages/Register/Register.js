@@ -29,12 +29,10 @@ class Register extends Component {
     return (
       <div>
         <form className={styles.RegisterForm} onSubmit={this.handleSubmit}>
-          <label className={styles.RegisterFormLabel} htmlFor="firstName">Imię:</label>
-          <input className={styles.RegisterFormInput}  name="firstName"  onChange={this.handleInput} />
-          <label className={styles.RegisterFormLabel} htmlFor="password">Hasło:</label>
-          <input className={styles.RegisterFormInput}  type="password" name="password" onChange={this.handleInput} />
-          <label className={styles.RegisterFormLabel} htmlFor="email">Email:</label>
-          <input className={styles.RegisterFormInput}  type="email" name="email"  onChange={this.handleInput} />
+          <div className={styles.SectionName}>Rejestracja:</div>
+          <input className={styles.RegisterFormInput} placeholder="Imię" name="firstName"  onChange={this.handleInput} />
+          <input className={styles.RegisterFormInput} placeholder="Hasło" type="password" name="password" onChange={this.handleInput} />
+          <input className={styles.RegisterFormInput}  placeholder="Email" type="email" name="email"  onChange={this.handleInput} />
           <button className={styles.RegisterFormButton}>Zarejestruj</button>
         </form>
       </div>
