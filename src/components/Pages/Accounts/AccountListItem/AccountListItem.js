@@ -13,7 +13,10 @@ const AccountListItem = (props) => {
         <div className={styles.AccountName}>{props.item.accountName}</div>
         <div className={styles.AccountInfo}>
           <div>Data Otwarcia: {props.item.openDate}</div>
-          <div>Status: {props.item.status}</div>
+          <div className={styles.statusWrapper}>
+            <div>Status: {props.item.status}</div>
+            {props.item.status === 'aktywne' ? (<span className={styles.active} />) : (<span className={styles.incative} />) }
+          </div>
         </div>
       </Link>
       <figure className={styles.CloseIcon} onClick={handleRemoveAccount}>

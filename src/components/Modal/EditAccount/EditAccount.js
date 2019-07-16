@@ -28,33 +28,34 @@ class EditAccount extends Component {
     return (
       <div className={styles.AddAccountModalContainer}>
         <form className={styles.AddBankAccountForm} onSubmit={this.onSubmit}>
-          <figure className={styles.IconContainer} onClick={closeModal}>
-            <img src={closeIcon} />
-          </figure>
-          <label>Nazwa Banku:</label>
+          <div className={styles.EditTitle}>Edycja:</div>
           <input
+            className={styles.EditAccountInput}
             defaultValue={item.accountName}
             onChange={this.handleInputChange}
             name="accountName"
           />
-          <label>Status konta:</label>
           <select
+            className={styles.EditAccountSelect}
             name="status"
             defaultValue={item.status}
             onChange={this.handleInputChange}
+            placeholder="Nazwa konta"
           >
             <option value="active">Aktywne</option>
             <option value="closed">Zamknięte</option>
           </select>
-          <label>Nagroda za konto:</label>
             <input
+              className={styles.EditAccountInput}
+              type="number"
               name="totalPrize"
               onChange={this.handleInputChange}
+              placeholder="Wartośc nagrody za konto (zł)"
             />
-          <div>
-            
+          <div className={styles.ButtonWrapper}>
+            <button className={styles.EditBtn}>Zapisz</button>
+            <button className={styles.EditBtnDefault} onClick={closeModal}>Anuluj</button>
           </div>
-          <button>Zapisz</button>
         </form>
       </div>
     )

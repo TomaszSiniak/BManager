@@ -39,3 +39,23 @@
     color: $secondary-text-color;
   }
 }
+.statusWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.active {
+  width: 7px;
+  height: 7px;
+  background: $active-account-color;
+  margin-left: 5px;
+  border-radius: 100%;
+}
+
+.inactive {
+  width: 7px;
+  height: 7px;
+  background: $inactive-account-color;
+  margin-left: 5px;
+  border-radius: 100%;
+}

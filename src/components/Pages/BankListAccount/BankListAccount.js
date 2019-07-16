@@ -12,7 +12,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 class BankListAccount extends Component {
   state = {
     accountName: null,
-    openDate: null,
+    openDate: "2019-06-20",
     status: 'aktywne',
   }
 
@@ -30,7 +30,6 @@ class BankListAccount extends Component {
       status: this.state.status,
       openDate: this.state.openDate,
     }
-
 
     const checkAccount = this.checkAccountExist(this.state.accountName);
     if (!checkAccount) {

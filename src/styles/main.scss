@@ -37,7 +37,7 @@ html, body {
 }
 .SectionName {
   font-size: 30px;
-  border-bottom: solid 1px $secondary-line-separate-color;
+  border-bottom: solid 2px $secondary-line-separate-color;
   margin-bottom: 30px;
   padding-bottom: 10px;
 }
@@ -48,23 +48,15 @@ html, body {
   text-indent: 10px;
   font-size: 16px;
   border: none;
-  background: $input-background;
+  border-bottom: solid 1px $secondary-line-separate-color;
+  // background: $input-background;
   outline: none;
   border-radius: 3px;
 }
 
 .LoginFormButton,
 .RegisterFormButton {
-  background: $accent-color;
-  border: none;
-  outline: none;
-  padding: 10px 30px;
-  color: $accent-text-color;
-  margin-top: 30px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  border-radius: 3px;
-  text-transform: uppercase;
-  font-size: 16px;
+  @extend .BtnActive;
 }
 
 // react transitions
@@ -85,4 +77,17 @@ html, body {
 .item-exit-active {
   opacity: 0;
   transition: opacity 500ms ease-in;
+}
+
+.BtnActive {
+  background: $accent-color;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  color: $accent-text-color;
+  margin-top: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-size: 12px;
 }

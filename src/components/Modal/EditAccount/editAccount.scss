@@ -1,23 +1,61 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/main.scss';
+
 .AddAccountModalContainer {
   position:  absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0,0,0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background:#fff;
+  padding-top: 100px;
 }
 
 .AddBankAccountForm {
   position: relative;
-  padding: 50px;
-  background:#fff;
+  padding: 10px;
   display: flex;
   flex-direction: column;
 }
 .IconContainer {
-  width: 40px;
-  height: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35px;
+  height: 35px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+.EditAccountInput, .EditAccountSelect {
+  margin-bottom: 15px;
+  line-height: 40px;
+  text-indent: 10px;
+  font-size: 16px;
+  border: none;
+  background: $input-background;
+  outline: none;
+  border-radius: 3px;
+}
+.EditTitle {
+  font-size: 30px;
+  border-bottom: solid 1px $secondary-line-separate-color;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+}
+.ButtonWrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.EditBtn {
+  @extend .BtnActive;
+}
+
+.EditBtnDefault {
+  @extend .BtnActive;
+  background: none;
+  color: $text-color;
+  margin-left: 10px;
 }

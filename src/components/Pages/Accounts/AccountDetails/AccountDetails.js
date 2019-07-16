@@ -24,10 +24,16 @@ class AccountDetails extends Component {
     if(!auth.uid) return <Redirect to="/login" />
     return (
       <div>
-        <div>Nazwa: {accountName}</div>
-        <div>Status: {status}</div>
-        <div>Data Otwarcia: {openDate}</div>
-        <button onClick={this.handleEditModal}>Edytuj</button>
+        <div>
+          <div>Nazwa: {accountName}</div>
+          <div>Status:{status}</div>
+          <div>Data Otwarcia: {openDate}</div>
+          <button onClick={this.handleEditModal}>Edytuj</button>
+        </div>
+        <div>
+          <button>Dodaj warunek promocji konta</button>
+        </div>
+
         {this.state.isEditModalOpen && (
           <Portal>
             <EditAccountModal item ={this.props.account} closeModal={this.handleEditModal} />
