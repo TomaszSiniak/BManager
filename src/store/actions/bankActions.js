@@ -20,7 +20,7 @@ export const addBank = data => {
       authorFirstName: profile.firstName,
       authorLastName: profile.lastName,
     }
-    
+
     firestore.collection('banks').add(bankData)
     .then((res) => {
       const data = { ...bankData, bankId: res.id}

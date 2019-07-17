@@ -1,0 +1,20 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/main.scss';
+
+.ButtonWrapper {
+  border-bottom: 1px solid $line-separate-color;
+  // border-top: 1px solid $line-separate-color;
+}
+.AddPromotionBtn {
+  @extend .BtnActive;
+  display: block;
+  margin: 30px auto;
+}
+.EditBtn {
+  @extend .BtnDefault;
+  background: none;
+  color: $text-color;
+}
+.DetailsRow {
+  padding: 5px 0;
+}

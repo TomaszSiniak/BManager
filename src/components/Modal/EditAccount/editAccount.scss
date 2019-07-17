@@ -30,13 +30,12 @@
 }
 .EditAccountInput, .EditAccountSelect {
   margin-bottom: 15px;
-  line-height: 40px;
-  text-indent: 10px;
   font-size: 16px;
   border: none;
   background: $input-background;
   outline: none;
   border-radius: 3px;
+  padding: 10px;
 }
 .EditTitle {
   font-size: 30px;
@@ -54,7 +53,7 @@
 }
 
 .EditBtnDefault {
-  @extend .BtnActive;
+  @extend .BtnDefault;
   background: none;
   color: $text-color;
   margin-left: 10px;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AddItemInput from '../../../common/components/AddItemInput/AddItemInput';
 import AccountListItem from '../../../components/Pages/Accounts/AccountListItem/AccountListItem';
-import { addAccount, removeAccount } from '../../../store/actions/accountActions';
+import { addBankAccount, removeBankAccount } from '../../../store/actions/accountActions';
 import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -33,7 +33,7 @@ class BankListAccount extends Component {
 
     const checkAccount = this.checkAccountExist(this.state.accountName);
     if (!checkAccount) {
-      this.props.addAccount(data, this.props.match.params.bankName);
+      this.props.addBankAccount(data, this.props.match.params.bankName);
     }
   }
 
@@ -84,7 +84,7 @@ class BankListAccount extends Component {
               <AccountListItem
                 item={item}
                 key={item.id}
-                remove={this.props.remove}
+                removeBankAccount={this.props.removeBankAccount}
                 name={this.props.match.params.bankName}
               />
             )
@@ -106,8 +106,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addAccount: (data, name) => dispatch(addAccount(data, name)),
-    remove: (id, name) => dispatch(removeAccount(id, name)),
+    addBankAccount: (data, name) => dispatch(addBankAccount(data, name)),
+    removeBankAccount: (id, name) => dispatch(removeBankAccount(id, name)),
   }
 }
 
