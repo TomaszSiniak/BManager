@@ -11,7 +11,7 @@ const PromptModal = (props) => {
     <div className={styles.PromptWrapper}>
       <div className={styles.PromptContent}>
         <div className={styles.Title}>Potwierdzenie akcji</div>
-        <div className={styles.Subtitle}>Czy na pewno chcesz usunąć bank ?</div>
+        <div className={styles.Subtitle}>Czy na pewno chcesz usunąć?</div>
         <div className={styles.ButtonsWrapper}>
           <button className={styles.PromptBtnRemove} onClick={handleRemoveItem}>Usuń</button>
           <button className={styles.PromptBtn} onClick={props.togglePromptModal}>Anuluj</button>

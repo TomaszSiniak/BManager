@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import AddItemInput from '../../../common/components/AddItemInput/AddItemInput';
 import AccountListItem from '../../../components/Pages/Accounts/AccountListItem/AccountListItem';
 import { addBankAccount, removeBankAccount } from '../../../store/actions/accountActions';
+import { togglePromptModal } from '../../../store/actions/appActions';
+import Portal from '../../Portal/Modal';
+import PromptModal from '../../../components/Modal/Prompt/Prompt';
 import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -57,6 +60,12 @@ class BankListAccount extends Component {
     return false;
   }
 
+  setIdToRemove = id => {
+    this.setState({
+      removeId: id,
+    })
+  }
+
   render () {
     const buttonText = "Dodaj nowe konto";
     const placeholderText = "Nazwa konta";
@@ -84,16 +93,27 @@ class BankListAccount extends Component {
               <AccountListItem
                 item={item}
                 key={item.id}
-                removeBankAccount={this.props.removeBankAccount}
                 name={this.props.match.params.bankName}
+                togglePromptModal= {this.props.togglePromptModal}
+                setIdToRemove={this.setIdToRemove}
               />
             )
           })}
         </div>
+        {this.props.isPromptModalVisible && (
+            <Portal>
+              <PromptModal
+                removeId={this.state.removeId}
+                remove={this.props.removeBankAccount}
+                togglePromptModal={this.props.togglePromptModal}
+              />
+            </Portal>
+          )}
       </div>
     );
   }
 }
+
 const mapStateToProps = (state, props) => {
 
   const accounts = get(state.firestore.ordered, 'accounts', []);
@@ -101,6 +121,7 @@ const mapStateToProps = (state, props) => {
     accountsList: accounts,
     auth: state.firebase.auth,
     userId: state.firebase.auth.uid,
+    isPromptModalVisible: state.app.isPromptModalVisible,
   }
 }
 
@@ -108,6 +129,7 @@ const mapDispatchToProps = dispatch => {
   return {
     addBankAccount: (data, name) => dispatch(addBankAccount(data, name)),
     removeBankAccount: (id, name) => dispatch(removeBankAccount(id, name)),
+    togglePromptModal: () => dispatch(togglePromptModal())
   }
 }
 

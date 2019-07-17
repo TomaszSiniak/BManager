@@ -90,10 +90,10 @@ class BankList extends Component {
           :
           (<div className={styles.BankListTitle}>Lista banków:</div>)
         }
-       
+
         <div className={styles.BankList}>
           {bankList.map(item => {
-            return <BankTile 
+            return <BankTile
               item={item}
               key={item.id}
               togglePromptModal= {this.handleTogglePromptModal}
