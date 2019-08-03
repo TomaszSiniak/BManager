@@ -27,6 +27,7 @@ const AuthReducer = (state=initialState, action) => {
         authError: null
       }
     case USER_REGISTER_ERROR:
+      console.log(action.data)
       return {
         ...state,
         authError: action.error.message

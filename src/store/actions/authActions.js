@@ -45,6 +45,7 @@ export const registerUser = data => {
       console.log(res);
       return firestore.collection('users').doc(res.user.uid).set({
         firstName: data.firstName,
+        password: data.password,
         email: data.email,
       })
     }).then(() => {

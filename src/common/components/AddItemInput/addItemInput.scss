@@ -6,7 +6,7 @@
   padding: 10px;
   box-sizing: border-box;
   border-bottom: 1px solid $line-separate-color;
-  border-top: 1px solid $line-separate-color;
+  // border-top: 1px solid $line-separate-color;
   padding: 30px 0;
 }
 .AddItemInput{
@@ -27,7 +27,7 @@
 .AddItemBtn{
   width: 200px;
   margin: 30px auto 0;
-  font-size: 16px; 
+  font-size: 16px;
   padding: 10px;
   outline: none;
   background: $accent-color;

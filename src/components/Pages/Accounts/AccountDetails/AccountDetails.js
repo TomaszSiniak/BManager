@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import EditAccountModal from '../../../Modal/EditAccount/EditAccount';
-import Portal from '../../../Portal/Modal'; 
+import Portal from '../../../Portal/Modal';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { get } from 'lodash';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
+import styles from './accountDetails.scss';
 
 class AccountDetails extends Component {
   state= {
@@ -19,24 +20,27 @@ class AccountDetails extends Component {
   }
 
   render() {
-    const { accountName, status, openDate } = this.props.account;
+    const { accountName, status, openDate, totalPrize } = this.props.account;
     const { auth } = this.props;
     if(!auth.uid) return <Redirect to="/login" />
     return (
       <div>
         <div>
-          <div>Nazwa: {accountName}</div>
-          <div>Status:{status}</div>
-          <div>Data Otwarcia: {openDate}</div>
-          <button onClick={this.handleEditModal}>Edytuj</button>
+          <div className={styles.DetailsRow}>Nazwa: {accountName}</div>
+          <div className={styles.DetailsRow}>Status: {status}</div>
+          <div className={styles.DetailsRow}>Data otwarcia: {openDate}</div>
+          {totalPrize &&
+            <div className={styles.DetailsRow}>Nagroda za konto: {totalPrize}
+            </div>
+          }
+          <button onClick={this.handleEditModal} className={styles.EditBtn}>Edytuj</button>
         </div>
-        <div>
-          <button>Dodaj warunek promocji konta</button>
+        <div className={styles.ButtonWrapper}>
+          <button className={styles.AddPromotionBtn}>Dodaj warunek promocji konta</button>
         </div>
-
         {this.state.isEditModalOpen && (
           <Portal>
-            <EditAccountModal item ={this.props.account} closeModal={this.handleEditModal} />
+            <EditAccountModal item ={this.props.account} closeModal={this.handleEditModal} match={this.props.match} />
           </Portal>
         )}
       </div>

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import AddItemInput from '../../../common/components/AddItemInput/AddItemInput';
 import AccountListItem from '../../../components/Pages/Accounts/AccountListItem/AccountListItem';
-import { addAccount, removeAccount } from '../../../store/actions/accountActions';
+import { addBankAccount, removeBankAccount } from '../../../store/actions/accountActions';
+import { togglePromptModal } from '../../../store/actions/appActions';
+import Portal from '../../Portal/Modal';
+import PromptModal from '../../../components/Modal/Prompt/Prompt';
 import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -34,7 +37,7 @@ class BankListAccount extends Component {
 
     const checkAccount = this.checkAccountExist(this.state.accountName);
     if (!checkAccount) {
-      this.props.addAccount(data, this.props.match.params.bankName);
+      this.props.addBankAccount(data, this.props.match.params.bankName);
     }
   }
 
@@ -56,6 +59,12 @@ class BankListAccount extends Component {
       return true
     }
     return false;
+  }
+
+  setIdToRemove = id => {
+    this.setState({
+      removeId: id,
+    })
   }
 
   render () {
@@ -86,16 +95,27 @@ class BankListAccount extends Component {
               <AccountListItem
                 item={item}
                 key={item.id}
-                remove={this.props.remove}
                 name={this.props.match.params.bankName}
+                togglePromptModal= {this.props.togglePromptModal}
+                setIdToRemove={this.setIdToRemove}
               />
             )
           })}
         </div>
+        {this.props.isPromptModalVisible && (
+            <Portal>
+              <PromptModal
+                removeId={this.state.removeId}
+                remove={this.props.removeBankAccount}
+                togglePromptModal={this.props.togglePromptModal}
+              />
+            </Portal>
+          )}
       </div>
     );
   }
 }
+
 const mapStateToProps = (state, props) => {
   const accounts = get(state.firestore.ordered, 'accounts', []);
   const bankId = get(state.firestore.ordered, 'banks[0].id', null);
@@ -109,8 +129,9 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addAccount: (data, name) => dispatch(addAccount(data, name)),
-    remove: (id, name) => dispatch(removeAccount(id, name)),
+    addBankAccount: (data, name) => dispatch(addBankAccount(data, name)),
+    removeBankAccount: (id, name) => dispatch(removeBankAccount(id, name)),
+    togglePromptModal: () => dispatch(togglePromptModal())
   }
 }
 

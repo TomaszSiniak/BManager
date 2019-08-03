@@ -1,9 +1,11 @@
-export const ADD_ACCOUNT = 'ADD_ACCOUNT';
-export const ADD_ACCOUNT_ERROR = 'ADD_ACCOUNT_ERROR';
-export const REMOVE_ACCOUNT = 'REMOVE_ACCOUNT';
-export const REMOVE_ACCOUNT_ERROR = 'REMOVE_BANK_ERROR';
+export const ADD_BANK_ACCOUNT = 'ADD_BANK_ACCOUNT';
+export const ADD_BANK_ACCOUNT_ERROR = 'ADD_BANK_ACCOUNT_ERROR';
+export const REMOVE_BANK_ACCOUNT = 'REMOVE_BANK__ACCOUNT';
+export const REMOVE_BANK_ACCOUNT_ERROR = 'REMOVE_BANK__BANK_ERROR';
+export const UPDATE_BANK_ACCOUNT = 'UPDATE_BANK_ACCOUNT_ERROR';
+export const UPDATE_BANK_ACCOUNT_ERROR = 'UPDATE_BANK_ACCOUNT_ERROR';
 
-export const addAccount = (data, bankName) => {
+export const addBankAccount = (data, bankName) => {
   return(dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
 
@@ -15,24 +17,45 @@ export const addAccount = (data, bankName) => {
 
     firestore.collection('accounts').add(account)
       .then(() => {
-        dispatch({ type: ADD_ACCOUNT})
+        dispatch({ type: ADD_BANK_ACCOUNT})
       })
       .catch(error => {
-        dispatch({ type: ADD_ACCOUNT_ERROR, error})
+        dispatch({ type: ADD_BANK_ACCOUNT_ERROR, error})
       })
   }
 }
 
-export const removeAccount = id => {
+export const removeBankAccount = id => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
 
     firestore.collection('accounts').doc(id).delete()
       .then(() => {
-        dispatch({ type: REMOVE_ACCOUNT})
+        dispatch({ type: REMOVE_BANK_ACCOUNT})
       })
       .catch(err => {
-        dispatch({ type: REMOVE_ACCOUNT_ERROR, err})
+        dispatch({ type: REMOVE_BANK_ACCOUNT_ERROR, err})
+      })
+  }
+}
+
+export const updateBankAccount = (id, data) => {
+  return(dispatch, getState, { getFirestore }) => {
+
+    const firestore = getFirestore();
+
+    const { accountName, status, totalPrize } = data;
+
+    firestore.collection('accounts').doc(id).update({
+      accountName,
+      status,
+      totalPrize,
+    })
+      .then(() => {
+        dispatch({ type: UPDATE_BANK_ACCOUNT})
+      })
+      .catch(err => {
+        dispatch({ type: UPDATE_BANK_ACCOUNT_ERROR, err})
       })
   }
 }

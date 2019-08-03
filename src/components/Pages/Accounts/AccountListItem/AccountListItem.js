@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import styles from './accountListItem.scss';
 
 const AccountListItem = (props) => {
-  const handleRemoveAccount = () => {
-    props.remove(props.item.id, props.name);
+  const handlePromptModal= () => {
+    props.setIdToRemove(props.item.id)
+    props.togglePromptModal();
   }
   return (
     <div className={styles.AccountListItem}>
@@ -14,12 +15,12 @@ const AccountListItem = (props) => {
         <div className={styles.AccountInfo}>
           <div>Data Otwarcia: {props.item.openDate}</div>
           <div className={styles.statusWrapper}>
-            <div>Status: {props.item.status}</div>
-            {props.item.status === 'aktywne' ? (<span className={styles.active} />) : (<span className={styles.incative} />) }
+          <div>Status: {props.item.status}</div>
+            {props.item.status === 'aktywne' ? (<span className={styles.active} />) : (<span className={styles.inactive} />) }
           </div>
         </div>
       </Link>
-      <figure className={styles.CloseIcon} onClick={handleRemoveAccount}>
+      <figure className={styles.CloseIcon} onClick={handlePromptModal}>
         <img src={closeIcon} alt='' />
       </figure>
     </div>

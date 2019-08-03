@@ -100,7 +100,7 @@ class BankList extends Component {
         <div className={styles.BankList}>
           {isLoading === false && <Loader /> }
           {bankList.map(item => {
-            return <BankTile 
+            return <BankTile
               item={item}
               key={item.id}
               togglePromptModal= {this.handleTogglePromptModal}
