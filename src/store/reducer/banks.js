@@ -1,4 +1,12 @@
-import { ADD_BANK, ADD_BANK_ERROR, REMOVE_BANK,REMOVE_BANK_ERROR, ADD_ACCOUNT, REMOVE_ACCOUNT, LOAD_BANK } from '../actions/bankActions';
+import {
+  ADD_BANK,
+  ADD_BANK_ERROR,
+  REMOVE_BANK,
+  REMOVE_BANK_ERROR,
+  ADD_ACCOUNT,
+  REMOVE_ACCOUNT,
+  LOAD_BANKS_LIST
+} from '../actions/bankActions';
 
 const INITIAL_STATE = {
   error: null,
@@ -6,12 +14,12 @@ const INITIAL_STATE = {
 
 const bankReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case LOAD_BANK:
-      return {
-        ...state,
-        list: action.data,
-        error: null,
-      }
+    // case LOAD_BANKS_LIST:
+    //   return {
+    //     ...state,
+    //     list: action.data,
+    //     error: null,
+    //   }
     case ADD_BANK:
       return {
         ...state,

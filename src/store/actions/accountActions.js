@@ -10,7 +10,7 @@ export const addAccount = (data, bankName) => {
     const account = {
       ...data,
       authorId: getState().firebase.auth.uid,
-      bankName: bankName,
+      bankName,
     }
 
     firestore.collection('accounts').add(account)

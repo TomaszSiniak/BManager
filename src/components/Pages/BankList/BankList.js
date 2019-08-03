@@ -12,6 +12,7 @@ import { get } from 'lodash';
 import { Redirect } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import Loader from '../../../common/components/Loader/Loader';
 
 
 class BankList extends Component {
@@ -20,6 +21,7 @@ class BankList extends Component {
     bankName: null,
     removeId: null,
   }
+
 
   handleBankNameInput = (e) => {
     const bankName = e.target.value.trim();
@@ -73,7 +75,8 @@ class BankList extends Component {
   render () {
     const buttonText = "Dodaj bank";
     const placeholderText ="Nazwa banku"
-    const { bankList, auth, removeBank,togglePromptModal } = this.props;
+    const { bankList, auth, removeBank, togglePromptModal, isLoading } = this.props;
+
     if (!auth.uid) return <Redirect to='/login' />
     return (
       <div className={styles.ContentWrapper} >
@@ -85,13 +88,17 @@ class BankList extends Component {
           buttonDisabled={this.buttonDisabled}
           placeholder={placeholderText}
         />
+        {/*
         {bankList.length === 0 ?
           (<div className={styles.EmptyBankListInfo}>Nie masz żadnych banków na swojej liście...</div>)
           :
           (<div className={styles.BankListTitle}>Lista banków:</div>)
         }
        
+      */}
+
         <div className={styles.BankList}>
+          {isLoading === false && <Loader /> }
           {bankList.map(item => {
             return <BankTile 
               item={item}
@@ -126,12 +133,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addBank: (data) => dispatch(addBank(data)),
-    removeBank: (id) => dispatch(removeBank(id)),
+    addBank: data => dispatch(addBank(data)),
+    removeBank: id => dispatch(removeBank(id)),
     togglePromptModal: () => dispatch(togglePromptModal())
   }
 }
-
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => [

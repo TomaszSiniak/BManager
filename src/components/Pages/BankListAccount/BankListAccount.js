@@ -29,6 +29,7 @@ class BankListAccount extends Component {
       accountName: this.state.accountName,
       status: this.state.status,
       openDate: this.state.openDate,
+      bankId: this.props.bankId,
     }
 
     const checkAccount = this.checkAccountExist(this.state.accountName);
@@ -61,6 +62,7 @@ class BankListAccount extends Component {
     const buttonText = "Dodaj nowe konto";
     const placeholderText = "Nazwa konta";
     const { accountsList, auth, isPromptModalVisible } = this.props;
+    
     if (!auth.uid) return <Redirect to='/login' />
     return (
       <div className={styles.ContentWrapper}>
@@ -95,12 +97,13 @@ class BankListAccount extends Component {
   }
 }
 const mapStateToProps = (state, props) => {
-
   const accounts = get(state.firestore.ordered, 'accounts', []);
+  const bankId = get(state.firestore.ordered, 'banks[0].id', null);
   return {
     accountsList: accounts,
     auth: state.firebase.auth,
     userId: state.firebase.auth.uid,
+    bankId: bankId,
   }
 }
 
@@ -119,6 +122,12 @@ export default compose(
         ['authorId', '==', `${props.userId}`],
         ['bankName', '==', `${props.match.params.bankName}`]
       ],
-    }
+    },
+    { collection: 'banks',
+      where: [
+        ['authorId', '==', `${props.userId}`],
+        ['bankName', '==', `${props.match.params.bankName}`]
+      ],
+    },
   ])
 )(BankListAccount);

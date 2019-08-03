@@ -1,11 +1,22 @@
+export const LOAD_BANKS_LIST = 'LOAD_BANKS_LIST';
 export const ADD_BANK = 'ADD_BANK';
 export const ADD_BANK_ERROR = 'ADD_BANK_ERROR';
 export const REMOVE_BANK = 'REMOVE_BANK';
 export const REMOVE_BANK_ERROR = 'REMOVE_BANK_ERROR';
-export const LOAD_BANK = 'LOAD_BANK';
 
-export const loadBank = data => {
-  console.log(data)
+export const loadBankList = (userId, data) => {
+  return (dispatch, getState, { getFirestore }) => {
+    //nie działa
+    // const firestore = getFirestore();
+
+    // firestore.collection('banks').where('authorId','==', `${userId}`)
+    //   .get()
+    //   .then(res => {
+    //     console.log(res)
+    //     dispatch({ type: LOAD_BANKS_LIST });
+    //   })
+    //   .catch(err => console.log(err))
+  }
 }
 
 export const addBank = data => {
@@ -18,16 +29,15 @@ export const addBank = data => {
       ...data,
       authorId,
       authorFirstName: profile.firstName,
-      authorLastName: profile.lastName,
     }
-    
+
     firestore.collection('banks').add(bankData)
-    .then((res) => {
-      const data = { ...bankData, bankId: res.id}
-      dispatch({ type: ADD_BANK, data })
-    }).catch(err => {
-      dispatch({type: ADD_BANK_ERROR, err})
-    })
+      .then((res) => {
+        const data = { ...bankData, bankId: res.id }
+        dispatch({ type: ADD_BANK, data })
+      }).catch(err => {
+        dispatch({ type: ADD_BANK_ERROR, err })
+      })
   }
 }
 
@@ -42,5 +52,16 @@ export const removeBank = (id, bankName) => {
       .catch(error => {
         dispatch({ REMOVE_BANK_ERROR, error })
       })
+
+    // usuwanie kont w usunietym banku
+    firestore.collection('accounts').where('bankId', '==', `${id}`).get()
+      .then(querySnapshot => {
+        const batch = firestore.batch();
+        querySnapshot.forEach(doc => {
+          batch.delete(doc.ref);
+        });
+        return batch.commit();
+      })
+      .catch(err => console.log(err))
   }
 }
