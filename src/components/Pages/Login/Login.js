@@ -33,7 +33,7 @@ class Login extends Component {
         <form className={styles.LoginForm} onSubmit={this.handleSubmit}>
           <div className={styles.SectionName}>Login:</div>
           <input className={styles.LoginFormInput} placeholder="Email" name="email" type="text" onChange={this.handleInputChange} />
-          <input className={styles.LoginFormInput} placeholder="Hasło" name="password" type="password" onChange={this.handleInputChange} />
+          <input className={styles.LoginFormInput} placeholder="Password" name="password" type="password" onChange={this.handleInputChange} />
           <button className={styles.LoginFormButton}>Zaloguj!</button>
           {authError && <p>{authError}</p>}
         </form>

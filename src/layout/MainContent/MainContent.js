@@ -30,7 +30,7 @@ const MainContent = (props) => {
         <TransitionGroup className={transitionStyles.TransitionGroup}>
           <CSSTransition
             key={props.location.key}
-            timeout={600}
+            timeout={500}
             classNames={{
               enter: transitionStyles.sectionEnter,
               enterActive: transitionStyles.sectionEnterActive,

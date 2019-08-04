@@ -8,7 +8,10 @@
   height: 100%;
   background: $background-opacity-dark;
   z-index: 1;
+  margin-left: 0;
+  transition: all 1s ease-in;
 }
+
 .Sidepane {
   width: 300px;
   background: $background-color;

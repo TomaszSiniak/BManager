@@ -7,10 +7,11 @@ import { toggleMenu } from './store/actions/appActions';
 
 const App = (props) => {
 
-  // const width = window.innerWidth;
-  // if(width > 768) {
-  //   props.toggleMenu();
-  // }
+  const width = window.innerWidth;
+  if(width > 768 && props.auth) {
+    props.toggleMenu();
+  }
+  
   return (
     <div className={styles.AppContainer}>
       <Navbar toggleMenu={props.toggleMenu} />
@@ -19,10 +20,16 @@ const App = (props) => {
   )
 }
 
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth.uid
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     toggleMenu: () => dispatch(toggleMenu()),
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
