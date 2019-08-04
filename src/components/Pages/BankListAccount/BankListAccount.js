@@ -16,7 +16,7 @@ class BankListAccount extends Component {
   state = {
     accountName: null,
     openDate: "2019-06-20",
-    status: 'aktywne',
+    status: 'active',
   }
 
   handleBankNameInput = (e) => {
@@ -68,8 +68,8 @@ class BankListAccount extends Component {
   }
 
   render () {
-    const buttonText = "Dodaj nowe konto";
-    const placeholderText = "Nazwa konta";
+    const buttonText = "Add New Account";
+    const placeholderText = "Account name";
     const { accountsList, auth, isPromptModalVisible } = this.props;
     
     if (!auth.uid) return <Redirect to='/login' />
@@ -85,9 +85,9 @@ class BankListAccount extends Component {
         />
 
         {accountsList.length === 0 ?
-          (<div className={styles.EmptyAccountListInfo}>Nie masz żadnych kont w tym banku...</div>)
+          (<div className={styles.EmptyAccountListInfo}>You have no accounts in this bank...</div>)
           :
-          (<div className={styles.AccountListTitle}>Twoje konta:</div>)
+          (<div className={styles.AccountListTitle}>Your Accounts:</div>)
         }
         <div>
           {accountsList.map(item => {
@@ -124,6 +124,7 @@ const mapStateToProps = (state, props) => {
     auth: state.firebase.auth,
     userId: state.firebase.auth.uid,
     bankId: bankId,
+    isPromptModalVisible: state.app.isPromptModalVisible,
   }
 }
 

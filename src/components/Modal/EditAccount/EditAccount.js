@@ -7,7 +7,7 @@ import styles from './editAccount.scss';
 class EditAccount extends Component {
 
   state = {
-    status: 'aktywne',
+    status: 'active',
   }
 
   handleInputChange = (e) => {
@@ -42,12 +42,12 @@ class EditAccount extends Component {
     return (
       <div className={styles.AddAccountModalContainer}>
         <form className={styles.AddBankAccountForm} onSubmit={this.onSubmit}>
-          <div className={styles.EditTitle}>Edycja:</div>
+          <div className={styles.EditTitle}>Edit:</div>
           <input
             className={styles.EditAccountInput}
             defaultValue={item.accountName}
             onChange={this.handleInputChange}
-            placeholder="Nazwa konta"
+            placeholder="Account name"
             name="accountName"
           />
           <select
@@ -55,16 +55,16 @@ class EditAccount extends Component {
             name="status"
             defaultValue={item.status}
             onChange={this.handleInputChange}
-            placeholder="Nazwa konta"
+            placeholder="Account name"
           >
-            <option value="aktywne">Aktywne</option>
-            <option value="nieaktywne">Nieaktywne</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
           </select>
-          {this.state.status === 'nieaktywne' && (
+          {this.state.status === 'inactive' && (
             <input
              className={styles.EditAccountInput}
              onChange={this.handleInputChange}
-             placeholder="Data zamknięcia konta"
+             placeholder="Account closed date"
              />
           )}
           <input
@@ -72,7 +72,7 @@ class EditAccount extends Component {
             type="number"
             name="totalPrize"
             onChange={this.handleInputChange}
-            placeholder="Wartośc nagrody za konto (zł)"
+            placeholder="Total award value(e.g 200 zł)"
           />
           <div className={styles.ButtonWrapper}>
             <button className={styles.EditBtn}>Zapisz</button>

@@ -16,7 +16,7 @@ const AccountListItem = (props) => {
           <div>Data Otwarcia: {props.item.openDate}</div>
           <div className={styles.statusWrapper}>
           <div>Status: {props.item.status}</div>
-            {props.item.status === 'aktywne' ? (<span className={styles.active} />) : (<span className={styles.inactive} />) }
+            {props.item.status === 'active' ? (<span className={styles.active} />) : (<span className={styles.inactive} />) }
           </div>
         </div>
       </Link>

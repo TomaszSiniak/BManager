@@ -30,8 +30,8 @@ class Register extends Component {
       <div>
         <form className={styles.RegisterForm} onSubmit={this.handleSubmit}>
           <div className={styles.SectionName}>Rejestracja:</div>
-          <input className={styles.RegisterFormInput} placeholder="Imię" name="firstName"  onChange={this.handleInput} />
-          <input className={styles.RegisterFormInput} placeholder="Hasło" type="password" name="password" onChange={this.handleInput} />
+          <input className={styles.RegisterFormInput} placeholder="Name" name="firstName"  onChange={this.handleInput} />
+          <input className={styles.RegisterFormInput} placeholder="Password" type="password" name="password" onChange={this.handleInput} />
           <input className={styles.RegisterFormInput}  placeholder="Email" type="email" name="email"  onChange={this.handleInput} />
           <button className={styles.RegisterFormButton}>Zarejestruj</button>
         </form>

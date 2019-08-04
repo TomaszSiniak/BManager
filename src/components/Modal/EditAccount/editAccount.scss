@@ -8,14 +8,17 @@
   top: 0;
   left: 0;
   background:#fff;
-  padding-top: 100px;
+  
+  z-index: 1;
 }
 
 .AddBankAccountForm {
   position: relative;
-  padding: 10px;
+  padding: 10% 10px 10px 10px;
   display: flex;
   flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 .IconContainer {
   position: absolute;

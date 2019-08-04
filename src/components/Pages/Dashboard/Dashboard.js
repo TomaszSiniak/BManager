@@ -10,8 +10,8 @@ class Dashboard extends React.Component {
     if(!auth.uid) return <Redirect to="/login" />
     return (
       <div className={styles.DashboardContainer}>
-        <div className={styles.DashboardTitle}>Witaj w BManager!</div>
-        <div className={styles.DashboardSubtitle}>aplikacji do zarzadzania promocjami bankowymi!</div>
+        <div className={styles.DashboardTitle}>Welcome in BManager!</div>
+        <div className={styles.DashboardSubtitle}>bank's promotions app manager!</div>
         <figure className={styles.IconWrapper}>
           <img src={dollarIcon} />
         </figure>

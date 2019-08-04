@@ -34,11 +34,6 @@
   border: none;
   border-radius: 3px;
   color: $accent-text-color;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   cursor: pointer;
-  transition: all .2s ease-out;
-}
-.AddItemBtn:hover {
-  transform: scale(1.02);
-  transition: all .2s ease-in;
 }

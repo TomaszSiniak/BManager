@@ -26,17 +26,17 @@ class AccountDetails extends Component {
     return (
       <div>
         <div>
-          <div className={styles.DetailsRow}>Nazwa: {accountName}</div>
+          <div className={styles.DetailsRow}>Name: {accountName}</div>
           <div className={styles.DetailsRow}>Status: {status}</div>
-          <div className={styles.DetailsRow}>Data otwarcia: {openDate}</div>
+          <div className={styles.DetailsRow}>Open date: {openDate}</div>
           {totalPrize &&
-            <div className={styles.DetailsRow}>Nagroda za konto: {totalPrize}
+            <div className={styles.DetailsRow}>Bank account award: {totalPrize}
             </div>
           }
-          <button onClick={this.handleEditModal} className={styles.EditBtn}>Edytuj</button>
+          <button onClick={this.handleEditModal} className={styles.EditBtn}>Edit</button>
         </div>
         <div className={styles.ButtonWrapper}>
-          <button className={styles.AddPromotionBtn}>Dodaj warunek promocji konta</button>
+          <button className={styles.AddPromotionBtn}>Add term of promotions</button>
         </div>
         {this.state.isEditModalOpen && (
           <Portal>

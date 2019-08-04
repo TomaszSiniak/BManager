@@ -73,14 +73,14 @@ class BankList extends Component {
   }
 
   render () {
-    const buttonText = "Dodaj bank";
-    const placeholderText ="Nazwa banku"
+    const buttonText = "Add New Bank";
+    const placeholderText ="Bank name"
     const { bankList, auth, removeBank, togglePromptModal, isLoading } = this.props;
 
     if (!auth.uid) return <Redirect to='/login' />
     return (
       <div className={styles.ContentWrapper} >
-        <div className={styles.SectionName}>Konta Osobiste</div>
+        <div className={styles.SectionName}>Bank Accounts</div>
         <AddItemInput
           buttonText={buttonText}
           addAction={this.onSubmit}
@@ -88,14 +88,14 @@ class BankList extends Component {
           buttonDisabled={this.buttonDisabled}
           placeholder={placeholderText}
         />
-        {/*
+      
         {bankList.length === 0 ?
-          (<div className={styles.EmptyBankListInfo}>Nie masz żadnych banków na swojej liście...</div>)
+          (<div className={styles.EmptyBankListInfo}>You have no banks on your list...</div>)
           :
-          (<div className={styles.BankListTitle}>Lista banków:</div>)
+          (<div className={styles.BankListTitle}>Your banks list:</div>)
         }
        
-      */}
+    
 
         <div className={styles.BankList}>
           {isLoading === false && <Loader /> }

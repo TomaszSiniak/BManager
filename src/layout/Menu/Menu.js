@@ -24,7 +24,7 @@ const Menu = (props) => {
         <figure>
           <img src={homeIcon} alt="" />
         </figure>
-        <p>Strona Główna</p>
+        <p>Home</p>
       </Link>
       <Link
         className={styles.MenuLink}
@@ -34,7 +34,7 @@ const Menu = (props) => {
         <figure>
           <img src={accountIcon} alt="" />
         </figure>
-        <p>Konta Osobiste</p>
+        <p>Bank Accounts</p>
       </Link>
       <Link
         className={styles.MenuLink}
@@ -44,7 +44,7 @@ const Menu = (props) => {
         <figure>
           <img src={cardIcon} alt="" />
         </figure>
-        <p>Karty Kredytowe</p>
+        <p>Credit cards</p>
       </Link>
       <Link
         className={styles.MenuLink}
