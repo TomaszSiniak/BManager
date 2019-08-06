@@ -4,13 +4,15 @@ import accountIcon from '../../assets/images/account.svg';
 import cardIcon from '../../assets/images/card.svg';
 import moneyIcon from '../../assets/images/money.svg';
 import homeIcon from '../../assets/images/home.svg';
+import sackIcon from '../../assets/images/sack-dollar.svg';
+import chartIcon from '../../assets/images/chart.svg';
 import styles from './menu.scss';
 
 const Menu = (props) => {
 
   const width = window.innerWidth;
   const handleShowMenu = () => {
-    if(width < 768) {
+    if (width < 768) {
       props.toggleMenu();
     }
   }
@@ -45,6 +47,26 @@ const Menu = (props) => {
           <img src={cardIcon} alt="" />
         </figure>
         <p>Credit cards</p>
+      </Link>
+      <Link
+        className={styles.MenuLink}
+        to="/"
+        onClick={handleShowMenu}
+      >
+        <figure>
+          <img src={sackIcon} alt="" />
+        </figure>
+        <p>Bank Desposits</p>
+      </Link>
+      <Link
+        className={styles.MenuLink}
+        to="/"
+        onClick={handleShowMenu}
+      >
+        <figure>
+          <img src={chartIcon} alt="" />
+        </figure>
+        <p>Analytics</p>
       </Link>
       <Link
         className={styles.MenuLink}

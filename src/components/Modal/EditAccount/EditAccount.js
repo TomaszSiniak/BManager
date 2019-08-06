@@ -25,7 +25,7 @@ class EditAccount extends Component {
     const { item } = this.props;
     const accountName = get(this.state, 'accountName', item.accountName);
     const status = get(this.state, 'status', item.status);
-    const totalPrize = get(this.state, 'totalPrize', null);
+    const totalPrize = get(this.state, 'totalPrize', item.totalPrize ? item.totalPrize : null);
 
     const data = {
       ...item,
@@ -33,11 +33,10 @@ class EditAccount extends Component {
       status,
       totalPrize,
     }
-
     this.props.updateBankAccount(this.props.match.params.accountId, data);
     this.props.closeModal();
   }
-  render() {
+  render () {
     const { closeModal, item } = this.props;
     return (
       <div className={styles.AddAccountModalContainer}>
@@ -62,21 +61,32 @@ class EditAccount extends Component {
           </select>
           {this.state.status === 'inactive' && (
             <input
-             className={styles.EditAccountInput}
-             onChange={this.handleInputChange}
-             placeholder="Account closed date"
-             />
+              className={styles.EditAccountInput}
+              onChange={this.handleInputChange}
+              placeholder="Account closed date"
+            />
           )}
-          <input
+          <select
             className={styles.EditAccountInput}
             type="number"
             name="totalPrize"
             onChange={this.handleInputChange}
-            placeholder="Total award value(e.g 200 zł)"
-          />
+            placeholder="Total award value"
+            defaultValue={item.totalPrize}
+          >
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="150">150</option>
+            <option value="200">200</option>
+            <option value="250">250</option>
+            <option value="300">300</option>
+            <option value="350">350</option>
+            <option value="300">400</option>
+
+          </select>
           <div className={styles.ButtonWrapper}>
-            <button className={styles.EditBtn}>Zapisz</button>
-            <button className={styles.EditBtnDefault} onClick={closeModal}>Anuluj</button>
+            <button className={styles.EditBtn}>Save</button>
+            <button className={styles.EditBtnDefault} onClick={closeModal}>Cancel</button>
           </div>
         </form>
       </div>

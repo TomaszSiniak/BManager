@@ -7,7 +7,7 @@ const AddItemInput = (props) =>{
 
   return (
     <form onSubmit={addAction} className={styles.AddItemForm}>
-      <input onChange={(e) => handleInput(e)} className={styles.AddItemInput} maxLength="15" placeholder={placeholder} />
+      <input onChange={(e) => handleInput(e)} className={styles.AddItemInput} maxLength="20" placeholder={placeholder} />
       <button disabled={buttonDisabled()} className={styles.AddItemBtn}>{buttonText}</button>
     </form>
   );

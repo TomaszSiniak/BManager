@@ -75,7 +75,7 @@ class BankList extends Component {
   render () {
     const buttonText = "Add New Bank";
     const placeholderText ="Bank name"
-    const { bankList, auth, removeBank, togglePromptModal, isLoading } = this.props;
+    const { bankList, auth, removeBank, togglePromptModal} = this.props;
 
     if (!auth.uid) return <Redirect to='/login' />
     return (
@@ -94,11 +94,8 @@ class BankList extends Component {
           :
           (<div className={styles.BankListTitle}>Your banks list:</div>)
         }
-       
-    
-
+        
         <div className={styles.BankList}>
-          {isLoading === false && <Loader /> }
           {bankList.map(item => {
             return <BankTile
               item={item}
@@ -122,9 +119,9 @@ class BankList extends Component {
 }
 
 const mapStateToProps = state => {
-  const list = get(state.firestore.ordered, 'banks', []);
+  const bankList = get(state.firestore.ordered, 'banks', []);
   return {
-    bankList: list,
+    bankList,
     auth: state.firebase.auth,
     userId: state.firebase.auth.uid,
     isPromptModalVisible: state.app.isPromptModalVisible,

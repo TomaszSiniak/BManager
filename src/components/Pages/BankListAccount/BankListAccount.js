@@ -36,28 +36,21 @@ class BankListAccount extends Component {
     }
 
     const checkAccount = this.checkAccountExist(this.state.accountName);
-    if (!checkAccount) {
-      this.props.addBankAccount(data, this.props.match.params.bankName);
-    }
+    if (!checkAccount) this.props.addBankAccount(data, this.props.match.params.bankName);
   }
 
   checkAccountExist = (name) => {
     let result = false;
     const accounts = get(this.props, 'accountsList', [])
     accounts.find(item => {
-      if (item.accountName.toLowerCase() === name.toLowerCase()) {
-        result = true;
-      }
-    })
+      if (item.accountName.toLowerCase() === name.toLowerCase()) result = true })
     return result
   }
 
   buttonDisabled = () => {
     const accountName = get(this.state, 'accountName', null);
     const openDate = get(this.state, 'openDate', null);
-    if (!accountName) {
-      return true
-    }
+    if (!accountName) return true;
     return false;
   }
 

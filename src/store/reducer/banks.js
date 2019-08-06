@@ -3,9 +3,8 @@ import {
   ADD_BANK_ERROR,
   REMOVE_BANK,
   REMOVE_BANK_ERROR,
-  ADD_ACCOUNT,
-  REMOVE_ACCOUNT,
-  LOAD_BANKS_LIST
+  // ADD_ACCOUNT,
+  // REMOVE_ACCOUNT,
 } from '../actions/bankActions';
 
 const INITIAL_STATE = {
@@ -42,9 +41,9 @@ const bankReducer = (state = INITIAL_STATE, action) => {
         error: action.error
         // list: state.list.filter(item => item.id !== action.id)
       }
-    case ADD_ACCOUNT:
-      return {
-        ...state,
+    // case ADD_ACCOUNT:
+    //   return {
+    //     ...state,
         // list: state.list.map(item => {
         //   if(item.bankName === action.bankName) {
         //     return {
@@ -54,10 +53,10 @@ const bankReducer = (state = INITIAL_STATE, action) => {
         //   }
         //   return item;
         // })
-      }
-    case REMOVE_ACCOUNT:
-      return {
-        ...state,
+      // }
+    // case REMOVE_ACCOUNT:
+    //   return {
+    //     ...state,
         // list: state.list.map(item => {
         //   if (item.bankName === action.name) {
         //     return {
@@ -69,7 +68,7 @@ const bankReducer = (state = INITIAL_STATE, action) => {
         //   }
         //   return item;
         // })
-      }
+      // }
     default:
       return state;
   }

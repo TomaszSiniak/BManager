@@ -14,11 +14,11 @@ const Navbar = (props) => {
   const windowWidth = window.innerWidth;
   return (
     <div className={styles.HeaderWrapper}>
-      {(auth.uid && windowWidth < 768 ) && 
+      {auth.uid && (
         <figure className={styles.IconContainer} onClick={showMenu}>
           <img src={menuIcon} />
         </figure>
-      }
+      )}
       <div className={styles.LinksWrapper}>
         {auth.uid ? <LoggedInLinks /> : <LoggedOutLinks /> }
       </div>
