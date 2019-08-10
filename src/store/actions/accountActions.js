@@ -36,6 +36,17 @@ export const removeBankAccount = id => {
       .catch(err => {
         dispatch({ type: REMOVE_BANK_ACCOUNT_ERROR, err})
       })
+
+       // usuwanie warunków promocji powiązanych z usunietym kontem
+    firestore.collection('conditions').where('accountId', '==', `${id}`).get()
+    .then(querySnapshot => {
+      const batch = firestore.batch();
+      querySnapshot.forEach(doc => {
+        batch.delete(doc.ref);
+      });
+      return batch.commit();
+    })
+    .catch(err => console.log(err))
   }
 }
 

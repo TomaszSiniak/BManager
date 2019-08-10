@@ -53,7 +53,7 @@ export const removeBank = (id, bankName) => {
         dispatch({ REMOVE_BANK_ERROR, error })
       })
 
-    // usuwanie kont w usunietym banku
+    // usuwanie kont powiązanych z usunietym bankiem
     firestore.collection('accounts').where('bankId', '==', `${id}`).get()
       .then(querySnapshot => {
         const batch = firestore.batch();

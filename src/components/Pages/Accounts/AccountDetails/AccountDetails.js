@@ -12,7 +12,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import styles from './accountDetails.scss';
 
 class AccountDetails extends Component {
-  state= {
+  state = {
     isEditModlaOpen: false,
     isTermPromotionsModalOpen: false,
   }
@@ -29,16 +29,16 @@ class AccountDetails extends Component {
     })
   }
 
-  render() {
-    const { account: { accountName, status, openDate, totalPrize}, auth , conditions, removeCondition, updateConditionStatus } = this.props;
-    if(!auth.uid) return <Redirect to="/login" />
+  render () {
+    const { account: { accountName, status, openDate, totalPrize }, auth, conditions, removeCondition, updateConditionStatus } = this.props;
+    if (!auth.uid) return <Redirect to="/login" />
     return (
       <div>
         <div>
           <div className={styles.DetailsRow}>Name: {accountName}</div>
           <div className={styles.DetailsRow}>Status: {status}</div>
           <div className={styles.DetailsRow}>Open date: {openDate}</div>
-          { totalPrize &&<div className={styles.DetailsRow}>Promotion award in total: {totalPrize} pln</div>}
+          {totalPrize && <div className={styles.DetailsRow}>Promotion award in total: {totalPrize} pln</div>}
           <button onClick={this.handleEditModal} className={styles.EditBtn}>Edit</button>
         </div>
         <div className={styles.ButtonWrapper}>
@@ -46,12 +46,12 @@ class AccountDetails extends Component {
         </div>
         <div>
           {conditions.map(item => {
-            return <Tile item={item} key={item.id} removeCondition={removeCondition}  updateConditionStatus={updateConditionStatus}/>
+            return <Tile item={item} key={item.id} removeCondition={removeCondition} updateConditionStatus={updateConditionStatus} />
           })}
         </div>
         {this.state.isEditModalOpen && (
           <Portal>
-            <EditAccountModal item ={this.props.account} closeModal={this.handleEditModal} match={this.props.match} />
+            <EditAccountModal item={this.props.account} closeModal={this.handleEditModal} match={this.props.match} />
           </Portal>
         )}
         {this.state.isTermPromotionsModalOpen && (
@@ -71,12 +71,13 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const mapStateToProps = (state, props)=> {
+const mapStateToProps = (state, props) => {
   const accountId = get(props, 'match.params.accountId', '');
   const accounts = get(state.firestore.ordered, 'accounts', []);
   const account = accounts.length > 0 && accounts.find(item => item.id === accountId)
   const conditions = get(state.firestore.ordered, 'conditions', []);
   return {
+    accountId,
     account,
     auth: state.firebase.auth,
     conditions,
@@ -85,5 +86,12 @@ const mapStateToProps = (state, props)=> {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{'collection':'accounts'}, {'collection':'conditions'}])
+  firestoreConnect(props => [
+    { 'collection': 'accounts' },
+    {'collection': 'conditions',
+      where: [
+        ['accountId', '==', `${props.accountId}`],
+      ],
+    }
+  ])
 )(AccountDetails);
