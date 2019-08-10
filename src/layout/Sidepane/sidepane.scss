@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .SidepaneContainer {
-  position:fixed;
+  position: fixed;
   top: 50px;
   left: 0;
   width: 100%;
@@ -9,7 +9,6 @@
   background: $background-opacity-dark;
   z-index: 1;
   margin-left: 0;
-  transition: all 1s ease-in;
 }
 
 .Sidepane {

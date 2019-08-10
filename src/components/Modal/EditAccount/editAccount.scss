@@ -2,13 +2,12 @@
 @import '../../../styles/main.scss';
 
 .AddAccountModalContainer {
-  position:  absolute;
+  position:  fixed;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   background:#fff;
-  
   z-index: 1;
 }
 
@@ -20,17 +19,7 @@
   max-width: 800px;
   margin: 0 auto;
 }
-// .IconContainer {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   width: 35px;
-//   height: 35px;
-//   img {
-//     width: 100%;
-//     height: 100%;
-//   }
-// }
+
 .EditAccountInput, .EditAccountSelect {
   margin-bottom: 15px;
   font-size: 16px;

@@ -33,7 +33,8 @@ class AccountDetails extends Component {
     const { account: { accountName, status, openDate, totalPrize }, auth, conditions, removeCondition, updateConditionStatus } = this.props;
     if (!auth.uid) return <Redirect to="/login" />
     return (
-      <div>
+      <div className={styles.ContentWrapper}>
+        <div className={styles.AccountDetailsTitle}>Account details:</div>
         <div>
           <div className={styles.DetailsRow}>Name: {accountName}</div>
           <div className={styles.DetailsRow}>Status: {status}</div>
@@ -44,7 +45,7 @@ class AccountDetails extends Component {
         <div className={styles.ButtonWrapper}>
           <button className={styles.AddPromotionBtn} onClick={this.handleTermPromotionsModal}>Add term of promotions</button>
         </div>
-        <div>
+        <div className={styles.ConditionsWrapper}>
           {conditions.map(item => {
             return <Tile item={item} key={item.id} removeCondition={removeCondition} updateConditionStatus={updateConditionStatus} />
           })}

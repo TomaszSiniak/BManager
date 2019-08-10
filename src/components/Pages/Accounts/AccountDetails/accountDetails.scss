@@ -3,8 +3,13 @@
 
 .ButtonWrapper {
   border-bottom: 1px solid $line-separate-color;
-  // border-top: 1px solid $line-separate-color;
 }
+
+.AccountDetailsTitle{
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+
 .AddPromotionBtn {
   @extend .BtnActive;
   display: block;
@@ -17,4 +22,10 @@
 }
 .DetailsRow {
   padding: 5px 0;
+}
+
+@media screen and (min-width: 768px) {
+  .ContentWrapper {
+    padding: 50px;
+  }
 }
