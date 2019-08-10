@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import AddItemInput from '../../../common/components/AddItemInput/AddItemInput';
-import AccountListItem from '../../../components/Pages/Accounts/AccountListItem/AccountListItem';
-import { addBankAccount, removeBankAccount } from '../../../store/actions/accountActions';
-import { togglePromptModal } from '../../../store/actions/appActions';
-import Portal from '../../Portal/Modal';
-import PromptModal from '../../../components/Modal/Prompt/Prompt';
+import AddItemInput from '../../../../common/components/AddItemInput/AddItemInput';
+import AccountListItem from '../AccountListItem/AccountListItem';
+import { addBankAccount, removeBankAccount } from '../../../../store/actions/accountActions';
+import { togglePromptModal } from '../../../../store/actions/appActions';
+import Portal from '../../../Portal/Modal';
+import PromptModal from '../../../Modal/Prompt/Prompt';
 import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';

@@ -1,13 +1,13 @@
 @import '../../../../styles/variables.scss';
 
-.AccountListItem {
-  padding: 10px;
-  background:$background-white;
+.ConditionContainer {
+  background: $background-white;
   position: relative;
-  width: 100%;
   box-sizing: border-box;
   border-radius: 3px;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  width: 100%;
+  padding: 10px;
 }
 .CloseIcon {
   position: absolute;
@@ -16,7 +16,7 @@
   height: 30px;
   width: 30px;
   pointer-events: visiblePainted;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   img{
@@ -24,26 +24,23 @@
     height: 80%;
   }
 }
-
-.AccountListItemLink {
-  text-decoration: none;
-}
-
-.AccountName {
+.ConditionName {
   font-size: 16px;
   padding-bottom: 5px;
 }
 
-.AccountInfo {
-  border-top: 1px solid $secondary-line-separate-color;
+.ConditionStatusWrapper {
+  padding-bottom: 2px;
+  border-bottom: 1px solid $secondary-line-separate-color;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ConditionInfo,
+.ConditionStatusInfo {
   padding-top: 5px;
   font-size: 12px;
-  div {
-    color: $secondary-text-color;
-    padding-bottom: 3px;
-  }
-}
-.statusWrapper {
+  color: $secondary-text-color;
   display: flex;
   align-items: center;
 }

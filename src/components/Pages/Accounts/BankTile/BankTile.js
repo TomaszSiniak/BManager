@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './bankTile.scss';
-import closeIcon from '../../../assets/images/close.svg';
+import closeIcon from '../../../../assets/images/close.svg';
 
 const BankTile = (props) => {
 

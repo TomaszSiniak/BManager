@@ -37,12 +37,10 @@ export const registerUser = data => {
   return(dispatch, getState, { getFirebase, getFirestore}) => {
     const firebase = getFirebase();
     const firestore = getFirestore();
-    console.log(data)
     firebase.auth().createUserWithEmailAndPassword(
       data.email,
       data.password,
     ).then(res => {
-      console.log(res);
       return firestore.collection('users').doc(res.user.uid).set({
         firstName: data.firstName,
         password: data.password,

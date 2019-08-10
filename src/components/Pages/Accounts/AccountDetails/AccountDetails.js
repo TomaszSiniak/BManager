@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import EditAccountModal from '../../../Modal/EditAccount/EditAccount';
 import AddPromotionConditionModal from '../../../Modal/AddPromotionCondition/AddPromotionCondition';
 import Portal from '../../../Portal/Modal';
+import Tile from '../ConditionTile/ConditionTile';
+import { removePromotionCondition, updateConditionStatus } from '../../../../store/actions/conditionActions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { get } from 'lodash';
@@ -28,7 +30,7 @@ class AccountDetails extends Component {
   }
 
   render() {
-    const { account: { accountName, status, openDate, totalPrize}, auth , conditions } = this.props;
+    const { account: { accountName, status, openDate, totalPrize}, auth , conditions, removeCondition, updateConditionStatus } = this.props;
     if(!auth.uid) return <Redirect to="/login" />
     return (
       <div>
@@ -36,14 +38,16 @@ class AccountDetails extends Component {
           <div className={styles.DetailsRow}>Name: {accountName}</div>
           <div className={styles.DetailsRow}>Status: {status}</div>
           <div className={styles.DetailsRow}>Open date: {openDate}</div>
-          { totalPrize &&<div className={styles.DetailsRow}>Bank account promotion award in total: {totalPrize} pln</div>}
+          { totalPrize &&<div className={styles.DetailsRow}>Promotion award in total: {totalPrize} pln</div>}
           <button onClick={this.handleEditModal} className={styles.EditBtn}>Edit</button>
         </div>
         <div className={styles.ButtonWrapper}>
           <button className={styles.AddPromotionBtn} onClick={this.handleTermPromotionsModal}>Add term of promotions</button>
         </div>
         <div>
-          {conditions.length}
+          {conditions.map(item => {
+            return <Tile item={item} key={item.id} removeCondition={removeCondition}  updateConditionStatus={updateConditionStatus}/>
+          })}
         </div>
         {this.state.isEditModalOpen && (
           <Portal>
@@ -62,7 +66,8 @@ class AccountDetails extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    dupa: () => console.log('dupa')
+    removeCondition: id => dispatch(removePromotionCondition(id)),
+    updateConditionStatus: (id, data) => dispatch(updateConditionStatus(id, data))
   }
 }
 

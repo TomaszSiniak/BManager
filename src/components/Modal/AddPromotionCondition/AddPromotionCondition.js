@@ -7,7 +7,7 @@ import styles from './addPromotionCondition.scss';
 class AddPromotionCondition extends Component {
 
   state = {
-    status: 'undone',
+    status: false,
   }
 
   handleInputChange = (e) => {
@@ -35,9 +35,21 @@ class AddPromotionCondition extends Component {
       conditionMonth
     }
 
+    const isPayloadEmpty = this.checkDataPayload();
+
+    if(isPayloadEmpty) return;
+
     this.props.addNewPromotionCondition(data);
     this.props.closeModal();
   }
+
+  checkDataPayload = () => {
+    const conditionMonth = get(this.state, 'conditionMonth', null);
+    const conditionName = get(this.state, 'conditionName', null);
+    if (!conditionMonth || !conditionName) return true;
+    return false;
+  }
+
   render() {
     const { closeModal} = this.props;
     return (

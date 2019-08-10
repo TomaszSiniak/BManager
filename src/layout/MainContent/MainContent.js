@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Dashboard from '../../components/Pages/Dashboard/Dashboard';
-import BankList from '../../components/Pages/BankList/BankList'
+import BankList from '../../components/Pages/Accounts/BankList/BankList'
 import BankListCards from '../../components/Pages/Cards/BankListCards/BankListCards'
-import BankListAccount from '../../components/Pages/BankListAccount/BankListAccount'
+import BankListAccount from '../../components/Pages/Accounts/BankListAccount/BankListAccount'
 import AccountDetails from '../../components/Pages/Accounts/AccountDetails/AccountDetails'
 import Sidepane from '../../layout/Sidepane/Sidepane';
 import BackButton from '../../common/components/BackButton/BackButton';

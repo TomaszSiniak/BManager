@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BankTile from '../BankTile/BankTile';
-import AddItemInput from '../../../common/components/AddItemInput/AddItemInput';
-import { addBank, removeBank } from '../../../store/actions/bankActions';
-import { togglePromptModal } from '../../../store/actions/appActions';
-import PromptModal from '../../../components/Modal/Prompt/Prompt';
-import Portal from '../../Portal/Modal';
+import AddItemInput from '../../../../common/components/AddItemInput/AddItemInput';
+import { addBank, removeBank } from '../../../../store/actions/bankActions';
+import { togglePromptModal } from '../../../../store/actions/appActions';
+import PromptModal from '../../../Modal/Prompt/Prompt';
+import Portal from '../../../Portal/Modal';
 import styles from './bankList.scss';
-import '../../../styles/main.scss';
+import '../../../../styles/main.scss';
 import { get } from 'lodash';
 import { Redirect } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import Loader from '../../../common/components/Loader/Loader';
+import Loader from '../../../../common/components/Loader/Loader';
 
 
 class BankList extends Component {
