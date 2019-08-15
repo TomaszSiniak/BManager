@@ -12,6 +12,7 @@ import { get } from 'lodash';
 import { Redirect } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import DayPicker from 'react-day-picker';
 import Loader from '../../../../common/components/Loader/Loader';
 
 
@@ -60,11 +61,12 @@ class BankList extends Component {
     return false;
   }
 
-  handleChange (date) {
+  handleChange = date => {
     this.setState({
       startDate: date
     });
   }
+
   handleTogglePromptModal = id => {
     this.setState({
       removeId: id,
@@ -88,6 +90,7 @@ class BankList extends Component {
           buttonDisabled={this.buttonDisabled}
           placeholder={placeholderText}
         />
+        <DayPicker />
       
         {bankList.length === 0 ?
           (<div className={styles.EmptyBankListInfo}>You have no banks on your list...</div>)

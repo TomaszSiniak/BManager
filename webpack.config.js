@@ -10,47 +10,54 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  // resolve: {
+  //   extensions: ['.js', '.css', '.scss'],
+  //   alias: {
+  //     datePicker: path.join(__dirname, '/node_modules/react-day-picker/lib/style.css'),
+  //   }
+  // },
   module: {
     rules:
-    [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
+      [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+          },
         },
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'css-hot-loader',
-          },
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              sourceMap: true,
-              localIdentName: '[local]--[hash:base64:5]',
+        {
+          test: /\.scss$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'css-hot-loader',
+            },
+            {
+              loader: MiniCssExtractPlugin.loader,
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                sourceMap: true,
+                localIdentName: '[local]--[hash:base64:5]',
+              }
+            },
+           
+            {
+              loader: 'sass-loader',
             }
-          },
-          {
-            loader: 'sass-loader',
-          }
-        ]
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        use: [
-          'url-loader',
-          'img-loader',
-        ]
-      }
-    ]
+          ]
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          use: [
+            'url-loader',
+            'img-loader',
+          ]
+        }
+      ]
   },
   plugins: [
     new HtmlWebpackPlugin({
