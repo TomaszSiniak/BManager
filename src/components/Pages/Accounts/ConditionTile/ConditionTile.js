@@ -6,8 +6,9 @@ import stylesMain from '../../../../styles/main.scss';
 
 const ConditionTile = (props) => {
 
-  const removeCondition = () => {
-    props.removeCondition(props.item.id)
+  const setIdToRemove = () => {
+    props.togglePromptModal();
+    props.setIdToRemove(props.item.id);
   }
 
   const handleSwitcher = () => {
@@ -17,7 +18,7 @@ const ConditionTile = (props) => {
 
   const { item: { status, conditionName, conditionMonth } } = props;
   return (
-    <div className={styles.ConditionContainer}>
+    <div className={styles.ConditionItem}>
       <div className={styles.ConditionName}>{conditionName}</div>
       <div className={styles.ConditionInfo}>Month: {conditionMonth}</div>
       <div className={styles.ConditionInfo}>To do until: 20-07-2019</div>
@@ -35,7 +36,7 @@ const ConditionTile = (props) => {
           checked={status}
         />
       </div>
-      <figure className={styles.CloseIcon} onClick={removeCondition}>
+      <figure className={styles.CloseIcon} onClick={setIdToRemove}>
         <img src={closeIcon} alt="" />
       </figure>
     </div>

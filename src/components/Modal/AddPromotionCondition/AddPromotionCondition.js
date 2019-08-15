@@ -27,12 +27,14 @@ class AddPromotionCondition extends Component {
     const status = get(this.state, 'status', null);
     const accountId = get(item, 'id', this.props.match.params.accountId);
     const conditionMonth = get(this.state, 'conditionMonth', null);
+    const bankId = get(item, 'bankId', null);
     
     const data = {
       conditionName,
       status,
       accountId,
-      conditionMonth
+      conditionMonth,
+      bankId
     }
 
     const isPayloadEmpty = this.checkDataPayload();

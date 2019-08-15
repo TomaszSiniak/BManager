@@ -82,7 +82,7 @@ class BankListAccount extends Component {
           :
           (<div className={styles.AccountListTitle}>Your Accounts:</div>)
         }
-        <div>
+        <div className={styles.AccountListWrapper}>
           {accountsList.map(item => {
             return (
               <AccountListItem

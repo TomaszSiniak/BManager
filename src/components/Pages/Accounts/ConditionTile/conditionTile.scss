@@ -1,6 +1,6 @@
 @import '../../../../styles/variables.scss';
 
-.ConditionContainer {
+.ConditionItem {
   background: $background-white;
   position: relative;
   box-sizing: border-box;
@@ -45,3 +45,10 @@
   display: flex;
   align-items: center;
 }
+
+@media screen and (min-width: 1224px) {
+  .ConditionItem {
+    width: 48%;
+    margin: 20px 1%;
+  }
+ }

@@ -62,6 +62,16 @@ export const removeBank = (id, bankName) => {
         });
         return batch.commit();
       })
+      .catch(err => console.log(err));
+
+      firestore.collection('conditions').where('bankId', '==', `${id}`).get()
+      .then(querySnapshot => {
+        const batch = firestore.batch();
+        querySnapshot.forEach(doc => {
+          batch.delete(doc.ref);
+        });
+        return batch.commit();
+      })
       .catch(err => console.log(err))
   }
 }
