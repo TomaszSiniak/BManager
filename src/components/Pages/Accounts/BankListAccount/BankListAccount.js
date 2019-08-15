@@ -61,8 +61,8 @@ class BankListAccount extends Component {
   }
 
   render () {
-    const buttonText = "Add New Account";
-    const placeholderText = "Account name";
+    const buttonText = "Add account";
+    const placeholderText = "Enter account name...";
     const { accountsList, auth, isPromptModalVisible } = this.props;
     
     if (!auth.uid) return <Redirect to='/login' />

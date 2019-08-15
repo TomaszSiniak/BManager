@@ -73,8 +73,8 @@ class BankList extends Component {
   }
 
   render () {
-    const buttonText = "Add New Bank";
-    const placeholderText ="Bank name"
+    const buttonText = "Add bank";
+    const placeholderText ="Enter bank name..."
     const { bankList, auth, removeBank, togglePromptModal} = this.props;
 
     if (!auth.uid) return <Redirect to='/login' />

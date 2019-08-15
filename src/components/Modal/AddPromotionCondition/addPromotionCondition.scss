@@ -7,31 +7,37 @@
   height: 100%;
   top: 0;
   left: 0;
-  background:#fff;
+  background: rgba(255,255,255, 0.9);
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .AddTermPromotionsForm {
   position: relative;
-  padding: 10% 10px 10px 10px;
   display: flex;
   flex-direction: column;
+  width: 90%;
   max-width: 800px;
-  margin: 0 auto;
+  background: $background-white;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-sizing: border-box;
 }
 
 .ConditionPromotionInput, .ConditionPromotionSelect {
   margin-bottom: 15px;
   font-size: 16px;
   border: none;
-  background: $input-background;
   outline: none;
   border-radius: 3px;
   padding: 10px;
+  border-bottom: solid 1px $secondary-line-separate-color;
 }
 .ConditionTitle {
-  font-size: 20px;
-  border-bottom: solid 1px $secondary-line-separate-color;
+  font-size: 25px;
+  border-bottom: solid 1px $line-separate-color;
   margin-bottom: 30px;
   padding-bottom: 10px;
 }

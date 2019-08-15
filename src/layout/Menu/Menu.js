@@ -50,7 +50,7 @@ const Menu = (props) => {
       </Link>
       <Link
         className={styles.MenuLink}
-        to="/"
+        to="/deposits"
         onClick={handleShowMenu}
       >
         <figure>

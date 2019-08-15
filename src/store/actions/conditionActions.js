@@ -1,5 +1,3 @@
-import { firestoreReducer } from "react-redux-firebase";
-
 export const ADD_PROMOTION_CONDITION = 'ADD_PROMOTION_CONDITION';
 export const ADD_PROMOTION_CONDITION_ERROR = 'ADD_PROMOTION_CONDITION_ERROR';
 export const REMOVE_PROMOTION_CONDITION = 'REMOVE_PROMOTION_CONDITION';

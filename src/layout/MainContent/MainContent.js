@@ -9,6 +9,7 @@ import Sidepane from '../../layout/Sidepane/Sidepane';
 import BackButton from '../../common/components/BackButton/BackButton';
 import Login from '../../components/Pages/Login/Login';
 import Register from '../../components/Pages/Register/Register';
+import DepositsList from '../../components/Pages/Desposits/DepositsList/DespositList';
 import styles from './mainContent.scss';
 import transitionStyles from '../../styles/transition.scss';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -47,6 +48,8 @@ const MainContent = (props) => {
               <Route path="/accounts" component={BankList} exact />
               <Route path="/accounts/:bankName" component={BankListAccount} exact />
               <Route path="/accounts/:bankName/:accountId" component={AccountDetails} />
+              <Route path="/deposits" component={DepositsList} />
+              {/*<Route path="/deposits/:id" component={DepositDetails} /> */}
               <Route path="/cards" component={BankListCards} />
             </Switch>
           </CSSTransition>

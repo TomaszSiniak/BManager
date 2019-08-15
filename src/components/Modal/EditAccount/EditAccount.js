@@ -46,7 +46,7 @@ class EditAccount extends Component {
             className={styles.EditAccountInput}
             defaultValue={item.accountName}
             onChange={this.handleInputChange}
-            placeholder="Account name"
+            placeholder="Enter account name..."
             name="accountName"
           />
           <select
@@ -54,7 +54,7 @@ class EditAccount extends Component {
             name="status"
             defaultValue={item.status}
             onChange={this.handleInputChange}
-            placeholder="Account name"
+            placeholder="status"
           >
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>
@@ -72,8 +72,9 @@ class EditAccount extends Component {
             name="totalPrize"
             onChange={this.handleInputChange}
             placeholder="Total award value"
-            defaultValue={item.totalPrize}
+            defaultValue={item.totalPrize ? item.totalPrize : 'Select award value...'}
           >
+            <option disabled>Select award value...</option>
             <option value="50">50</option>
             <option value="100">100</option>
             <option value="150">150</option>

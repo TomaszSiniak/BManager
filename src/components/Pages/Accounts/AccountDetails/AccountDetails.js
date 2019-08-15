@@ -9,6 +9,7 @@ import { Redirect } from 'react-router-dom';
 import { get } from 'lodash';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
+import stylesMain from '../../../../styles/main.scss';
 import styles from './accountDetails.scss';
 
 class AccountDetails extends Component {
@@ -34,10 +35,12 @@ class AccountDetails extends Component {
     if (!auth.uid) return <Redirect to="/login" />
     return (
       <div className={styles.ContentWrapper}>
-        <div className={styles.AccountDetailsTitle}>Account details:</div>
         <div>
           <div className={styles.DetailsRow}>Name: {accountName}</div>
-          <div className={styles.DetailsRow}>Status: {status}</div>
+          <div className={styles.StatusWrapper}>
+            <div>Status: {status}</div>
+            {status === 'active' ? (<span className={stylesMain.DotActive} />) : (<span className={stylesMain.DotInactive} />) }
+          </div>
           <div className={styles.DetailsRow}>Open date: {openDate}</div>
           {totalPrize && <div className={styles.DetailsRow}>Promotion award in total: {totalPrize} pln</div>}
           <button onClick={this.handleEditModal} className={styles.EditBtn}>Edit</button>
