@@ -23,20 +23,23 @@ html, body {
   height: 100%;
 }
 
+
 .LoginForm,
 .RegisterForm {
-  background: $background-white;
+  background: rgba(255,255,255, 0.6);
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 40px 20px;
   font-size: 20px;
   border-radius: 3px;
-  max-width: 700px;
-  margin: 10% auto 0;
+  max-width: 500px;
+  margin: 100px auto 0;
+  width: 95%;
+  box-sizing: border-box;
 }
 .SectionName {
-  font-size: 30px;
+  font-size: 20px;
   border-bottom: solid 2px $secondary-line-separate-color;
   margin-bottom: 30px;
   padding-bottom: 10px;
@@ -47,7 +50,7 @@ html, body {
   margin-bottom: 15px;
   line-height: 40px;
   text-indent: 10px;
-  font-size: 16px;
+  font-size: 14px;
   border: none;
   border-bottom: solid 1px $secondary-line-separate-color;
   outline: none;
@@ -57,6 +60,8 @@ html, body {
 .LoginFormButton,
 .RegisterFormButton {
   @extend .BtnActive;
+  width: 200px;
+  margin: 0 auto;
 }
 
 // react transitions

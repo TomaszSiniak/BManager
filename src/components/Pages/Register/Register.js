@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../../store/actions/authActions';
-import styles from '../../../styles/main.scss';
+import styles from './register.scss';
 
 class Register extends Component {
 
@@ -27,13 +27,13 @@ class Register extends Component {
     const { auth } = this.props;
     if (auth.uid) return <Redirect to="/" />
     return (
-      <div>
+      <div className={styles.RegisterWrapper}>
         <form className={styles.RegisterForm} onSubmit={this.handleSubmit}>
-          <div className={styles.SectionName}>Rejestracja:</div>
+          <div className={styles.SectionName}>Sign up:</div>
           <input className={styles.RegisterFormInput} placeholder="Name" name="firstName"  onChange={this.handleInput} />
           <input className={styles.RegisterFormInput} placeholder="Password" type="password" name="password" onChange={this.handleInput} />
           <input className={styles.RegisterFormInput}  placeholder="Email" type="email" name="email"  onChange={this.handleInput} />
-          <button className={styles.RegisterFormButton}>Zarejestruj</button>
+          <button className={styles.RegisterFormButton}>Sign up</button>
         </form>
       </div>
     )

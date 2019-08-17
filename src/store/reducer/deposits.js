@@ -1,7 +1,8 @@
-import { ADD_DEPOSIT, ADD_DEPOSIT_ERROR } from '../actions/depositActions';
+import { ADD_DEPOSIT, ADD_DEPOSIT_ERROR, TOGGLE_DEPOSIT_SIDEPANE} from '../actions/depositActions';
 
 const INITIAL_STATE = {
   error: null,
+  isDepositSidepaneOpen: false,
 }
 
 const depositsReducer = (state = INITIAL_STATE, action) => {
@@ -16,6 +17,11 @@ const depositsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         error: action.err,
       }
+      case TOGGLE_DEPOSIT_SIDEPANE:
+        return {
+          ...state,
+          isDepositSidepaneOpen: !state.isDepositSidepaneOpen,
+        }
     default:
       return state;
   }

@@ -22,6 +22,7 @@ const App = (state = INITIAL_STATE, action) => {
         ...state,
         isPromptModalVisible: !state.isPromptModalVisible,
       }
+      
     default:
       return state;
   }

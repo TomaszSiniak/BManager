@@ -12,11 +12,12 @@
 }
 
 .sectionExit {
-  opacity: 1;
+  opacity: 0;
+  display: none;
 }
 
 .sectionExitActive {
-  opacity: 1;
+  opacity: 0;
   display: none;
   transition: opacity 600ms;
 }

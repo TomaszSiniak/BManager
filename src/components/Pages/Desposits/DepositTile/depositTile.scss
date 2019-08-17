@@ -40,3 +40,11 @@
     height: 80%;
   }
 }
+
+
+@media screen and (min-width: 1224px) {
+  .DepositListItem {
+    width: 48%;
+    margin: 20px 1%;
+  }
+}

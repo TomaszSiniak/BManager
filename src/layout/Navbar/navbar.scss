@@ -1,12 +1,13 @@
 @import '../../styles/variables.scss';
 .HeaderWrapper {
-  background: $background-main-dark;
+  background: rgba(255,255,255, 0.6);
   display: flex;
   justify-content: flex-end;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1;
+  border-bottom: solid 1px $secondary-line-separate-color;
 }
 
 .IconContainer {

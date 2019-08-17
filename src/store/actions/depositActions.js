@@ -1,5 +1,6 @@
 export const ADD_DEPOSIT = 'ADD_DEPOSIT';
 export const ADD_DEPOSIT_ERROR = 'ADD_DEPOSIT_ERROR';
+export const TOGGLE_DEPOSIT_SIDEPANE = 'TOGGLE_DEPOSIT_SIDEPANE';
 
 
 export const addDeposit = data => {
@@ -35,4 +36,10 @@ export const addDeposit = data => {
 //       });
 //   }
 // }
+
+export const toggleDepositSidepane = () => {
+  return {
+    type: 'TOGGLE_DEPOSIT_SIDEPANE'
+  }
+}
 

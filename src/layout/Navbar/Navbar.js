@@ -11,7 +11,7 @@ const Navbar = (props) => {
     props.toggleMenu();
   }
   const { auth } = props;
-  const windowWidth = window.innerWidth;
+
   return (
     <div className={styles.HeaderWrapper}>
       {auth.uid && (

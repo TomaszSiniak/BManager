@@ -9,6 +9,8 @@
   background: $background-opacity-dark;
   z-index: 1;
   margin-left: 0;
+  border-top: solid 1px $secondary-line-separate-color;
+  box-sizing: border-box;
 }
 
 .Sidepane {

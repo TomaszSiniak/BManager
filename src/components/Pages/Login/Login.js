@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../../store/actions/authActions';
 import { Redirect } from 'react-router-dom';
-import styles from '../../../styles/main.scss';
+// import styles from '../../../styles/main.scss';
+import styles from './login.scss';
 
 class Login extends Component {
   state = {
@@ -29,12 +30,12 @@ class Login extends Component {
     const { authError, auth } = (this.props)
     if(auth.uid) return <Redirect to="/" />
     return (
-      <div>
+      <div className={styles.LoginWrapper}>
         <form className={styles.LoginForm} onSubmit={this.handleSubmit}>
-          <div className={styles.SectionName}>Login:</div>
+          <div className={styles.SectionName}>Sign In:</div>
           <input className={styles.LoginFormInput} placeholder="Email" name="email" type="text" onChange={this.handleInputChange} />
           <input className={styles.LoginFormInput} placeholder="Password" name="password" type="password" onChange={this.handleInputChange} />
-          <button className={styles.LoginFormButton}>Zaloguj!</button>
+          <button className={styles.LoginFormButton}>Sign In!</button>
           {authError && <p>{authError}</p>}
         </form>
       </div>
