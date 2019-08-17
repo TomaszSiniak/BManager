@@ -5,7 +5,7 @@ import closeIcon from '../../../../assets/images/close.svg';
 const DepositTile = props => {
 
   const removeDeposit = () => {
-    console.log('remove')
+    props.removeDeposit(props.item.id)
   }
 
   const { bankName, depositName, status, percentage, period } = props.item;

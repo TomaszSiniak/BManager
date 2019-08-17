@@ -3,6 +3,9 @@
 
 .ButtonWrapper {
   border-bottom: 1px solid $line-separate-color;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 20px;
 }
 
 .AccountDetailsTitle{
@@ -12,13 +15,12 @@
 
 .AddPromotionBtn {
   @extend .BtnActive;
-  display: block;
-  margin: 30px auto;
 }
 .EditBtn {
   @extend .BtnDefault;
   background: none;
   color: $text-color;
+  margin-right: 20px;
 }
 .DetailsRow {
   padding: 5px 0;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import closeIcon from '../../../../assets/images/close.svg';
+import LogoIcon from '../../../../assets/images/logo.png';
 import { connect } from 'react-redux';
 import styles from './depositForm.scss';
 
@@ -40,6 +40,9 @@ class DespositForm extends Component {
     return (
       <div className={styles.DepositFormWrapper} onClick={this.closeSidepane}>
         <form className={styles.DepositForm} onSubmit={this.onSubmit}>
+          <figure className={styles.LogoDepositWrapper}>
+            <img src={LogoIcon} alt="" />
+          </figure>
           <div className={styles.AddDepositTitle}>Add Deposit:</div>
           <input className={styles.DepositFormInput} placeholder="Enter bank name..." onChange={this.handleDepositData} name="bankName" />
           <input className={styles.DepositFormInput} placeholder="Enter deposit name..." onChange={this.handleDepositData} name="depositName" />

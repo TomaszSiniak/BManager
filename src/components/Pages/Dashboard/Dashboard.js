@@ -1,5 +1,5 @@
 import React from 'react';
-import dollarIcon from '../../../assets/images/dollar.svg';
+import LogoIcon from '../../../assets/images/logo.png';
 import styles from './dashboard.scss';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -10,10 +10,13 @@ class Dashboard extends React.Component {
     if(!auth.uid) return <Redirect to="/login" />
     return (
       <div className={styles.DashboardContainer}>
-        <div className={styles.DashboardTitle}>Welcome in BManager!</div>
+        <div className={styles.DashboardTitle}>
+          <p>Welcome in</p>
+          <p>bmanager</p>
+        </div>
         <div className={styles.DashboardSubtitle}>bank's promotions app manager!</div>
         <figure className={styles.IconWrapper}>
-          <img src={dollarIcon} />
+          <img src={LogoIcon} />
         </figure>
       </div>
     )

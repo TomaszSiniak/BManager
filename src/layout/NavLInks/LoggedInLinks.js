@@ -4,7 +4,7 @@ import styles from './links.scss';
 import { connect } from 'react-redux';
 import { logout } from '../../store/actions/authActions';
 import { closeMenu } from '../../store/actions/appActions';
-import SignOutIcon from '../../assets/images/sign-out.svg';;
+import SignOutIcon from '../../assets/images/sign-out.svg';
 
 const LoggedInLinks = (props) => {
 

@@ -2,7 +2,7 @@
 .HeaderWrapper {
   background: rgba(255,255,255, 0.6);
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   width: 100%;
@@ -10,10 +10,28 @@
   border-bottom: solid 1px $secondary-line-separate-color;
 }
 
+.LogoContainer {
+  border-right: 1px solid $secondary-line-separate-color;
+  background: $background-color;
+  width: 260px;
+  line-height: 50px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  padding-left:40px;
+  img {
+    margin-right: 10px;
+    width: 60px;
+ 
+  }
+  figcaption {
+    color: #8E71D1;
+  }
+}
+
 .IconContainer {
-  position:absolute;
-  top: 2px;
-  left: 10px;
+  margin-left: 10px;
+  margin-top: 2px;
   width: 40px;
   height: 40px;
 }
@@ -26,5 +44,13 @@
 @media screen and (min-width: 768px) {
   .IconContainer {
     display: none;
+    width: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .LogoContainer {
+    display: none;
+    width: 0;
+    border: none;
   }
 }

@@ -51,11 +51,13 @@ class AccountDetails extends Component {
           </div>
           <div className={styles.DetailsRow}>Open date: {openDate}</div>
           {totalPrize && <div className={styles.DetailsRow}>Promotion award in total: {totalPrize} pln</div>}
-          <button onClick={this.handleEditModal} className={styles.EditBtn}>Edit</button>
+
+          <div className={styles.ButtonWrapper}>
+            <button onClick={this.handleEditModal} className={styles.EditBtn}>Edit</button>
+            <button className={styles.AddPromotionBtn} onClick={this.handleTermPromotionsModal}>Add term of promotions</button>
+          </div>
         </div>
-        <div className={styles.ButtonWrapper}>
-          <button className={styles.AddPromotionBtn} onClick={this.handleTermPromotionsModal}>Add term of promotions</button>
-        </div>
+
         <div className={styles.ConditionsWrapper}>
           {conditions.map(item => {
             return (
