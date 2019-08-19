@@ -26,9 +26,15 @@
   border-left: solid 1px $secondary-line-separate-color;
   width: 300px;
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   padding: 20px;
   box-sizing: border-box;
+ }
+
+.DepositInputsWrapper {
+  display: flex;
+  flex-direction: column;
  }
  
  .DepositFormInput {
@@ -56,8 +62,6 @@
  }
 
  .AddNewDepositBtn {
-  position: absolute;
-  bottom: 20px;
   width: 250px;
   padding: 10px 0;
   background: $accent-color;

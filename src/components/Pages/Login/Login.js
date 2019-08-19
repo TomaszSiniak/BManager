@@ -35,10 +35,10 @@ class Login extends Component {
           <figure className={styles.LogoWrapperSignIn}>
             <img src={LogoIcon} alt="" />
           </figure>
-          <div className={styles.SectionName}>Sign In:</div>
+          <div className={styles.SectionName}>Logowanie:</div>
           <input className={styles.LoginFormInput} placeholder="Email" name="email" type="text" onChange={this.handleInputChange} />
-          <input className={styles.LoginFormInput} placeholder="Password" name="password" type="password" onChange={this.handleInputChange} />
-          <button className={styles.LoginFormButton}>Sign In!</button>
+          <input className={styles.LoginFormInput} placeholder="Hasło" name="password" type="password" onChange={this.handleInputChange} />
+          <button className={styles.LoginFormButton}>Zaloguj!</button>
           {authError && <p>{authError}</p>}
         </form>
       </div>

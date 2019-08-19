@@ -13,7 +13,7 @@ const BackButton = (props) => {
         <figure>
           <img src={arrowIcon} alt="" />
         </figure>
-        <p>Back</p>
+        <p>Powrót</p>
       </button>
     </Fragment>
   )

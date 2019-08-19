@@ -73,14 +73,14 @@ class BankList extends Component {
   }
 
   render () {
-    const buttonText = "Add bank";
-    const placeholderText ="Enter bank name..."
+    const buttonText = "Dodaj bankk";
+    const placeholderText ="Wpisz nazwę banku..."
     const { bankList, auth, removeBank, togglePromptModal} = this.props;
 
     if (!auth.uid) return <Redirect to='/login' />
     return (
       <div className={styles.ContentWrapper} >
-        <div className={styles.SectionName}>Bank Accounts</div>
+        <div className={styles.SectionName}>Lista Banków</div>
         <AddItemInput
           buttonText={buttonText}
           addAction={this.onSubmit}
@@ -90,9 +90,9 @@ class BankList extends Component {
         />
       
         {bankList.length === 0 ?
-          (<div className={styles.EmptyBankListInfo}>You have no banks on your list...</div>)
+          (<div className={styles.EmptyBankListInfo}>Bak banków na liście..</div>)
           :
-          (<div className={styles.BankListTitle}>Your banks list:</div>)
+          (<div className={styles.BankListTitle}>Twoja lista banków:</div>)
         }
         
         <div className={styles.BankList}>

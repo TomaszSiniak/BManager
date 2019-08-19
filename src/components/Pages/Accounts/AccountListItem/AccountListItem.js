@@ -14,7 +14,7 @@ const AccountListItem = (props) => {
       <Link to={`/accounts/${props.name}/${props.item.id}`} className={styles.AccountListItemLink}>
         <div className={styles.AccountName}>{props.item.accountName}</div>
         <div className={styles.AccountInfo}>
-          <div>Open date: {props.item.openDate}</div>
+          <div>Data otwarcia: {props.item.openDate}</div>
           <div className={styles.StatusWrapper}>
           <div>Status: {props.item.status}</div>
             {props.item.status === 'active' ? (<span className={stylesMain.DotActive} />) : (<span className={stylesMain.DotInactive} />) }

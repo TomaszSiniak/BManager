@@ -26,7 +26,7 @@ const Menu = (props) => {
         <figure>
           <img src={homeIcon} alt="" />
         </figure>
-        <p>Home</p>
+        <p>Start!</p>
       </Link>
       <Link
         className={styles.MenuLink}
@@ -36,7 +36,7 @@ const Menu = (props) => {
         <figure>
           <img src={accountIcon} alt="" />
         </figure>
-        <p>Bank Accounts</p>
+        <p>Konta bankowe</p>
       </Link>
       <Link
         className={styles.MenuLink}
@@ -46,7 +46,7 @@ const Menu = (props) => {
         <figure>
           <img src={cardIcon} alt="" />
         </figure>
-        <p>Credit cards</p>
+        <p>Karty kredytowe</p>
       </Link>
       <Link
         className={styles.MenuLink}
@@ -56,7 +56,7 @@ const Menu = (props) => {
         <figure>
           <img src={sackIcon} alt="" />
         </figure>
-        <p>Bank Desposits</p>
+        <p>Lokaty</p>
       </Link>
       <Link
         className={styles.MenuLink}
@@ -66,7 +66,7 @@ const Menu = (props) => {
         <figure>
           <img src={chartIcon} alt="" />
         </figure>
-        <p>Analytics</p>
+        <p>Analizy</p>
       </Link>
       <Link
         className={styles.MenuLink}

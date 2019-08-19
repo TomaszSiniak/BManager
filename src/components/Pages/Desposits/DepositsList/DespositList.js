@@ -15,9 +15,9 @@ class DespositList extends Component {
     const { addNewDeposit, isDepositSidepaneOpen, deposits, openSidepane, removeDeposit } = this.props;
     return (
       <div className={styles.BankDepositsWrapper}>
-        <div className={styles.DespositTitle}>Bank Deposits</div>
+        <div className={styles.DespositTitle}>Lokaty</div>
         <div className={styles.DepositsListTitle}>
-          {deposits.length > 0 ? 'Your deposits list:' : 'You have no deposits on your list...'}
+          {deposits.length > 0 ? 'Twoje lokaty:' : 'Nie posiadasz żadnych lokat...'}
       </div>
        
         <div className={styles.DepositsList}>

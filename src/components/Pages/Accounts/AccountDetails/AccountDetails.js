@@ -44,17 +44,17 @@ class AccountDetails extends Component {
     return (
       <div className={styles.ContentWrapper}>
         <div>
-          <div className={styles.DetailsRow}>Name: {accountName}</div>
+          <div className={styles.DetailsRow}>Nazwa: {accountName}</div>
           <div className={styles.StatusWrapper}>
             <div>Status: {status}</div>
             {status === 'active' ? (<span className={stylesMain.DotActive} />) : (<span className={stylesMain.DotInactive} />)}
           </div>
-          <div className={styles.DetailsRow}>Open date: {openDate}</div>
-          {totalPrize && <div className={styles.DetailsRow}>Promotion award in total: {totalPrize} pln</div>}
+          <div className={styles.DetailsRow}>Data otwarcia: {openDate}</div>
+          {totalPrize && <div className={styles.DetailsRow}>Wartość nagordy: {totalPrize} pln</div>}
 
           <div className={styles.ButtonWrapper}>
-            <button onClick={this.handleEditModal} className={styles.EditBtn}>Edit</button>
-            <button className={styles.AddPromotionBtn} onClick={this.handleTermPromotionsModal}>Add term of promotions</button>
+            <button onClick={this.handleEditModal} className={styles.EditBtn}>Edycja</button>
+            <button className={styles.AddPromotionBtn} onClick={this.handleTermPromotionsModal}>Dodaj warunek promocji konta</button>
           </div>
         </div>
 

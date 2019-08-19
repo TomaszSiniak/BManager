@@ -33,11 +33,11 @@ class Register extends Component {
           <figure className={styles.LogoWrapperSignUp}>
             <img src={LogoIcon} alt="" />
           </figure>
-          <div className={styles.SectionName}>Sign up:</div>
-          <input className={styles.RegisterFormInput} placeholder="Name" name="firstName" onChange={this.handleInput} />
-          <input className={styles.RegisterFormInput} placeholder="Password" type="password" name="password" onChange={this.handleInput} />
+          <div className={styles.SectionName}>Rejestracja</div>
+          <input className={styles.RegisterFormInput} placeholder="Imię lub nick" name="firstName" onChange={this.handleInput} />
+          <input className={styles.RegisterFormInput} placeholder="Hasło" type="password" name="password" onChange={this.handleInput} />
           <input className={styles.RegisterFormInput} placeholder="Email" type="email" name="email" onChange={this.handleInput} />
-          <button className={styles.RegisterFormButton}>Sign up</button>
+          <button className={styles.RegisterFormButton}>Zarejestruj</button>
         </form>
       </div>
     )

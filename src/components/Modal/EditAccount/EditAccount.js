@@ -41,7 +41,7 @@ class EditAccount extends Component {
     return (
       <div className={styles.AddAccountModalContainer}>
         <form className={styles.AddBankAccountForm} onSubmit={this.onSubmit}>
-          <div className={styles.EditTitle}>Edit:</div>
+          <div className={styles.EditTitle}>Edycja konta:</div>
           <input
             className={styles.EditAccountInput}
             defaultValue={item.accountName}
@@ -56,8 +56,8 @@ class EditAccount extends Component {
             onChange={this.handleInputChange}
             placeholder="status"
           >
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
+            <option value="active">Aktywne</option>
+            <option value="inactive">Nieaktywne</option>
           </select>
           {this.state.status === 'inactive' && (
             <input
@@ -74,7 +74,7 @@ class EditAccount extends Component {
             placeholder="Total award value"
             defaultValue={item.totalPrize ? item.totalPrize : 'Select award value...'}
           >
-            <option disabled>Select award value...</option>
+            <option disabled>Wybierz wartosć nagrody w PLN</option>
             <option value="50">50</option>
             <option value="100">100</option>
             <option value="150">150</option>
@@ -86,8 +86,8 @@ class EditAccount extends Component {
 
           </select>
           <div className={styles.ButtonWrapper}>
-            <button className={styles.EditBtn}>Save</button>
-            <button className={styles.EditBtnDefault} onClick={closeModal}>Cancel</button>
+            <button className={styles.EditBtn}>Zapisz</button>
+            <button className={styles.EditBtnDefault} onClick={closeModal}>Anuluj</button>
           </div>
         </form>
       </div>

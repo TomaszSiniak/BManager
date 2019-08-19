@@ -11,10 +11,10 @@ class Dashboard extends React.Component {
     return (
       <div className={styles.DashboardContainer}>
         <div className={styles.DashboardTitle}>
-          <p>Welcome in</p>
+          <p>Witamy w</p>
           <p>bmanager</p>
         </div>
-        <div className={styles.DashboardSubtitle}>bank's promotions app manager!</div>
+        <div className={styles.DashboardSubtitle}>aplikacji do zarządzania promocjami bankowymi!</div>
         <figure className={styles.IconWrapper}>
           <img src={LogoIcon} />
         </figure>
