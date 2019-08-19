@@ -20,3 +20,10 @@
     padding:  0 50px 50px;
   }
 }
+
+@media screen and (min-width: 1224px) {
+ .BankList {
+   display: flex;
+   flex-wrap: wrap;
+ }
+}

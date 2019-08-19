@@ -6,8 +6,9 @@ import stylesMain from '../../../../styles/main.scss';
 
 const ConditionTile = (props) => {
 
-  const removeCondition = () => {
-    props.removeCondition(props.item.id)
+  const setIdToRemove = () => {
+    props.togglePromptModal();
+    props.setIdToRemove(props.item.id);
   }
 
   const handleSwitcher = () => {
@@ -17,11 +18,11 @@ const ConditionTile = (props) => {
 
   const { item: { status, conditionName, conditionMonth } } = props;
   return (
-    <div className={styles.ConditionContainer}>
+    <div className={styles.ConditionItem}>
       <div className={styles.ConditionName}>{conditionName}</div>
-      <div className={styles.ConditionInfo}>Month: {conditionMonth}</div>
-      <div className={styles.ConditionInfo}>To do until: 20-07-2019</div>
-      <div className={styles.ConditionInfo}>Remaining time: 6h 35min</div>
+      <div className={styles.ConditionInfo}>Miesiąc: {conditionMonth}</div>
+      <div className={styles.ConditionInfo}>wykonać przed: 20-07-2019</div>
+      <div className={styles.ConditionInfo}>Pozostały czas: 6h 35min</div>
       <div className={styles.ConditionStatusWrapper}>
         <div className={styles.ConditionStatusInfo}>Status: {status ? 'done' : 'not done'}
           {status === true ? (<span className={stylesMain.DotActive} />) : (<span className={stylesMain.DotInactive} />)}
@@ -35,7 +36,7 @@ const ConditionTile = (props) => {
           checked={status}
         />
       </div>
-      <figure className={styles.CloseIcon} onClick={removeCondition}>
+      <figure className={styles.CloseIcon} onClick={setIdToRemove}>
         <img src={closeIcon} alt="" />
       </figure>
     </div>

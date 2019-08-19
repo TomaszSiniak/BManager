@@ -61,8 +61,8 @@ class BankListAccount extends Component {
   }
 
   render () {
-    const buttonText = "Add account";
-    const placeholderText = "Enter account name...";
+    const buttonText = "Dodaj konto";
+    const placeholderText = "Wpisz nazwę konta...";
     const { accountsList, auth, isPromptModalVisible } = this.props;
     
     if (!auth.uid) return <Redirect to='/login' />
@@ -78,11 +78,11 @@ class BankListAccount extends Component {
         />
 
         {accountsList.length === 0 ?
-          (<div className={styles.EmptyAccountListInfo}>You have no accounts in this bank...</div>)
+          (<div className={styles.EmptyAccountListInfo}>Nie osiadasz kont w tym banku...</div>)
           :
-          (<div className={styles.AccountListTitle}>Your Accounts:</div>)
+          (<div className={styles.AccountListTitle}>Twoje konta:</div>)
         }
-        <div>
+        <div className={styles.AccountListWrapper}>
           {accountsList.map(item => {
             return (
               <AccountListItem

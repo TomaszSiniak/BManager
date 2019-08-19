@@ -11,7 +11,7 @@ const User = (props) => {
       <figure className={styles.ImgWrapper}>
         <img src={userIcon} />
       </figure>
-      <div className={styles.Name}>Welcome, {name}!</div>
+      <div className={styles.Name}>Witaj, {name}!</div>
     </div>
   )
 }

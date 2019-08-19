@@ -19,9 +19,7 @@
   border-top: 1px solid $secondary-line-separate-color;
   padding-top: 5px;
   font-size: 12px;
-  div {
-    color: $secondary-text-color;
-  }
+  display: flex;
 }
 
 .CloseIcon {
@@ -38,5 +36,36 @@
   img{
     width: 80%;
     height: 80%;
+  }
+}
+.DepositInfo,
+.DepositCalc {
+  flex-grow: 1;
+  text-align: center;
+ 
+}
+
+.DepositRow {
+  padding: 3px 0;
+  color: $secondary-text-color;
+}
+
+.DepositRowGreen {
+  color: $active-account-color;
+  font-weight: 700;
+}
+.DepositRowRed {
+  color:$inactive-account-color;
+}
+
+.DepositInfo {
+  border-right: 1px solid $secondary-line-separate-color;
+}
+
+
+@media screen and (min-width: 1224px) {
+  .DepositListItem {
+    width: 48%;
+    margin: 20px 1%;
   }
 }

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styles from './Navbar.scss';
 import menuIcon from '../../assets/images/menu.svg';
+import LogoIcon from '../../assets/images/logo.png';
 import LoggedInLinks from '../NavLinks/LoggedInLinks';
 import LoggedOutLinks from '../NavLinks/LoggedOutLinks';
 import { connect } from 'react-redux';
@@ -11,16 +12,22 @@ const Navbar = (props) => {
     props.toggleMenu();
   }
   const { auth } = props;
-  const windowWidth = window.innerWidth;
+
   return (
     <div className={styles.HeaderWrapper}>
       {auth.uid && (
-        <figure className={styles.IconContainer} onClick={showMenu}>
-          <img src={menuIcon} />
-        </figure>
+       <Fragment>
+          <figure className={styles.IconContainer} onClick={showMenu}>
+            <img src={menuIcon} />
+          </figure>
+          <figure className={styles.LogoContainer}>
+            <img src={LogoIcon} />
+            <figcaption>bmanager</figcaption>
+          </figure>
+          </Fragment>
       )}
       <div className={styles.LinksWrapper}>
-        {auth.uid ? <LoggedInLinks /> : <LoggedOutLinks /> }
+        {auth.uid ? <LoggedInLinks /> : <LoggedOutLinks />}
       </div>
     </div>
   )

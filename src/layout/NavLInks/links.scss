@@ -6,6 +6,19 @@
 li > .LinkItem {
   text-decoration: none;
   line-height: 50px;
-  font-size: 20px;
+  font-size: 16px;
   padding: 0 10px;
+  display: flex;
+  justify-items: center;
+  figure {
+    margin-left: 10px;
+    line-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
 }

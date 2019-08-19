@@ -1,5 +1,8 @@
 export const ADD_DEPOSIT = 'ADD_DEPOSIT';
 export const ADD_DEPOSIT_ERROR = 'ADD_DEPOSIT_ERROR';
+export const TOGGLE_DEPOSIT_SIDEPANE = 'TOGGLE_DEPOSIT_SIDEPANE';
+export const REMOVE_DEPOSIT = 'REMOVE_DEPOSIT';
+export const REMOVE_DEPOSIT_ERROR = 'REMOVE_DEPOSIT_ERROR';
 
 
 export const addDeposit = data => {
@@ -22,17 +25,23 @@ export const addDeposit = data => {
   }
 }
 
-// export const removePromotionCondition = id => {
-//   return (dispatch, getState, { getFirestore }) => {
-//     const firestore = getFirestore();
+export const removeDeposit = id => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
 
-//     firestore.collection('conditions').doc(id).delete()
-//       .then(() => {
-//         dispatch({ type: REMOVE_PROMOTION_CONDITION, id })
-//       })
-//       .catch(err => {
-//         dispatch({ type: REMOVE_PROMOTION_CONDITION_ERROR, err })
-//       });
-//   }
-// }
+    firestore.collection('deposits').doc(id).delete()
+      .then(() => {
+        dispatch({ type: REMOVE_DEPOSIT, id })
+      })
+      .catch(err => {
+        dispatch({ type: REMOVE_DEPOSIT_ERROR, err })
+      });
+  }
+}
+
+export const toggleDepositSidepane = () => {
+  return {
+    type: 'TOGGLE_DEPOSIT_SIDEPANE'
+  }
+}
 

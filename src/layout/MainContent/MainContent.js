@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Dashboard from '../../components/Pages/Dashboard/Dashboard';
 import BankList from '../../components/Pages/Accounts/BankList/BankList'
@@ -12,6 +12,7 @@ import Register from '../../components/Pages/Register/Register';
 import DepositsList from '../../components/Pages/Desposits/DepositsList/DespositList';
 import styles from './mainContent.scss';
 import transitionStyles from '../../styles/transition.scss';
+import LogoIcon from '../../assets/images/logo.png';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { withRouter } from 'react-router';
 
@@ -20,7 +21,15 @@ const MainContent = (props) => {
   const renderBackButton = () => {
     const pathLocation = props.location.pathname;
     if (pathLocation !== '/' && pathLocation !== '/login' && pathLocation !== '/register') {
-      return <BackButton />
+      return (
+        <Fragment>
+          <BackButton />
+          <figure className={styles.LogoContentWrapper}>
+            <img src={LogoIcon} alt="" />
+          </figure>
+        </Fragment>
+
+      )
     }
   }
   return (

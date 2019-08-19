@@ -27,12 +27,14 @@ class AddPromotionCondition extends Component {
     const status = get(this.state, 'status', null);
     const accountId = get(item, 'id', this.props.match.params.accountId);
     const conditionMonth = get(this.state, 'conditionMonth', null);
+    const bankId = get(item, 'bankId', null);
     
     const data = {
       conditionName,
       status,
       accountId,
-      conditionMonth
+      conditionMonth,
+      bankId
     }
 
     const isPayloadEmpty = this.checkDataPayload();
@@ -83,20 +85,20 @@ class AddPromotionCondition extends Component {
             name="conditionName"
           >
             <option disabled>Choose condition...</option>
-            <option value="300 PLN paid by debit card">300 PLN paid by debit card</option>
-            <option value="500 PLN paid by debit card">500 PLN paid by debit card</option>
-            <option value="1000 PLN paid by debit card">1000 PLN paid by debit card</option>
-            <option value="1500 PLN paid by debit card">1500 PLN paid by debit card</option>
+            <option value="300 PLN paid by debit card">płatność 300 PLN kartą</option>
+            <option value="500 PLN paid by debit card">płatność 500 PLN kartą</option>
+            <option value="1000 PLN paid by debit card">płatność 1000 PLN kartą</option>
+            <option value="1500 PLN paid by debit card">płatność 1500 PLN kartą</option>
             <option disabled />
-            <option value="500 PLN transfer into account">500 PLN transfer into account</option>
-            <option value="1000 PLN transfer into account">1000 PLN transfer into account</option>
-            <option value="1500 PLN transfer into account">1500 PLN transfer into account</option>
-            <option value="2000 PLN transfer into account">2000 PLN transfer into account</option>
-            <option value="3000 PLN transfer into account">3000 PLN transfer into account</option>
+            <option value="500 PLN transfer into account">wpłata 500 PLN na konto</option>
+            <option value="1000 PLN transfer into account">wpłata 1000 PLN na konto</option>
+            <option value="1500 PLN transfer into account">wpłata 1500 PLN na konto</option>
+            <option value="2000 PLN transfer into account">wpłata 2000 PLN na konto</option>
+            <option value="3000 PLN transfer into account">wpłata 3000 PLN na konto</option>
           </select>
           <div className={styles.ButtonWrapper}>
-            <button className={styles.ConditionBtn}>Save</button>
-            <button className={styles.ConditionBtnDefault} onClick={closeModal}>Cancel</button>
+            <button className={styles.ConditionBtn}>Zapisz</button>
+            <button className={styles.ConditionBtnDefault} onClick={closeModal}>Anuluj</button>
           </div>
         </form>
       </div>

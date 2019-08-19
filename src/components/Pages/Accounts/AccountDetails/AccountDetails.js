@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import EditAccountModal from '../../../Modal/EditAccount/EditAccount';
 import AddPromotionConditionModal from '../../../Modal/AddPromotionCondition/AddPromotionCondition';
+import { togglePromptModal } from '../../../../store/actions/appActions';
+import PromptModal from '../../../Modal/Prompt/Prompt';
 import Portal from '../../../Portal/Modal';
-import Tile from '../ConditionTile/ConditionTile';
+import ConditionTile from '../ConditionTile/ConditionTile';
 import { removePromotionCondition, updateConditionStatus } from '../../../../store/actions/conditionActions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -30,27 +32,43 @@ class AccountDetails extends Component {
     })
   }
 
+  setIdToRemove = id => {
+    this.setState({
+      removeId: id,
+    })
+  }
+
   render () {
-    const { account: { accountName, status, openDate, totalPrize }, auth, conditions, removeCondition, updateConditionStatus } = this.props;
+    const { account: { accountName, status, openDate, totalPrize, bankId }, auth, conditions, removeCondition, updateConditionStatus, togglePromptModal } = this.props;
     if (!auth.uid) return <Redirect to="/login" />
     return (
       <div className={styles.ContentWrapper}>
         <div>
-          <div className={styles.DetailsRow}>Name: {accountName}</div>
+          <div className={styles.DetailsRow}>Nazwa: {accountName}</div>
           <div className={styles.StatusWrapper}>
             <div>Status: {status}</div>
-            {status === 'active' ? (<span className={stylesMain.DotActive} />) : (<span className={stylesMain.DotInactive} />) }
+            {status === 'active' ? (<span className={stylesMain.DotActive} />) : (<span className={stylesMain.DotInactive} />)}
           </div>
-          <div className={styles.DetailsRow}>Open date: {openDate}</div>
-          {totalPrize && <div className={styles.DetailsRow}>Promotion award in total: {totalPrize} pln</div>}
-          <button onClick={this.handleEditModal} className={styles.EditBtn}>Edit</button>
+          <div className={styles.DetailsRow}>Data otwarcia: {openDate}</div>
+          {totalPrize && <div className={styles.DetailsRow}>Wartość nagordy: {totalPrize} pln</div>}
+
+          <div className={styles.ButtonWrapper}>
+            <button onClick={this.handleEditModal} className={styles.EditBtn}>Edycja</button>
+            <button className={styles.AddPromotionBtn} onClick={this.handleTermPromotionsModal}>Dodaj warunek promocji konta</button>
+          </div>
         </div>
-        <div className={styles.ButtonWrapper}>
-          <button className={styles.AddPromotionBtn} onClick={this.handleTermPromotionsModal}>Add term of promotions</button>
-        </div>
+
         <div className={styles.ConditionsWrapper}>
           {conditions.map(item => {
-            return <Tile item={item} key={item.id} removeCondition={removeCondition} updateConditionStatus={updateConditionStatus} />
+            return (
+              <ConditionTile
+                item={item}
+                key={item.id}
+                setIdToRemove={this.setIdToRemove}
+                updateConditionStatus={updateConditionStatus}
+                togglePromptModal={togglePromptModal}
+              />
+            )
           })}
         </div>
         {this.state.isEditModalOpen && (
@@ -63,6 +81,15 @@ class AccountDetails extends Component {
             <AddPromotionConditionModal item={this.props.account} closeModal={this.handleTermPromotionsModal} match={this.props.match} />
           </Portal>
         )}
+        {this.props.isPromptModalVisible && (
+          <Portal>
+            <PromptModal
+              removeId={this.state.removeId}
+              remove={this.props.removeCondition}
+              togglePromptModal={this.props.togglePromptModal}
+            />
+          </Portal>
+        )}
       </div>
     );
   }
@@ -71,7 +98,8 @@ class AccountDetails extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     removeCondition: id => dispatch(removePromotionCondition(id)),
-    updateConditionStatus: (id, data) => dispatch(updateConditionStatus(id, data))
+    updateConditionStatus: (id, data) => dispatch(updateConditionStatus(id, data)),
+    togglePromptModal: () => dispatch(togglePromptModal())
   }
 }
 
@@ -85,6 +113,7 @@ const mapStateToProps = (state, props) => {
     account,
     auth: state.firebase.auth,
     conditions,
+    isPromptModalVisible: state.app.isPromptModalVisible,
   }
 }
 
@@ -92,7 +121,8 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => [
     { 'collection': 'accounts' },
-    {'collection': 'conditions',
+    {
+      'collection': 'conditions',
       where: [
         ['accountId', '==', `${props.accountId}`],
       ],

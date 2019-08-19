@@ -8,13 +8,17 @@
 .DashboardTitle {
   font-size: 30px;
   margin-top: 100px;
+  display: flex;
+  p:nth-child(2) {
+    color: #8E71D1;
+    margin-left: 10px;
+  }
 }
 .DashboardSubtitle {
   margin-top: 10px;
-  margin-bottom: 70px;
   text-align: center;
 }
 
 .IconWrapper {
-  width: 100px;
+  margin-top: 30px;
 }
