@@ -15,8 +15,8 @@ import { firestoreConnect } from 'react-redux-firebase';
 class BankListAccount extends Component {
   state = {
     accountName: null,
-    openDate: "2019-06-20",
     status: 'active',
+    startDate: null
   }
 
   handleBankNameInput = (e) => {
@@ -31,7 +31,7 @@ class BankListAccount extends Component {
     const data = {
       accountName: this.state.accountName,
       status: this.state.status,
-      openDate: this.state.openDate,
+      startDate: this.state.startDate,
       bankId: this.props.bankId,
     }
 
@@ -43,14 +43,15 @@ class BankListAccount extends Component {
     let result = false;
     const accounts = get(this.props, 'accountsList', [])
     accounts.find(item => {
-      if (item.accountName.toLowerCase() === name.toLowerCase()) result = true })
+      if (item.accountName.toLowerCase() === name.toLowerCase()) result = true
+    })
     return result
   }
 
   buttonDisabled = () => {
     const accountName = get(this.state, 'accountName', null);
-    const openDate = get(this.state, 'openDate', null);
-    if (!accountName) return true;
+    const startDate = get(this.state, 'startDate', null);
+    if (!accountName || !startDate) return true;
     return false;
   }
 
@@ -60,11 +61,20 @@ class BankListAccount extends Component {
     })
   }
 
+  handlePickerDate= date => {
+    const parsedDate = Date.parse(date);
+
+    this.setState({
+      startDate: parsedDate
+    });
+  }
+
   render () {
     const buttonText = "Dodaj konto";
     const placeholderText = "Wpisz nazwę konta...";
-    const { accountsList, auth, isPromptModalVisible } = this.props;
-    
+    const { accountsList, auth } = this.props;
+    const {startDate} = this.state;
+
     if (!auth.uid) return <Redirect to='/login' />
     return (
       <div className={styles.ContentWrapper}>
@@ -75,6 +85,8 @@ class BankListAccount extends Component {
           handleInput={this.handleBankNameInput}
           buttonDisabled={this.buttonDisabled}
           placeholder={placeholderText}
+          startDate={startDate}
+          handlePickerDate={this.handlePickerDate}
         />
 
         {accountsList.length === 0 ?
@@ -89,21 +101,21 @@ class BankListAccount extends Component {
                 item={item}
                 key={item.id}
                 name={this.props.match.params.bankName}
-                togglePromptModal= {this.props.togglePromptModal}
+                togglePromptModal={this.props.togglePromptModal}
                 setIdToRemove={this.setIdToRemove}
               />
             )
           })}
         </div>
         {this.props.isPromptModalVisible && (
-            <Portal>
-              <PromptModal
-                removeId={this.state.removeId}
-                remove={this.props.removeBankAccount}
-                togglePromptModal={this.props.togglePromptModal}
-              />
-            </Portal>
-          )}
+          <Portal>
+            <PromptModal
+              removeId={this.state.removeId}
+              remove={this.props.removeBankAccount}
+              togglePromptModal={this.props.togglePromptModal}
+            />
+          </Portal>
+        )}
       </div>
     );
   }
@@ -132,13 +144,15 @@ const mapDispatchToProps = dispatch => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => [
-    { collection: 'accounts',
+    {
+      collection: 'accounts',
       where: [
         ['authorId', '==', `${props.userId}`],
         ['bankName', '==', `${props.match.params.bankName}`]
       ],
     },
-    { collection: 'banks',
+    {
+      collection: 'banks',
       where: [
         ['authorId', '==', `${props.userId}`],
         ['bankName', '==', `${props.match.params.bankName}`]

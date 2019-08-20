@@ -39,7 +39,8 @@ class AccountDetails extends Component {
   }
 
   render () {
-    const { account: { accountName, status, openDate, totalPrize, bankId }, auth, conditions, removeCondition, updateConditionStatus, togglePromptModal } = this.props;
+    const { account: { accountName, status, startDate, totalPrize, bankId }, auth, conditions, removeCondition, updateConditionStatus, togglePromptModal } = this.props;
+    const parsedStartDate = new Date(startDate).toLocaleDateString();
     if (!auth.uid) return <Redirect to="/login" />
     return (
       <div className={styles.ContentWrapper}>
@@ -49,8 +50,8 @@ class AccountDetails extends Component {
             <div>Status: {status}</div>
             {status === 'active' ? (<span className={stylesMain.DotActive} />) : (<span className={stylesMain.DotInactive} />)}
           </div>
-          <div className={styles.DetailsRow}>Data otwarcia: {openDate}</div>
-          {totalPrize && <div className={styles.DetailsRow}>Wartość nagordy: {totalPrize} pln</div>}
+          <div className={styles.DetailsRow}>Data otwarcia: {parsedStartDate}</div>
+          {totalPrize && <div className={styles.DetailsRow}>Wartość nagordy: {totalPrize} PLN</div>}
 
           <div className={styles.ButtonWrapper}>
             <button onClick={this.handleEditModal} className={styles.EditBtn}>Edycja</button>

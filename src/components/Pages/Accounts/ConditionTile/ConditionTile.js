@@ -16,12 +16,12 @@ const ConditionTile = (props) => {
     props.updateConditionStatus(item.id, !item.status);
   };
 
-  const { item: { status, conditionName, conditionMonth } } = props;
+  const { item: { status, conditionName, conditionMonth, conditionEndDate } } = props;
+  const parsedEndDate = new Date(conditionEndDate).toLocaleDateString();
   return (
     <div className={styles.ConditionItem}>
       <div className={styles.ConditionName}>{conditionName}</div>
-      <div className={styles.ConditionInfo}>Miesiąc: {conditionMonth}</div>
-      <div className={styles.ConditionInfo}>wykonać przed: 20-07-2019</div>
+      <div className={styles.ConditionInfo}>wykonać przed: {parsedEndDate}</div>
       <div className={styles.ConditionInfo}>Pozostały czas: 6h 35min</div>
       <div className={styles.ConditionStatusWrapper}>
         <div className={styles.ConditionStatusInfo}>Status: {status ? 'done' : 'not done'}

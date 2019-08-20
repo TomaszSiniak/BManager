@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { addPromotionCondition } from '../../../store/actions/conditionActions';
+import DatePicker from '../../../common/components/DatePicker/DatePicker';
 import { connect } from 'react-redux';
 import { get } from 'lodash';
 import styles from './addPromotionCondition.scss';
@@ -8,6 +9,7 @@ class AddPromotionCondition extends Component {
 
   state = {
     status: false,
+    conditionEndDate: null,
   }
 
   handleInputChange = (e) => {
@@ -26,15 +28,15 @@ class AddPromotionCondition extends Component {
     const conditionName = get(this.state, 'conditionName', null);
     const status = get(this.state, 'status', null);
     const accountId = get(item, 'id', this.props.match.params.accountId);
-    const conditionMonth = get(this.state, 'conditionMonth', null);
     const bankId = get(item, 'bankId', null);
+    const conditionEndDate = get(this.state, 'conditionEndDate', null);
     
     const data = {
       conditionName,
       status,
       accountId,
-      conditionMonth,
-      bankId
+      bankId,
+      conditionEndDate
     }
 
     const isPayloadEmpty = this.checkDataPayload();
@@ -46,38 +48,27 @@ class AddPromotionCondition extends Component {
   }
 
   checkDataPayload = () => {
-    const conditionMonth = get(this.state, 'conditionMonth', null);
+    const conditionEndDate = get(this.state, 'conditionEndDate', null);
     const conditionName = get(this.state, 'conditionName', null);
-    if (!conditionMonth || !conditionName) return true;
+    if (!conditionEndDate || !conditionName) return true;
     return false;
   }
 
+  handlePikcerDate= date => {
+    const parsedDate = Date.parse(date);
+
+    this.setState({
+      conditionEndDate: parsedDate
+    });
+  }
+
   render() {
-    const { closeModal} = this.props;
+    const { closeModal } = this.props;
+    const { conditionEndDate } = this.state;
     return (
       <div className={styles.AddTermPromotionContainer}>
         <form className={styles.AddTermPromotionsForm} onSubmit={this.onSubmit}>
           <div className={styles.ConditionTitle}>Add promotion's condition:</div>
-          <select
-            className={styles.ConditionPromotionSelect}
-            defaultValue="Choose month..."
-            onChange={this.handleInputChange}
-            name="conditionMonth"
-          >
-            <option disabled>Choose month...</option>
-            <option value="january">January</option>
-            <option value="february">February</option>
-            <option value="march">March</option>
-            <option value="april">April</option>
-            <option value="may">May</option>
-            <option value="june">June</option>
-            <option value="july">July</option>
-            <option value="august">August</option>
-            <option value="september">September</option>
-            <option value="october">October</option>
-            <option value="november">November</option>
-            <option value="december">December</option>
-          </select>
           <select
             className={styles.ConditionPromotionSelect}
             defaultValue="Choose condition..."
@@ -96,6 +87,10 @@ class AddPromotionCondition extends Component {
             <option value="2000 PLN transfer into account">wpłata 2000 PLN na konto</option>
             <option value="3000 PLN transfer into account">wpłata 3000 PLN na konto</option>
           </select>
+          <div>
+            <div>Termin wykonania warunku promocji</div>
+            <DatePicker startDate={conditionEndDate} handlePickerDate={this.handlePikcerDate}/>
+          </div>
           <div className={styles.ButtonWrapper}>
             <button className={styles.ConditionBtn}>Zapisz</button>
             <button className={styles.ConditionBtnDefault} onClick={closeModal}>Anuluj</button>

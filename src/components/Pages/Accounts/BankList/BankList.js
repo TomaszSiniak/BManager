@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import BankTile from '../BankTile/BankTile';
 import AddItemInput from '../../../../common/components/AddItemInput/AddItemInput';
 import { addBank, removeBank } from '../../../../store/actions/bankActions';
 import { togglePromptModal } from '../../../../store/actions/appActions';
 import PromptModal from '../../../Modal/Prompt/Prompt';
 import Portal from '../../../Portal/Modal';
-import styles from './bankList.scss';
-import '../../../../styles/main.scss';
+import DatePicker from '../../../../common/components/DatePicker/DatePicker';
 import { get } from 'lodash';
 import { Redirect } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import DayPicker from 'react-day-picker';
-import Loader from '../../../../common/components/Loader/Loader';
+import { connect } from 'react-redux';
 
+import Loader from '../../../../common/components/Loader/Loader';
+import styles from './bankList.scss';
+import '../../../../styles/main.scss';
 
 class BankList extends Component {
 
   state = {
     bankName: null,
     removeId: null,
+    startDate: null,
   }
 
 
@@ -45,6 +46,7 @@ class BankList extends Component {
     e.preventDefault();
     const data = {
       bankName: this.state.bankName,
+      startDate: this.state.startDate,
     }
     const checkBank = this.checkBankExist(this.state.bankName);
     if (!checkBank) {
@@ -55,16 +57,11 @@ class BankList extends Component {
 
   buttonDisabled = () => {
     const bankName = get(this.state, 'bankName', null);
-    if (!bankName) {
+    const startDate = get(this.state, 'startDate', null);
+    if (!bankName || !startDate) {
       return true
     }
     return false;
-  }
-
-  handleChange = date => {
-    this.setState({
-      startDate: date
-    });
   }
 
   handleTogglePromptModal = id => {
@@ -74,10 +71,19 @@ class BankList extends Component {
     this.props.togglePromptModal();
   }
 
+  handlePickerDate= date => {
+    const parsedDate = Date.parse(date);
+
+    this.setState({
+      startDate: parsedDate
+    });
+  }
+
   render () {
-    const buttonText = "Dodaj bankk";
-    const placeholderText ="Wpisz nazwę banku..."
-    const { bankList, auth, removeBank, togglePromptModal} = this.props;
+    const buttonText = "Dodaj bank";
+    const placeholderText = "Wpisz nazwę banku..."
+    const { bankList, auth, removeBank, togglePromptModal } = this.props;
+    const {startDate} = this.state;
 
     if (!auth.uid) return <Redirect to='/login' />
     return (
@@ -89,22 +95,22 @@ class BankList extends Component {
           handleInput={this.handleBankNameInput}
           buttonDisabled={this.buttonDisabled}
           placeholder={placeholderText}
+          startDate={startDate}
+          handlePickerDate={this.handlePickerDate}
         />
-        <DayPicker />
-      
         {bankList.length === 0 ?
-          (<div className={styles.EmptyBankListInfo}>Bak banków na liście..</div>)
+          (<div className={styles.EmptyBankListInfo}>Brak banków na liście..</div>)
           :
           (<div className={styles.BankListTitle}>Twoja lista banków:</div>)
         }
-        
+
         <div className={styles.BankList}>
           {bankList.map(item => {
             return <BankTile
               item={item}
               key={item.id}
-              togglePromptModal= {this.handleTogglePromptModal}
-              />
+              togglePromptModal={this.handleTogglePromptModal}
+            />
           })}
           {this.props.isPromptModalVisible && (
             <Portal>
@@ -141,8 +147,10 @@ const mapDispatchToProps = dispatch => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => [
-    { collection: 'banks', where: [
-      'authorId', '==', `${props.userId}`
-    ]}
+    {
+      collection: 'banks', where: [
+        'authorId', '==', `${props.userId}`
+      ]
+    }
   ]),
 )(BankList);

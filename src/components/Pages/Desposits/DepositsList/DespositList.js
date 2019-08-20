@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DepositTile from '../DepositTile/DepositTile';
 import { addDeposit, toggleDepositSidepane, removeDeposit } from '../../../../store/actions/depositActions';
 import DepositForm from '../DepositForm/DepositForm';
-import PlusIcon from '../../../../assets/images/plus.svg';
+import CircleAddButton from '../../../../common/components/CircleAddButton/CircleAddButton';
 import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -26,9 +26,7 @@ class DespositList extends Component {
           })}
         </div>
         {isDepositSidepaneOpen && <DepositForm addNewDeposit={addNewDeposit} toggleSidepane={openSidepane} />}
-        <button className={styles.AddDepositBtn} onClick={openSidepane}>
-          <img src={PlusIcon} alt="" />
-        </button>
+        <CircleAddButton openSidepane={openSidepane}/>
       </div>
     )
   }

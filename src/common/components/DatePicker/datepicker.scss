@@ -1,0 +1,13 @@
+@import '../../../styles/variables.scss';
+
+.DatepickerInput {
+  height: 20px;
+  border: none;
+  border-bottom: 1px solid $secondary-line-separate-color;
+  outline: none;
+  width: 100%;
+  padding: 5px 0;
+  color: $text-color;
+  text-indent: 8px;
+  text-align: center;
+}

@@ -27,7 +27,8 @@ class DespositForm extends Component {
     });
 
     const { amount, percentage, period } = this.state;
-    console.log(amount, percentage, period)
+ 
+    this.calcDepoEndDate(period)
 
 
     if (!amount || !percentage || !period) return;
@@ -41,6 +42,7 @@ class DespositForm extends Component {
     }
   }
 
+  //zbugowane
   calcDeposit = (amount, percentage, period) => {
     const days = period * 30;
     const percent = (percentage / 100)
@@ -60,6 +62,22 @@ class DespositForm extends Component {
       tax,
       profit
     })
+  }
+
+  //zbugowane
+  calcDepoEndDate = period => {
+    if(!period) return;
+
+    const days = period * 30;
+    const date = new Date();
+    const parsedDate = Date.parse(date)
+    const endDateInMilisec = parsedDate + 1000 * 60 * 60 * 24 * days;
+
+    const endDate = new Date(endDateInMilisec).toLocaleDateString();
+
+    this.setState({
+      endDate
+    });
   }
 
   render () {

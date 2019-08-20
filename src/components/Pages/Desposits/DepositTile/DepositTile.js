@@ -8,7 +8,7 @@ const DepositTile = props => {
     props.removeDeposit(props.item.id)
   }
 
-  const { bankName, depositName, status, percentage, period, amount, interest, tax, profit } = props.item;
+  const { bankName, depositName, status, percentage, period, amount, interest, tax, profit, endDate } = props.item;
   return (
     <div className={styles.DepositListItem}>
       <div className={styles.DepositName}>{depositName}</div>
@@ -17,7 +17,7 @@ const DepositTile = props => {
           <div className={styles.DepositRow}>Nazwa banku: {bankName}</div>
           <div className={styles.DepositRow}>Okres w dniach: {period * 30}</div>
           <div className={styles.DepositRow}>Status: {status}</div>
-          <div className={styles.DepositRow}>Koniec: 2019-08-18</div>
+          <div className={styles.DepositRow}>Koniec: {endDate}</div>
         </div>
         <div className={styles.DepositCalc}>
           <div className={styles.DepositRow}>Oprocentowanie: {percentage} %</div>

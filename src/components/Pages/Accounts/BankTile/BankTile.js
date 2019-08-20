@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import styles from './bankTile.scss';
 import closeIcon from '../../../../assets/images/close.svg';
 
-const BankTile = (props) => {
+const BankTile = props => {
 
   const setIdToRemove = () => {
     props.togglePromptModal(props.item.id)
   }
-
-  return ( 
+  
+  const startDate = new Date(props.item.startDate).toLocaleDateString();
+  
+  return (
     <div className={styles.BankTile}>
       <Link
         className={styles.BankTileLink}
@@ -17,8 +19,8 @@ const BankTile = (props) => {
       >
         <div className={styles.BankName}>{props.item.bankName}</div>
         <div className={styles.BankInfo}>
-          <div>Active accounts: 0</div>
-          <div>Created at: 2019 / 06 / 27</div>
+          <div className={styles.BankInfoRaw}>Aktywne konta: 0</div>
+          <div className={styles.BankInfoRaw}>Data otwarcia: {startDate}</div>
         </div>
       </Link>
       <figure className={styles.CloseIcon} onClick={setIdToRemove}>

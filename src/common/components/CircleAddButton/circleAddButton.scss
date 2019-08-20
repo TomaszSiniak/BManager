@@ -1,0 +1,23 @@
+@import '../../../styles/variables.scss';
+.AddDepositBtn {
+  position:absolute;
+  right: 20px;
+  bottom: 20px;
+  width: 65px;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 100%;
+  background: $accent-color;
+  border: none;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  outline: none;
+  cursor: pointer;
+  img{
+    width: 50%;
+    height: 50%;
+  }
+
+}
