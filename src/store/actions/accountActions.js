@@ -4,6 +4,7 @@ export const REMOVE_BANK_ACCOUNT = 'REMOVE_BANK__ACCOUNT';
 export const REMOVE_BANK_ACCOUNT_ERROR = 'REMOVE_BANK__BANK_ERROR';
 export const UPDATE_BANK_ACCOUNT = 'UPDATE_BANK_ACCOUNT_ERROR';
 export const UPDATE_BANK_ACCOUNT_ERROR = 'UPDATE_BANK_ACCOUNT_ERROR';
+export const TOGGLE_SIDEPANE = 'TOGGLE_SIDEPANE';
 
 export const addBankAccount = (data, bankName) => {
   return(dispatch, getState, { getFirebase, getFirestore }) => {
@@ -68,5 +69,11 @@ export const updateBankAccount = (id, data) => {
       .catch(err => {
         dispatch({ type: UPDATE_BANK_ACCOUNT_ERROR, err})
       })
+  }
+}
+
+export const toggleSidepane = () => {
+  return {
+    type: TOGGLE_SIDEPANE
   }
 }

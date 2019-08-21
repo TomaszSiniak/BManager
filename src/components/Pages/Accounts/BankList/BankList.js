@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import BankTile from '../BankTile/BankTile';
-import AddItemInput from '../../../../common/components/AddItemInput/AddItemInput';
-import { addBank, removeBank } from '../../../../store/actions/bankActions';
+import AddItemSidepane from '../../../../common/components/AddItemSidepane/AddItemSidepane';
+import { addBank, removeBank, toggleSidepane } from '../../../../store/actions/bankActions';
 import { togglePromptModal } from '../../../../store/actions/appActions';
 import PromptModal from '../../../Modal/Prompt/Prompt';
+import CircleAddButton from '../../../../common/components/CircleAddButton/CircleAddButton';
 import Portal from '../../../Portal/Modal';
-import DatePicker from '../../../../common/components/DatePicker/DatePicker';
 import { get } from 'lodash';
 import { Redirect } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-
-import Loader from '../../../../common/components/Loader/Loader';
 import styles from './bankList.scss';
 import '../../../../styles/main.scss';
 
@@ -52,6 +50,7 @@ class BankList extends Component {
     if (!checkBank) {
       this.props.addBank(data);
       this.buttonDisabled();
+      this.props.toggleSidepane();
     }
   }
 
@@ -71,7 +70,7 @@ class BankList extends Component {
     this.props.togglePromptModal();
   }
 
-  handlePickerDate= date => {
+  handlePickerDate = date => {
     const parsedDate = Date.parse(date);
 
     this.setState({
@@ -82,24 +81,15 @@ class BankList extends Component {
   render () {
     const buttonText = "Dodaj bank";
     const placeholderText = "Wpisz nazwę banku..."
-    const { bankList, auth, removeBank, togglePromptModal } = this.props;
-    const {startDate} = this.state;
+    const { bankList, auth, removeBank, togglePromptModal, toggleSidepane, isSidepaneVisible } = this.props;
+    const { startDate } = this.state;
 
     if (!auth.uid) return <Redirect to='/login' />
     return (
       <div className={styles.ContentWrapper} >
         <div className={styles.SectionName}>Lista Banków</div>
-        <AddItemInput
-          buttonText={buttonText}
-          addAction={this.onSubmit}
-          handleInput={this.handleBankNameInput}
-          buttonDisabled={this.buttonDisabled}
-          placeholder={placeholderText}
-          startDate={startDate}
-          handlePickerDate={this.handlePickerDate}
-        />
         {bankList.length === 0 ?
-          (<div className={styles.EmptyBankListInfo}>Brak banków na liście..</div>)
+          (<div className={styles.EmptyBankListInfo}>Nie posiadasz żadnych banków na liście..</div>)
           :
           (<div className={styles.BankListTitle}>Twoja lista banków:</div>)
         }
@@ -112,6 +102,19 @@ class BankList extends Component {
               togglePromptModal={this.handleTogglePromptModal}
             />
           })}
+          {isSidepaneVisible && (
+            <AddItemSidepane
+              buttonText={buttonText}
+              addAction={this.onSubmit}
+              handleInput={this.handleBankNameInput}
+              buttonDisabled={this.buttonDisabled}
+              placeholder={placeholderText}
+              startDate={startDate}
+              handlePickerDate={this.handlePickerDate}
+              toggleSidepane={toggleSidepane}
+            />
+          )}
+          <CircleAddButton toggleSidepane={toggleSidepane} />
           {this.props.isPromptModalVisible && (
             <Portal>
               <PromptModal
@@ -134,6 +137,7 @@ const mapStateToProps = state => {
     auth: state.firebase.auth,
     userId: state.firebase.auth.uid,
     isPromptModalVisible: state.app.isPromptModalVisible,
+    isSidepaneVisible: state.banks.isSidepaneVisible,
   }
 }
 
@@ -141,7 +145,8 @@ const mapDispatchToProps = dispatch => {
   return {
     addBank: data => dispatch(addBank(data)),
     removeBank: id => dispatch(removeBank(id)),
-    togglePromptModal: () => dispatch(togglePromptModal())
+    togglePromptModal: () => dispatch(togglePromptModal()),
+    toggleSidepane: () => dispatch(toggleSidepane())
   }
 }
 export default compose(

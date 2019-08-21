@@ -1,4 +1,4 @@
-import { ADD_DEPOSIT, ADD_DEPOSIT_ERROR, TOGGLE_DEPOSIT_SIDEPANE,REMOVE_DEPOSIT, REMOVE_DEPOSIT_ERROR} from '../actions/depositActions';
+import { ADD_DEPOSIT, ADD_DEPOSIT_ERROR, TOGGLE_SIDEPANE,REMOVE_DEPOSIT, REMOVE_DEPOSIT_ERROR} from '../actions/depositActions';
 
 const INITIAL_STATE = {
   error: null,
@@ -17,7 +17,7 @@ const depositsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         error: action.err,
       }
-      case TOGGLE_DEPOSIT_SIDEPANE:
+      case TOGGLE_SIDEPANE:
         return {
           ...state,
           isDepositSidepaneOpen: !state.isDepositSidepaneOpen,

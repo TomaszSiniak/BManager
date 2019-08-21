@@ -4,7 +4,7 @@ import styles from './circleAddButton.scss';
 
 const CircleAddButton = props => {
   return (
-    <button className={styles.AddDepositBtn} onClick={props.openSidepane}>
+    <button className={styles.AddDepositBtn} onClick={props.toggleSidepane}>
      <img src={PlusIcon} alt="" />
     </button>
   )

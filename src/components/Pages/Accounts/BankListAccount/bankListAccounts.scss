@@ -3,6 +3,7 @@
 .BankName {
   font-size: 30px;
   font-weight: 600;
+  border-bottom: 1px solid $secondary-line-separate-color;
 }
 .EmptyAccountListInfo, .AccountListTitle{
   margin-top: 20px;

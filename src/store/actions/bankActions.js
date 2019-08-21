@@ -3,21 +3,7 @@ export const ADD_BANK = 'ADD_BANK';
 export const ADD_BANK_ERROR = 'ADD_BANK_ERROR';
 export const REMOVE_BANK = 'REMOVE_BANK';
 export const REMOVE_BANK_ERROR = 'REMOVE_BANK_ERROR';
-
-export const loadBankList = (userId, data) => {
-  return (dispatch, getState, { getFirestore }) => {
-    //nie działa
-    // const firestore = getFirestore();
-
-    // firestore.collection('banks').where('authorId','==', `${userId}`)
-    //   .get()
-    //   .then(res => {
-    //     console.log(res)
-    //     dispatch({ type: LOAD_BANKS_LIST });
-    //   })
-    //   .catch(err => console.log(err))
-  }
-}
+export const TOGGLE_SIDEPANE = 'TOGGLE_SIDEPANE';
 
 export const addBank = data => {
   return (dispatch, getState, { getFirestore }) => {
@@ -73,5 +59,11 @@ export const removeBank = (id, bankName) => {
         return batch.commit();
       })
       .catch(err => console.log(err))
+  }
+}
+
+export const toggleSidepane = () => {
+  return {
+    type: TOGGLE_SIDEPANE
   }
 }

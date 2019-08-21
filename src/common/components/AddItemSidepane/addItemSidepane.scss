@@ -1,13 +1,36 @@
 @import '../../../styles/variables.scss';
-.AddItemForm {
+
+.AddItemSidepaneWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index:1;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 16px;
+}
+.AddItemForm {
+  width: 300px;
+  background: $background-white;
   display: flex;
   flex-direction: column;
   padding: 10px;
   box-sizing: border-box;
-  border-bottom: 2px solid $secondary-line-separate-color;
-  padding: 30px 0;
+  border-left: 1px solid $secondary-line-separate-color;
+  justify-content: space-between;
 }
+.LogoWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  img {
+    width: 120px;
+  }
+ }
+
 .AddItemInput{
   width: 100%;
   line-height: 20px;
@@ -26,7 +49,7 @@
 }
 
 .AddItemBtn{
-  width: 200px;
+  width: 100%;
   margin: 30px auto 0;
   font-size: 16px;
   padding: 10px;
@@ -35,10 +58,9 @@
   border: none;
   border-radius: 3px;
   color: $accent-text-color;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   cursor: pointer;
 }
-.AddItemHalfWrapper {
+.AddItemDateWrapper {
   display: flex;
   align-items: center;
 }

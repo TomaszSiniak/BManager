@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import LogoIcon from '../../../../assets/images/logo.png';
-import styles from './depositForm.scss';
+import styles from './depositSidepane.scss';
 
-class DespositForm extends Component {
+class DespositSidepane extends Component {
 
   state = {
     status: 'active',
@@ -37,7 +37,7 @@ class DespositForm extends Component {
 
   closeSidepane = e => {
     const target = e.target.classList.value;
-    if (target === 'DepositFormWrapper--InrL4') {
+    if (target === 'DepositFormWrapper--3zjxC') {
       this.props.toggleSidepane();
     }
   }
@@ -141,5 +141,5 @@ class DespositForm extends Component {
   }
 }
 
-export default DespositForm;
+export default DespositSidepane;
 

@@ -3,6 +3,8 @@ export const ADD_DEPOSIT_ERROR = 'ADD_DEPOSIT_ERROR';
 export const TOGGLE_DEPOSIT_SIDEPANE = 'TOGGLE_DEPOSIT_SIDEPANE';
 export const REMOVE_DEPOSIT = 'REMOVE_DEPOSIT';
 export const REMOVE_DEPOSIT_ERROR = 'REMOVE_DEPOSIT_ERROR';
+export const TOGGLE_SIDEPANE = 'TOGGLE_SIDEPANE';
+
 
 
 export const addDeposit = data => {
@@ -39,9 +41,9 @@ export const removeDeposit = id => {
   }
 }
 
-export const toggleDepositSidepane = () => {
+export const toggleSidepane = () => {
   return {
-    type: 'TOGGLE_DEPOSIT_SIDEPANE'
+    type: TOGGLE_SIDEPANE
   }
 }
 

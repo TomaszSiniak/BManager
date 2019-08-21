@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import AddItemInput from '../../../../common/components/AddItemInput/AddItemInput';
+import AddItemSidepane from '../../../../common/components/AddItemSidepane/AddItemSidepane';
 import AccountListItem from '../AccountListItem/AccountListItem';
-import { addBankAccount, removeBankAccount } from '../../../../store/actions/accountActions';
+import CircleAddButton from '../../../../common/components/CircleAddButton/CircleAddButton';
+import { addBankAccount, removeBankAccount, toggleSidepane } from '../../../../store/actions/accountActions';
 import { togglePromptModal } from '../../../../store/actions/appActions';
 import Portal from '../../../Portal/Modal';
 import PromptModal from '../../../Modal/Prompt/Prompt';
@@ -36,7 +37,10 @@ class BankListAccount extends Component {
     }
 
     const checkAccount = this.checkAccountExist(this.state.accountName);
-    if (!checkAccount) this.props.addBankAccount(data, this.props.match.params.bankName);
+    if (!checkAccount) {
+      this.props.addBankAccount(data, this.props.match.params.bankName);
+      this.props.toggleSidepane();
+    }
   }
 
   checkAccountExist = (name) => {
@@ -61,7 +65,7 @@ class BankListAccount extends Component {
     })
   }
 
-  handlePickerDate= date => {
+  handlePickerDate = date => {
     const parsedDate = Date.parse(date);
 
     this.setState({
@@ -72,25 +76,15 @@ class BankListAccount extends Component {
   render () {
     const buttonText = "Dodaj konto";
     const placeholderText = "Wpisz nazwę konta...";
-    const { accountsList, auth } = this.props;
-    const {startDate} = this.state;
+    const { accountsList, auth, isSidepaneVisible, toggleSidepane } = this.props;
+    const { startDate } = this.state;
 
     if (!auth.uid) return <Redirect to='/login' />
     return (
       <div className={styles.ContentWrapper}>
         <div className={styles.BankName}>{this.props.match.params.bankName}</div>
-        <AddItemInput
-          buttonText={buttonText}
-          addAction={this.onSubmit}
-          handleInput={this.handleBankNameInput}
-          buttonDisabled={this.buttonDisabled}
-          placeholder={placeholderText}
-          startDate={startDate}
-          handlePickerDate={this.handlePickerDate}
-        />
-
         {accountsList.length === 0 ?
-          (<div className={styles.EmptyAccountListInfo}>Nie osiadasz kont w tym banku...</div>)
+          (<div className={styles.EmptyAccountListInfo}>Nie posiadasz kont w tym banku...</div>)
           :
           (<div className={styles.AccountListTitle}>Twoje konta:</div>)
         }
@@ -107,6 +101,19 @@ class BankListAccount extends Component {
             )
           })}
         </div>
+        <CircleAddButton toggleSidepane={toggleSidepane} />
+        {isSidepaneVisible && (
+          <AddItemSidepane
+            buttonText={buttonText}
+            addAction={this.onSubmit}
+            handleInput={this.handleBankNameInput}
+            buttonDisabled={this.buttonDisabled}
+            placeholder={placeholderText}
+            startDate={startDate}
+            handlePickerDate={this.handlePickerDate}
+            toggleSidepane={toggleSidepane}
+          />
+        )}
         {this.props.isPromptModalVisible && (
           <Portal>
             <PromptModal
@@ -130,6 +137,7 @@ const mapStateToProps = (state, props) => {
     userId: state.firebase.auth.uid,
     bankId: bankId,
     isPromptModalVisible: state.app.isPromptModalVisible,
+    isSidepaneVisible: state.banks.isSidepaneVisible,
   }
 }
 
@@ -137,7 +145,8 @@ const mapDispatchToProps = dispatch => {
   return {
     addBankAccount: (data, name) => dispatch(addBankAccount(data, name)),
     removeBankAccount: (id, name) => dispatch(removeBankAccount(id, name)),
-    togglePromptModal: () => dispatch(togglePromptModal())
+    togglePromptModal: () => dispatch(togglePromptModal()),
+    toggleSidepane: () => dispatch(toggleSidepane())
   }
 }
 
