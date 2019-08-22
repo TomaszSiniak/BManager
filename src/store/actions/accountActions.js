@@ -56,12 +56,13 @@ export const updateBankAccount = (id, data) => {
 
     const firestore = getFirestore();
 
-    const { accountName, status, totalPrize } = data;
+    const { accountName, status, award, achievedAward } = data;
 
     firestore.collection('accounts').doc(id).update({
       accountName,
       status,
-      totalPrize,
+      award,
+      achievedAward
     })
       .then(() => {
         dispatch({ type: UPDATE_BANK_ACCOUNT})

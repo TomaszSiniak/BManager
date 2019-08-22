@@ -25,7 +25,19 @@
     height: 80%;
   }
 }
-
+.CoinsIcon {
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+  img{
+    height: 100%;
+    width: 100%;
+  }
+}
+.AchievedAwardWrapper{
+  display: flex;
+  justify-content: flex-end;
+}
 .AccountListItemLink {
   text-decoration: none;
 }
@@ -41,10 +53,20 @@
   font-size: 12px;
 }
 
-.AccountInfoRaw {
+.AccountInfoRow {
   color: $secondary-text-color;
   padding: 3px 0;
 }
+
+.AccountInfoRow_green {
+  color: $accent-green-color;
+  font-weight: bold;
+}
+
+.AccountInfoRow_bold {
+  font-weight: bold;
+}
+
 
 .StatusWrapper {
   display: flex;

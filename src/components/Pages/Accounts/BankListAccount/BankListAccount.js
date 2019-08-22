@@ -17,13 +17,22 @@ class BankListAccount extends Component {
   state = {
     accountName: null,
     status: 'active',
-    startDate: null
+    achievedAward: '0',
+    startDate: null,
+    award: null,
   }
 
-  handleBankNameInput = (e) => {
+  handleBankNameInput = e => {
     const accountName = e.target.value.trim();
     this.setState({
       accountName,
+    })
+  }
+
+  handleAward = e => {
+    const award = e.target.value;
+    this.setState({
+     award
     })
   }
 
@@ -34,6 +43,9 @@ class BankListAccount extends Component {
       status: this.state.status,
       startDate: this.state.startDate,
       bankId: this.props.bankId,
+      award: this.state.award,
+      achievedAward: this.state.achievedAward,
+
     }
 
     const checkAccount = this.checkAccountExist(this.state.accountName);
@@ -107,11 +119,13 @@ class BankListAccount extends Component {
             buttonText={buttonText}
             addAction={this.onSubmit}
             handleInput={this.handleBankNameInput}
+            handleAward={this.handleAward}
             buttonDisabled={this.buttonDisabled}
             placeholder={placeholderText}
             startDate={startDate}
             handlePickerDate={this.handlePickerDate}
             toggleSidepane={toggleSidepane}
+            bankAccountSidepane
           />
         )}
         {this.props.isPromptModalVisible && (

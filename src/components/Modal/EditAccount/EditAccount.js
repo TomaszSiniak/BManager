@@ -10,7 +10,7 @@ class EditAccount extends Component {
     status: 'active',
   }
 
-  handleInputChange = (e) => {
+  handleInputChange = e => {
     const target = e.target;
     const value = target.value;
     const name = target.name;
@@ -20,18 +20,20 @@ class EditAccount extends Component {
     })
   }
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault();
     const { item } = this.props;
     const accountName = get(this.state, 'accountName', item.accountName);
     const status = get(this.state, 'status', item.status);
-    const totalPrize = get(this.state, 'totalPrize', item.totalPrize ? item.totalPrize : null);
+    const award = get(this.state, 'award', item.award ? item.award : '0');
+    const achievedAward = get(this.state, 'achievedAward', item.achievedAward ? item.achievedAward : '0');
 
     const data = {
       ...item,
       accountName,
       status,
-      totalPrize,
+      award,
+      achievedAward
     }
     this.props.updateBankAccount(this.props.match.params.accountId, data);
     this.props.closeModal();
@@ -69,12 +71,31 @@ class EditAccount extends Component {
           <select
             className={styles.EditAccountInput}
             type="number"
-            name="totalPrize"
+            name="award"
             onChange={this.handleInputChange}
-            placeholder="Total award value"
-            defaultValue={item.totalPrize ? item.totalPrize : 'Select award value...'}
+            placeholder="Nagroda za konto w PLN"
+            defaultValue={item.award ? item.award : 'Wybierz wartość nagrody...'}
           >
             <option disabled>Wybierz wartosć nagrody w PLN</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="150">150</option>
+            <option value="200">200</option>
+            <option value="250">250</option>
+            <option value="300">300</option>
+            <option value="350">350</option>
+            <option value="300">400</option>
+
+          </select>
+          <select
+            className={styles.EditAccountInput}
+            type="number"
+            name="achievedAward"
+            onChange={this.handleInputChange}
+            placeholder="Uzyskana nagroda w PLN"
+            defaultValue={item.achievedAward ? item.achievedAward : 'Uzyskana nagroda w PLN'}
+          >
+            <option disabled>Uzyskana nagroda w PLN'</option>
             <option value="50">50</option>
             <option value="100">100</option>
             <option value="150">150</option>
