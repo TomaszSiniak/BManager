@@ -3,7 +3,7 @@
 .UserWrapper {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid $line-separate-color;
+  border-bottom: 1px solid $secondary-line-separate-color;
   margin: 30px 10px 0;
   padding-bottom: 20px;
 }
@@ -25,4 +25,7 @@
     padding: 10px;
     box-sizing: border-box;
   }
+}
+.Name {
+  color: $secondary-text-color;
 }
