@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import AddItemSidepane from '../../../../common/components/AddItemSidepane/AddItemSidepane';
 import Card from '../.././../../common/components/Card/Card';
 import CircleAddButton from '../../../../common/components/CircleAddButton/CircleAddButton';
-import { addBankAccount, removeBankAccount, toggleSidepane } from '../../../../store/actions/accountActions';
+import { addCreditCard, removeCreditCard, toggleSidepane } from '../../../../store/actions/creditCardsActions';
 import { togglePromptModal } from '../../../../store/actions/appActions';
 import Portal from '../../../Portal/Modal';
 import PromptModal from '../../../Modal/Prompt/Prompt';
 import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import styles from './bankListAccounts.scss';
+import styles from './creditCardsList.scss';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
@@ -51,20 +51,20 @@ class BankListAccount extends Component {
       achievedAward: this.state.achievedAward,
     }
 
-    const checkAccount = this.checkAccountExist(this.state.name);
+    const checkAccount = this.checkCreditCardExist(this.state.name);
     if (!checkAccount) {
-      this.props.addBankAccount(data);
+      this.props.addCreditCard(data);
       this.props.toggleSidepane();
     }
   }
 
-  checkAccountExist = name => {
+  checkCreditCardExist = name => {
     let result = false;
-    const accounts = get(this.props, 'accountsList', [])
-    accounts.find(item => {
+    const creditCards = get(this.props, 'creditCardsList', [])
+    creditCards.find(item => {
       if (item.name.toLowerCase() === name.toLowerCase()) result = true
     })
-    return result
+    return result;
   }
 
   buttonDisabled = () => {
@@ -89,23 +89,23 @@ class BankListAccount extends Component {
   }
 
   render () {
-    const buttonText = "Dodaj konto";
+    const buttonText = "Dodaj kartę";
     const placeholderBankName = "Wpisz nazwę banku...";
-    const placeholderName = "Wpisz nazwę konta...";
-    const { accountsList, auth, isSidepaneVisible, toggleSidepane } = this.props;
+    const placeholderName = "Wpisz nazwę karty...";
+    const { creditCardsList, auth, isSidepaneVisible, toggleSidepane } = this.props;
     const { startDate } = this.state;
 
     if (!auth.uid) return <Redirect to='/login' />
     return (
       <div className={styles.ContentWrapper}>
-        <div className={styles.BankName}>Konta bankowe</div>
-        {accountsList.length === 0 ?
-          (<div className={styles.EmptyAccountListInfo}>Nie posiadasz kont w tym banku...</div>)
+        <div className={styles.SectionName}>Karty kredytowe</div>
+        {creditCardsList.length === 0 ?
+          (<div className={styles.EmptyCreditCardsListInfo}>Nie posiadasz kart kredytowych...</div>)
           :
-          (<div className={styles.AccountListTitle}>Twoje konta:</div>)
+          (<div className={styles.CreditCardsListTitle}>Twoje karty:</div>)
         }
-        <div className={styles.AccountListWrapper}>
-          {accountsList.map(item => {
+        <div className={styles.CreditCardsListWrapper}>
+          {creditCardsList.map(item => {
             return (
               <Card
                 item={item}
@@ -137,7 +137,7 @@ class BankListAccount extends Component {
           <Portal>
             <PromptModal
               removeId={this.state.removeId}
-              remove={this.props.removeBankAccount}
+              remove={this.props.removeCreditCard}
               togglePromptModal={this.props.togglePromptModal}
             />
           </Portal>
@@ -148,20 +148,20 @@ class BankListAccount extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  const accounts = get(state.firestore.ordered, 'accounts', []);
+  const creditCards = get(state.firestore.ordered, 'creditCards', []);
   return {
-    accountsList: accounts,
+    creditCardsList: creditCards,
     auth: state.firebase.auth,
     userId: state.firebase.auth.uid,
     isPromptModalVisible: state.app.isPromptModalVisible,
-    isSidepaneVisible: state.bankAccounts.isSidepaneVisible,
+    isSidepaneVisible: state.creditCards.isSidepaneVisible,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    addBankAccount: data => dispatch(addBankAccount(data)),
-    removeBankAccount: id => dispatch(removeBankAccount(id)),
+    addCreditCard: data => dispatch(addCreditCard(data)),
+    removeCreditCard: id => dispatch(removeCreditCard(id)),
     togglePromptModal: () => dispatch(togglePromptModal()),
     toggleSidepane: () => dispatch(toggleSidepane())
   }
@@ -171,7 +171,7 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => [
     {
-      collection: 'accounts',
+      collection: 'creditCards',
       where: [
         ['authorId', '==', `${props.userId}`],
      

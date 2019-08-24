@@ -23,14 +23,14 @@ class EditAccount extends Component {
   onSubmit = e => {
     e.preventDefault();
     const { item } = this.props;
-    const accountName = get(this.state, 'accountName', item.accountName);
+    const name = get(this.state, 'name', item.name);
     const status = get(this.state, 'status', item.status);
     const award = get(this.state, 'award', item.award ? item.award : '0');
     const achievedAward = get(this.state, 'achievedAward', item.achievedAward ? item.achievedAward : '0');
 
     const data = {
       ...item,
-      accountName,
+      name,
       status,
       award,
       achievedAward
@@ -46,10 +46,10 @@ class EditAccount extends Component {
           <div className={styles.EditTitle}>Edycja konta:</div>
           <input
             className={styles.EditAccountInput}
-            defaultValue={item.accountName}
+            defaultValue={item.name}
             onChange={this.handleInputChange}
             placeholder="Enter account name..."
-            name="accountName"
+            name="name"
           />
           <select
             className={styles.EditAccountSelect}

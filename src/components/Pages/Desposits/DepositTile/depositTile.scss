@@ -58,10 +58,41 @@
   color:$inactive-account-color;
 }
 
+.DepositRowBlack {
+  color: $text-color-black;
+}
+
 .DepositInfo {
   border-right: 1px solid $secondary-line-separate-color;
 }
 
+.DepositSummary {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 0;
+  border-top: 1px solid $secondary-line-separate-color;
+}
+.DepositSummaryItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  margin: 10px 0 0;
+  flex-grow: 1;
+}
+.IconWrapper{
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
 
 @media screen and (min-width: 1224px) {
   .DepositListItem {

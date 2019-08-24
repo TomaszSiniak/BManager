@@ -39,13 +39,13 @@ class AccountDetails extends Component {
   }
 
   render () {
-    const { account: { accountName, status, startDate, award, bankId, achievedAward }, auth, conditions, removeCondition, updateConditionStatus, togglePromptModal } = this.props;
+    const { account: { name, status, startDate, award, achievedAward }, auth, conditions, removeCondition, updateConditionStatus, togglePromptModal } = this.props;
     const parsedStartDate = new Date(startDate).toLocaleDateString();
     if (!auth.uid) return <Redirect to="/login" />
     return (
       <div className={styles.ContentWrapper}>
         <div>
-          <div className={styles.DetailsRow}>Nazwa: {accountName}</div>
+          <div className={styles.DetailsRow}>Nazwa: {name}</div>
           <div className={styles.StatusWrapper}>
             <div>Status: {status}</div>
             {status === 'active' ? (<span className={stylesMain.DotActive} />) : (<span className={stylesMain.DotInactive} />)}

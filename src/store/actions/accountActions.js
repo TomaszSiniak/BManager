@@ -4,16 +4,14 @@ export const REMOVE_BANK_ACCOUNT = 'REMOVE_BANK__ACCOUNT';
 export const REMOVE_BANK_ACCOUNT_ERROR = 'REMOVE_BANK__BANK_ERROR';
 export const UPDATE_BANK_ACCOUNT = 'UPDATE_BANK_ACCOUNT_ERROR';
 export const UPDATE_BANK_ACCOUNT_ERROR = 'UPDATE_BANK_ACCOUNT_ERROR';
-export const TOGGLE_SIDEPANE = 'TOGGLE_SIDEPANE';
+export const TOGGLE_ACCOUNT_SIDEPANE = 'TOGGLE_ACCOUNT_SIDEPANE';
 
-export const addBankAccount = (data, bankName) => {
+export const addBankAccount = data => {
   return(dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
-
     const account = {
       ...data,
       authorId: getState().firebase.auth.uid,
-      bankName,
     }
 
     firestore.collection('accounts').add(account)
@@ -56,10 +54,10 @@ export const updateBankAccount = (id, data) => {
 
     const firestore = getFirestore();
 
-    const { accountName, status, award, achievedAward } = data;
+    const { name, status, award, achievedAward } = data;
 
     firestore.collection('accounts').doc(id).update({
-      accountName,
+      name,
       status,
       award,
       achievedAward
@@ -75,6 +73,6 @@ export const updateBankAccount = (id, data) => {
 
 export const toggleSidepane = () => {
   return {
-    type: TOGGLE_SIDEPANE
+    type: TOGGLE_ACCOUNT_SIDEPANE
   }
 }

@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Dashboard from '../../components/Pages/Dashboard/Dashboard';
-import BankList from '../../components/Pages/Accounts/BankList/BankList'
-import BankListCards from '../../components/Pages/Cards/BankListCards/BankListCards'
-import BankListAccount from '../../components/Pages/Accounts/BankListAccount/BankListAccount'
-import AccountDetails from '../../components/Pages/Accounts/AccountDetails/AccountDetails'
+import CreditCards from '../../components/Pages/CreditCards/CreditCardsList/CreditCardsList';
+import BankListAccount from '../../components/Pages/Accounts/BankListAccount/BankListAccount';
+import AccountDetails from '../../components/Pages/Accounts/AccountDetails/AccountDetails';
 import Sidepane from '../../layout/Sidepane/Sidepane';
 import BackButton from '../../common/components/BackButton/BackButton';
 import Login from '../../components/Pages/Login/Login';
@@ -16,8 +15,7 @@ import LogoIcon from '../../assets/images/logo.png';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { withRouter } from 'react-router';
 
-const MainContent = (props) => {
-
+const MainContent = props => {
   const renderBackButton = () => {
     const pathLocation = props.location.pathname;
     if (pathLocation !== '/' && pathLocation !== '/login' && pathLocation !== '/register') {
@@ -54,12 +52,11 @@ const MainContent = (props) => {
               <Route path="/" component={Dashboard} exact />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
-              <Route path="/accounts" component={BankList} exact />
-              <Route path="/accounts/:bankName" component={BankListAccount} exact />
-              <Route path="/accounts/:bankName/:accountId" component={AccountDetails} />
+              <Route path="/accounts" component={BankListAccount} exact match={props.match} />
+              <Route path="/accounts/:accountId" component={AccountDetails} />
               <Route path="/deposits" component={DepositsList} />
-              {/*<Route path="/deposits/:id" component={DepositDetails} /> */}
-              <Route path="/cards" component={BankListCards} />
+              <Route path="/cards" component={CreditCards} match={props.match} />
+
             </Switch>
           </CSSTransition>
         </TransitionGroup>

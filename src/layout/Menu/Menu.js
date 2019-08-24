@@ -12,7 +12,7 @@ const Menu = (props) => {
 
   const width = window.innerWidth;
   const handleShowMenu = () => {
-    if (width < 768) {
+    if (width < 1024) {
       props.toggleMenu();
     }
   }

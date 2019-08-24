@@ -8,7 +8,7 @@ import { toggleMenu } from './store/actions/appActions';
 const App = (props) => {
 
   const width = window.innerWidth;
-  if(width > 768 && props.auth) {
+  if(width > 1024 && props.auth) {
     props.toggleMenu();
   }
   

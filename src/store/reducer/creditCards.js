@@ -1,43 +1,45 @@
-import { ADD_BANK_ACCOUNT, ADD_BANK_ACCOUNT_ERROR, REMOVE_BANK_ACCOUNT, REMOVE_BANK_ACCOUNT_ERROR, UPDATE_BANK_ACCOUNT, UPDATE_BANK_ACCOUNT_ERROR, TOGGLE_ACCOUNT_SIDEPANE } from '../actions/accountActions';
+import { ADD_CREDIT_CARD, ADD_CREDIT_CARD_ERROR, REMOVE_CREDIT_CARD, REMOVE_CREDIT_CARD_ERROR, UPDATE_CREDIT_CARD, UPDATE_CREDIT_CARD_ERROR, TOGGLE_CREDIT_CARD_SIDEPANE } from '../actions/creditCardsActions';
+
+
 
 const INITIAL_STATE = {
   error: null,
   isSidepaneVisible: false,
 }
 
-const bankAccountReducer = (state = INITIAL_STATE, action) => {
+const creditCardReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ADD_BANK_ACCOUNT_ERROR:
+    case ADD_CREDIT_CARD_ERROR:
       return {
         ...state,
         error: action.err,
       }
-      case REMOVE_BANK_ACCOUNT_ERROR:
+      case REMOVE_CREDIT_CARD_ERROR:
         return {
           ...state,
           error: action.err,
         }
-    case ADD_BANK_ACCOUNT:
+    case ADD_CREDIT_CARD:
       return {
         ...state,
         error: null
       }
-    case REMOVE_BANK_ACCOUNT:
+    case REMOVE_CREDIT_CARD:
       return {
         ...state,
         error: null
       }
-    case UPDATE_BANK_ACCOUNT:
+    case UPDATE_CREDIT_CARD:
       return {
         ...state,
         error: null,
       }
-    case UPDATE_BANK_ACCOUNT_ERROR:
+    case UPDATE_CREDIT_CARD_ERROR:
       return {
         ...state,
         error: action.err,
       }
-      case TOGGLE_ACCOUNT_SIDEPANE:
+      case TOGGLE_CREDIT_CARD_SIDEPANE:
       return {
         ...state,
         isSidepaneVisible: !state.isSidepaneVisible,
@@ -47,4 +49,4 @@ const bankAccountReducer = (state = INITIAL_STATE, action) => {
   }
 }
 
-export default bankAccountReducer;
+export default creditCardReducer;

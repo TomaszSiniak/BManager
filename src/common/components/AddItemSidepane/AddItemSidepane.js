@@ -10,7 +10,7 @@ const AddItemSidepane = props => {
       props.toggleSidepane();
     }
   }
-  const { addAction, buttonText, handleInput, buttonDisabled, placeholder, startDate, handlePickerDate, error, bankAccountSidepane } = props;
+  const { addAction, buttonText, handleInput, buttonDisabled, placeholderBankName, placeholderName, startDate, handlePickerDate, error, bankAccountSidepane } = props;
   return (
     <div className={styles.AddItemSidepaneWrapper} onClick={closeSidepane}>
       <form onSubmit={addAction} className={styles.AddItemForm}>
@@ -18,7 +18,9 @@ const AddItemSidepane = props => {
           <figure className={styles.LogoWrapper}>
             <img src={LogoIcon} alt="" />
           </figure>
-          <input onChange={(e) => handleInput(e)} className={styles.AddItemInput} maxLength="20" placeholder={placeholder} />
+          <div>Dodawanie konta</div>
+          <input onChange={(e) => handleInput(e)} className={styles.AddItemInput} maxLength="20" placeholder={placeholderBankName} name="bankName"/>
+          <input onChange={(e) => handleInput(e)} className={styles.AddItemInput} maxLength="20" placeholder={placeholderName} name="name"/>
           {error && <span>{error}</span>}
           <div className={styles.AddItemDateWrapper}>
             <div className={styles.AddItemDateTitle}>Data otwarcia:</div>

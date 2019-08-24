@@ -1,17 +1,17 @@
 @import '../../../../styles/variables.scss';
 
 .DespositTitle {
-  font-size: 20px;
-  margin-bottom: 20px;
-  padding-bottom: 5px;
-  border-bottom:  solid 1px $secondary-line-separate-color;
+  font-size: 25px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $secondary-line-separate-color;
 }
 
 .DepositsListTitle {
   margin-top: 30px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
   .BankDepositsWrapper {
     padding:  0 50px 50px;
   }

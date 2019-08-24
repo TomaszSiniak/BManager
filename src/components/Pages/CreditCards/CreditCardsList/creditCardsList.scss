@@ -1,18 +1,18 @@
 @import '../../../../styles/variables.scss';
 
-.BankName {
+.SectionName {
   font-size: 25px;
   font-weight: 600;
   padding-bottom: 10px;
   border-bottom: 1px solid $secondary-line-separate-color;
 }
 
-.EmptyAccountListInfo, .AccountListTitle{
+.EmptyCreditCardsListInfo, .CreditCardsListTitle{
   margin-top: 20px;
   font-size: 16px;
   text-align: center;
 }
-.AccountListTitle {
+.CreditCardsListTitle {
   text-align: left;
   margin: 20px 0;
 }
@@ -25,7 +25,7 @@
 
 
 @media screen and (min-width: 1224px) {
-  .AccountListWrapper {
+  .CreditCardsListWrapper {
     display: flex;
     flex-wrap: wrap;
   }
