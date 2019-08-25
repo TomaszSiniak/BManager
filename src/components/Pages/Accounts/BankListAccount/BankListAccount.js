@@ -36,7 +36,7 @@ class BankListAccount extends Component {
   handleAward = e => {
     const award = e.target.value;
     this.setState({
-     award
+      award
     })
   }
 
@@ -99,11 +99,19 @@ class BankListAccount extends Component {
     return (
       <div className={styles.ContentWrapper}>
         <div className={styles.BankName}>Konta bankowe</div>
+
         {accountsList.length === 0 ?
-          (<div className={styles.EmptyAccountListInfo}>Nie posiadasz kont w tym banku...</div>)
+          (<div className={styles.EmptyAccountListInfo}>Nie posiadasz kont bankowych...</div>)
           :
           (<div className={styles.AccountListTitle}>Twoje konta:</div>)
         }
+        <div className={styles.TableRowWrapper}>
+          <div className={styles.TableRow}>Nazwa banku</div>
+          <div className={styles.TableRow}>Nazwa konta</div>
+          <div className={styles.TableRow}>Data otwarcia</div>
+          <div className={styles.TableRow}>Nazwa status</div>
+          <div className={styles.TableRow}>Zysk</div>
+        </div>
         <div className={styles.AccountListWrapper}>
           {accountsList.map(item => {
             return (
@@ -174,7 +182,7 @@ export default compose(
       collection: 'accounts',
       where: [
         ['authorId', '==', `${props.userId}`],
-     
+
       ],
     },
   ])

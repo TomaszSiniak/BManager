@@ -17,6 +17,10 @@
   margin: 20px 0;
 }
 
+.TableRowWrapper {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   .ContentWrapper {
     padding:  0 50px 50px;
@@ -28,5 +32,9 @@
   .AccountListWrapper {
     display: flex;
     flex-wrap: wrap;
+  }
+  .TableRowWrapper {
+    display: flex;
+    justify-content: space-between;
   }
 }

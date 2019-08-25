@@ -14,18 +14,17 @@
 }
 .AddItemForm {
   width: 300px;
-  background: $background-white;
+  background: $background-dark;
   display: flex;
   flex-direction: column;
   padding: 10px;
   box-sizing: border-box;
-  border-left: 1px solid $secondary-line-separate-color;
   justify-content: space-between;
 }
 .LogoWrapper {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 30px 0;
   img {
     width: 120px;
   }
@@ -40,12 +39,10 @@
   border-radius: 3px;
   outline: none;
   border: none;
-  color: $text-color;
+  color: $secondary-text-color;
   border-bottom: 1px solid $secondary-line-separate-color;
-  margin-bottom: 15px;
-}
-.AddItemInput::placeholder {
-  opacity: 0.6;
+  margin-bottom: 20px;
+  background: none;
 }
 
 .AddItemBtn{
@@ -66,10 +63,10 @@
 }
 
 .AddItemDateTitle {
-  color: $text-color;
-  opacity: 0.6;
+  color: $secondary-text-color;
   font-size: 14px;
   text-indent: 8px;
+  margin-right: 10px;
 }
 .AwardSelect {
   font-size: 14px;
@@ -78,11 +75,7 @@
   border-radius: 3px;
   padding: 10px;
   border-bottom: solid 1px $secondary-line-separate-color;
-}
-
-
-@media screen and (min-width: 1224px) {
-  .AddItemForm{
-    width: 500px;
-  }
+  background: none;
+  width: 100%;
+  color: $secondary-text-color;
 }

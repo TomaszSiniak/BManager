@@ -1,5 +1,4 @@
 import React from 'react';
-import LogoIcon from '../../../assets/images/logo.png';
 import styles from './dashboard.scss';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -15,9 +14,6 @@ class Dashboard extends React.Component {
           <p>bmanager</p>
         </div>
         <div className={styles.DashboardSubtitle}>aplikacji do zarządzania promocjami bankowymi!</div>
-        <figure className={styles.IconWrapper}>
-          <img src={LogoIcon} />
-        </figure>
       </div>
     )
   }
