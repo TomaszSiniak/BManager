@@ -68,27 +68,30 @@ class AddPromotionCondition extends Component {
     return (
       <div className={styles.AddTermPromotionContainer}>
         <form className={styles.AddTermPromotionsForm} onSubmit={this.onSubmit}>
-          <div className={styles.ConditionTitle}>Add promotion's condition:</div>
+          <div className={styles.ConditionTitle}>Dodaj warunek promocji:</div>
+          <label className={styles.LabelInfo}>Warunek promocji</label>
           <select
             className={styles.ConditionPromotionSelect}
             defaultValue="Choose condition..."
             onChange={this.handleInputChange}
             name="conditionName"
           >
-            <option disabled>Choose condition...</option>
-            <option value="300 PLN paid by debit card">płatność 300 PLN kartą</option>
-            <option value="500 PLN paid by debit card">płatność 500 PLN kartą</option>
-            <option value="1000 PLN paid by debit card">płatność 1000 PLN kartą</option>
-            <option value="1500 PLN paid by debit card">płatność 1500 PLN kartą</option>
+            <option disabled>Wybierz warunek...</option>
+            <option value="płatność 300 PLN kartą">płatność 300 PLN kartą</option>
+            <option value="płatność 500 PLN kartą">płatność 500 PLN kartą</option>
+            <option value="płatność 1000 PLN kartą">płatność 1000 PLN kartą</option>
             <option disabled />
-            <option value="500 PLN transfer into account">wpłata 500 PLN na konto</option>
-            <option value="1000 PLN transfer into account">wpłata 1000 PLN na konto</option>
-            <option value="1500 PLN transfer into account">wpłata 1500 PLN na konto</option>
-            <option value="2000 PLN transfer into account">wpłata 2000 PLN na konto</option>
-            <option value="3000 PLN transfer into account">wpłata 3000 PLN na konto</option>
+            <option value="wpływ 500 PLN na konto">wpływ 500 PLN na konto</option>
+            <option value="wpływ 1000 PLN na konto">wpływ 1000 PLN na konto</option>
+            <option value="wpływ 1500 PLN na konto">wpływ 1500 PLN na konto</option>
+            <option disabled />
+            <option value="wykonanie 1 transakcji kartą">wykonanie 1 transakcji kartą</option>
+            <option value="wykonanie 3 transakcji kartą">wykonanie 3 transakcji kartą</option>
+            <option value="wykonanie 5 transakcji kartą">wykonanie 5 transakcji kartą</option>
+
           </select>
-          <div>
-            <div>Termin wykonania warunku promocji</div>
+          <div className={styles.DatePickerWrapper}>
+          <label className={styles.LabelInfo}>Termin:</label>
             <DatePicker startDate={conditionEndDate} handlePickerDate={this.handlePikcerDate}/>
           </div>
           <div className={styles.ButtonWrapper}>

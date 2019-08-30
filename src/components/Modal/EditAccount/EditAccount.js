@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { updateBankAccount } from '../../../store/actions/accountActions';
 import { connect } from 'react-redux';
 import { get } from 'lodash';
@@ -25,15 +25,11 @@ class EditAccount extends Component {
     const { item } = this.props;
     const name = get(this.state, 'name', item.name);
     const status = get(this.state, 'status', item.status);
-    const award = get(this.state, 'award', item.award ? item.award : '0');
-    const achievedAward = get(this.state, 'achievedAward', item.achievedAward ? item.achievedAward : '0');
 
     const data = {
       ...item,
       name,
       status,
-      award,
-      achievedAward
     }
     this.props.updateBankAccount(this.props.match.params.accountId, data);
     this.props.closeModal();
@@ -44,6 +40,7 @@ class EditAccount extends Component {
       <div className={styles.AddAccountModalContainer}>
         <form className={styles.AddBankAccountForm} onSubmit={this.onSubmit}>
           <div className={styles.EditTitle}>Edycja konta:</div>
+          <label className={styles.InputLabel}>Nazwa konta</label>
           <input
             className={styles.EditAccountInput}
             defaultValue={item.name}
@@ -51,6 +48,7 @@ class EditAccount extends Component {
             placeholder="Enter account name..."
             name="name"
           />
+          <label className={styles.InputLabel}>Status</label>
           <select
             className={styles.EditAccountSelect}
             name="status"
@@ -62,50 +60,15 @@ class EditAccount extends Component {
             <option value="inactive">Nieaktywne</option>
           </select>
           {this.state.status === 'inactive' && (
+            <Fragment>
+            <label className={styles.InputLabel}>Data zamknięcia</label>
             <input
               className={styles.EditAccountInput}
               onChange={this.handleInputChange}
               placeholder="Account closed date"
             />
+            </Fragment>
           )}
-          <select
-            className={styles.EditAccountInput}
-            type="number"
-            name="award"
-            onChange={this.handleInputChange}
-            placeholder="Nagroda za konto w PLN"
-            defaultValue={item.award ? item.award : 'Wybierz wartość nagrody...'}
-          >
-            <option disabled>Wybierz wartosć nagrody w PLN</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-            <option value="150">150</option>
-            <option value="200">200</option>
-            <option value="250">250</option>
-            <option value="300">300</option>
-            <option value="350">350</option>
-            <option value="300">400</option>
-
-          </select>
-          <select
-            className={styles.EditAccountInput}
-            type="number"
-            name="achievedAward"
-            onChange={this.handleInputChange}
-            placeholder="Uzyskana nagroda w PLN"
-            defaultValue={item.achievedAward ? item.achievedAward : 'Uzyskana nagroda w PLN'}
-          >
-            <option disabled>Uzyskana nagroda w PLN'</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-            <option value="150">150</option>
-            <option value="200">200</option>
-            <option value="250">250</option>
-            <option value="300">300</option>
-            <option value="350">350</option>
-            <option value="300">400</option>
-
-          </select>
           <div className={styles.ButtonWrapper}>
             <button className={styles.EditBtn}>Zapisz</button>
             <button className={styles.EditBtnDefault} onClick={closeModal}>Anuluj</button>

@@ -2,15 +2,16 @@
 
 .CardWrapper {
   position: relative;
-  width: 100%;
+  width: 340px;
   box-sizing: border-box;
-  padding: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   border-radius: 5px;
-  background: $background-white;
-  opacity: .9;
+  margin: 20px 0;
+  background: #fff;
+  opacity: 0.9;
+  padding: 10px;
 }
+
 .CloseIcon {
   position: absolute;
   top: 3px;
@@ -27,19 +28,8 @@
     height: 80%;
   }
 }
-.CoinsIcon {
-  height: 30px;
-  width: 30px;
-  margin-right: 10px;
-  img{
-    height: 100%;
-    width: 100%;
-  }
-}
-.AchievedAwardWrapper{
-  display: flex;
-  justify-content: flex-end;
-}
+
+
 .CardLink {
   text-decoration: none;
 }
@@ -48,11 +38,7 @@
   font-size: 16px;
   padding-bottom: 5px;
   border-bottom: 1px solid $secondary-line-separate-color;
-}
-
-.CardInfo {
-  padding-top: 5px;
-  font-size: 12px;
+  margin-bottom: 10px;
 }
 
 .CardInfoRow {
@@ -60,20 +46,73 @@
   padding: 3px 0;
 }
 
-.CardInfoRow_green {
-  color: $accent-green-color;
-  font-weight: bold;
-}
-
-.CardInfoRow_bold {
-  font-weight: bold;
-}
 
 
 .StatusWrapper {
   display: flex;
   align-items: center;
 }
+
+
+
+.CardRow {
+  display: flex;
+  align-items: center;
+}
+
+.AdditionalInfoDetail {
+  display: flex;
+  align-items: center;
+}
+
+.IconWrapper{
+  width: 75px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.CardInfoDetails {
+  font-size: 16px;
+  margin: 10px 0 0 25px;
+}
+
+.CardInfoDetailsAward {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px 0 0 90px;
+  color: $accent-green-color;
+}
+
+.AdditionalInfoRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.AdditionalInfoWrapper{
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  margin-top: 10px;
+}
+.AdditionalInfoIconWrapper {
+  width: 15px;
+  height: 15px;
+  margin-left: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 
 // @media screen and (min-width: 1224px) {
 //   .AccountListItem {

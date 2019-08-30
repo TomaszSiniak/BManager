@@ -89,6 +89,7 @@ class BankListAccount extends Component {
   }
 
   render () {
+    const title= "Dodawanie konta"
     const buttonText = "Dodaj konto";
     const placeholderBankName = "Wpisz nazwę banku...";
     const placeholderName = "Wpisz nazwę konta...";
@@ -130,6 +131,7 @@ class BankListAccount extends Component {
         <CircleAddButton toggleSidepane={toggleSidepane} />
         {isSidepaneVisible && (
           <AddItemSidepane
+          title={title}
             buttonText={buttonText}
             addAction={this.onSubmit}
             handleInput={this.handleInputChange}
@@ -140,7 +142,6 @@ class BankListAccount extends Component {
             startDate={startDate}
             handlePickerDate={this.handlePickerDate}
             toggleSidepane={toggleSidepane}
-            bankAccountSidepane
           />
         )}
         {this.props.isPromptModalVisible && (

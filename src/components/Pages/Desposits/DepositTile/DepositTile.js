@@ -19,14 +19,14 @@ const DepositTile = props => {
         <figure className={styles.IconWrapper}>
           <img src={incomeIcon} alt="" />
         </figure>
-        <div className={styles.DepsoitnInfo}>
+        <div className={styles.DepositInfo}>
           <div className={styles.DepositInfoDetails}>{bankName}</div>
-          <div className={`${styles.DepositInfoDetails} ${styles.DepositInfoDetailsAmount}`}>{amount} PLN</div>
+          <div className={`${styles.DepositInfoDetails} ${styles.DepositInfoDetailsAmount}`}>{amount} pln</div>
         </div>
       </div>
-      <div className={styles.AdditionInfoRow}>
+      <div className={styles.AdditionalInfoRow}>
         <div className={styles.AdditionalInfoWrapper}>
-        <div className={styles.DepositRow}>{endDate}</div>
+          <div className={styles.DepositRow}>{endDate}</div>
           <figure className={styles.AdditionalInfoIconWrapper}>
             <img src={timerIcon} alt='' />
           </figure>
@@ -38,7 +38,7 @@ const DepositTile = props => {
           </figure>
         </div>
         <div className={styles.AdditionalInfoWrapper}>
-        <div className={styles.DepositRow}>{period * 30} dni</div>
+          <div className={styles.DepositRow}>{period * 30} dni</div>
           <figure className={styles.AdditionalInfoIconWrapper}>
             <img src={calendarIcon} alt='' />
           </figure>

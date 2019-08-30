@@ -32,7 +32,7 @@
   border: none;
   outline: none;
   border-radius: 3px;
-  padding: 10px;
+  padding: 5px;
   border-bottom: solid 1px $secondary-line-separate-color;
 }
 .ConditionTitle {
@@ -55,4 +55,14 @@
   background: none;
   color: $text-color;
   margin-left: 10px;
+}
+
+.DatePickerWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.LabelInfo {
+  font-size: 12px;
+  color: $secondary-text-color;
 }

@@ -39,7 +39,7 @@ class AccountDetails extends Component {
   }
 
   render () {
-    const { account: { name, status, startDate, award, achievedAward }, auth, conditions, removeCondition, updateConditionStatus, togglePromptModal } = this.props;
+    const { account: { name, status, startDate }, auth, conditions, removeCondition, updateConditionStatus, togglePromptModal } = this.props;
     const parsedStartDate = new Date(startDate).toLocaleDateString();
     if (!auth.uid) return <Redirect to="/login" />
     return (
@@ -51,9 +51,6 @@ class AccountDetails extends Component {
             {status === 'active' ? (<span className={stylesMain.DotActive} />) : (<span className={stylesMain.DotInactive} />)}
           </div>
           <div className={styles.DetailsRow}>Data otwarcia: {parsedStartDate}</div>
-          <div className={styles.DetailsRow}>Wartość nagrody: {award} PLN</div>
-          <div className={styles.DetailsRow}>Zysk: {achievedAward} PLN</div>
-
           <div className={styles.ButtonWrapper}>
             <button onClick={this.handleEditModal} className={styles.EditBtn}>Edycja</button>
             <button className={styles.AddPromotionBtn} onClick={this.handleTermPromotionsModal}>Dodaj warunek promocji konta</button>
