@@ -3,6 +3,7 @@ import Switch from 'react-switch';
 import closeIcon from '../../../../assets/images/close.svg';
 import styles from './conditionTile.scss';
 import stylesMain from '../../../../styles/main.scss';
+import ClockIcon from '../../../../assets/images/clock.svg';
 
 const ConditionTile = (props) => {
 
@@ -21,8 +22,12 @@ const ConditionTile = (props) => {
   return (
     <div className={styles.ConditionItem}>
       <div className={styles.ConditionName}>{conditionName}</div>
-      <div className={styles.ConditionInfo}>wykonać przed: {parsedEndDate}</div>
-      <div className={styles.ConditionInfo}>Pozostały czas: 6h 35min</div>
+      <div className={styles.ConditionInfoRow}>
+        <figure className={styles.IconTimeWrapper}>
+          <img src={ClockIcon} />
+        </figure>
+        <div className={`${styles.ConditionInfo} ${styles.ConditionInfoDate}`}>{parsedEndDate}</div>
+      </div>
       <div className={styles.ConditionStatusWrapper}>
         <div className={styles.ConditionStatusInfo}>Status: {status ? 'done' : 'not done'}
           {status === true ? (<span className={stylesMain.DotActive} />) : (<span className={stylesMain.DotInactive} />)}

@@ -1,18 +1,14 @@
 @import '../../../../styles/variables.scss';
 
 .DepositListItem {
-  padding: 10px;
   position: relative;
-  width: 100%;
+  width: 340px;
   box-sizing: border-box;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   border-radius: 5px;
   margin: 20px 0;
-}
-
-.DepositName {
-  font-size: 16px;
-  padding-bottom: 5px;
+  background: #fff;
+  opacity: 0.9;
 }
 
 .DepositDetails {
@@ -21,6 +17,19 @@
   font-size: 12px;
   display: flex;
 }
+
+.DespositRow {
+  display: flex;
+  padding: 15px;
+}
+
+.AdditionInfoRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+
 
 .CloseIcon {
   position: absolute;
@@ -38,65 +47,52 @@
     height: 80%;
   }
 }
-.DepositInfo,
-.DepositCalc {
-  flex-grow: 1;
-  text-align: center;
- 
+
+
+.DepositInfoDetails {
+  font-size: 16px;
+  margin: 10px 0 0 25px;
 }
 
-.DepositRow {
-  padding: 3px 0;
-  color: $secondary-text-color;
+.DepositInfoDetailsAmount {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 10px 0 0 70px;
+  color: $accent-green-color;
 }
 
-.DepositRowGreen {
-  color: $active-account-color;
-  font-weight: 700;
-}
-.DepositRowRed {
-  color:$inactive-account-color;
-}
-
-.DepositRowBlack {
-  color: $text-color-black;
-}
-
-.DepositInfo {
-  border-right: 1px solid $secondary-line-separate-color;
-}
-
-.DepositSummary {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0 0;
-  border-top: 1px solid $secondary-line-separate-color;
-}
-.DepositSummaryItem {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-  margin: 10px 0 0;
-  flex-grow: 1;
-}
 .IconWrapper{
-  width: 25px;
-  height: 25px;
+  width: 75px;
+  height: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 5px;
   img {
     width: 100%;
     height: 100%;
   }
 }
 
-@media screen and (min-width: 1224px) {
-  .DepositListItem {
-    width: 48%;
-    margin: 20px 1%;
+.AdditionalInfoWrapper{
+  display: flex;
+  font-size: 12px;
+}
+.AdditionalInfoIconWrapper {
+  width: 15px;
+  height: 15px;
+  margin-left: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
+
+// @media screen and (min-width: 1224px) {
+//   .DepositListItem {
+//     width: 48%;
+//     margin: 20px 1%;
+//   }
+// }

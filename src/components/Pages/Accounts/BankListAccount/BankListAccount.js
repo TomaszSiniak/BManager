@@ -105,6 +105,7 @@ class BankListAccount extends Component {
           :
           (<div className={styles.AccountListTitle}>Twoje konta:</div>)
         }
+        {/*
         <div className={styles.TableRowWrapper}>
           <div className={styles.TableRow}>Nazwa banku</div>
           <div className={styles.TableRow}>Nazwa konta</div>
@@ -112,6 +113,7 @@ class BankListAccount extends Component {
           <div className={styles.TableRow}>Nazwa status</div>
           <div className={styles.TableRow}>Zysk</div>
         </div>
+        */}
         <div className={styles.AccountListWrapper}>
           {accountsList.map(item => {
             return (

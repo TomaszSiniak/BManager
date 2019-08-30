@@ -10,8 +10,8 @@ class DespositSidepane extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { status, bankName, depositName, percentage, period } = this.state;
-    if (!status || !bankName || !depositName || !percentage || !period) return;
+    const { status, bankName, percentage, period } = this.state;
+    if (!status || !bankName  || !percentage || !period) return;
     this.props.addNewDeposit(this.state);
     this.props.toggleSidepane();
   }
@@ -90,7 +90,6 @@ class DespositSidepane extends Component {
             </figure>
             <div className={styles.AddDepositTitle}>Dodaj lokatę:</div>
             <input className={styles.DepositFormInput} placeholder="Wpisz nazwę banku..." onChange={this.handleDepositData} name="bankName" />
-            <input className={styles.DepositFormInput} placeholder="Wpisz nawę lokaty..." onChange={this.handleDepositData} name="depositName" />
             <input className={styles.DepositFormInput} type="number" placeholder="Kwota..." onChange={this.handleDepositData} name="amount" />
             <select
               className={styles.DepositFormSelect}

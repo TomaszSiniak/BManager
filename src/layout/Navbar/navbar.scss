@@ -41,13 +41,13 @@
   flex-direction: row;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
   .IconContainer {
     display: none;
     width: 0;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width:1024px) {
   .LogoContainer {
     display: none;
     width: 0;
