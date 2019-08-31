@@ -2,7 +2,8 @@
 
 .CardWrapper {
   position: relative;
-  width: 340px;
+  width: 100%;
+  max-width: 500px;
   box-sizing: border-box;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   border-radius: 5px;
@@ -10,6 +11,7 @@
   background: #fff;
   opacity: 0.9;
   padding: 10px;
+  margin: 20px auto;
 }
 
 .CloseIcon {
@@ -54,7 +56,6 @@
 }
 
 
-
 .CardRow {
   display: flex;
   align-items: center;
@@ -85,7 +86,7 @@
 .CardInfoDetailsAward {
   font-size: 20px;
   font-weight: bold;
-  margin: 15px 0 0 90px;
+  margin-left: 5vw;
   color: $accent-green-color;
 }
 
@@ -114,10 +115,20 @@
 }
 
 
-// @media screen and (min-width: 1224px) {
-//   .AccountListItem {
-//     width: 48%;
-//     margin: 20px 1%;
-//   }
-//  }
+
+@media screen and (min-width: 1024px) {
+  .CardWrapper{
+    width: 48%;
+    margin: 20px 1%;
+  }
+ }
+
+ 
+@media screen and (min-width: 1224px) {
+  .CardInfoDetailsAward {
+    margin-left: 10vw;
+  }
+ }
+ 
+
  

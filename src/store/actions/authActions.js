@@ -4,6 +4,7 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_ERROR = 'LOGOUT_ERROR';
 export const USER_REGISTER_ERROR = 'USER_REGISTER_ERROR';
 export const USER_REGISTER_SUCCESS = 'USER_REGISTER_SUCCESS';
+export const TOGGLE_PROGRESS_BAR_VISIBILITY = 'OGGLE_PROGRESS_BAR_VISIBILITY';
 
 export const login = data => {
   return (dispatch, getState, { getFirebase }) => {
@@ -51,5 +52,11 @@ export const registerUser = data => {
     }).catch(error => {
       dispatch({ type: USER_REGISTER_ERROR, error})
     })
+  }
+}
+
+export const toggleProgressbar = () => {
+  return {
+    type: TOGGLE_PROGRESS_BAR_VISIBILITY
   }
 }

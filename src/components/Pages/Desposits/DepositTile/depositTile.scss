@@ -2,7 +2,8 @@
 
 .DepositListItem {
   position: relative;
-  width: 340px;
+  width: 100%;
+  max-width: 500px;
   box-sizing: border-box;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   border-radius: 5px;
@@ -56,7 +57,7 @@
 .DepositInfoDetailsAmount {
   font-size: 25px;
   font-weight: bold;
-  margin: 10px 0 0 70px;
+  margin-left: 5vw;
   color: $accent-green-color;
 }
 
@@ -89,9 +90,17 @@
   }
 }
 
-// @media screen and (min-width: 1224px) {
-//   .DepositListItem {
-//     width: 48%;
-//     margin: 20px 1%;
-//   }
-// }
+@media screen and (min-width: 1024px) {
+  .DepositListItem {
+    width: 48%;
+    margin: 20px 1%;
+  }
+ 
+}
+
+@media screen and (min-width: 1224px) {
+
+  .DepositInfoDetailsAmount{
+    margin-left: 10vw;
+  }
+}

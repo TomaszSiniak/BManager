@@ -28,13 +28,10 @@
 }
 
 
-@media screen and (min-width: 1224px) {
+@media screen and (min-width: 1024px) {
   .AccountListWrapper {
     display: flex;
     flex-wrap: wrap;
-  }
-  .TableRowWrapper {
-    display: flex;
-    justify-content: space-between;
+    justify-content: center;
   }
 }

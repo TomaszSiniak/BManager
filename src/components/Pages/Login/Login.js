@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../../store/actions/authActions';
+import { login, toggleProgressbar } from '../../../store/actions/authActions';
 import { Redirect } from 'react-router-dom';
 import LogoIcon from '../../../assets/images/logo.png';
 import styles from './login.scss';
+import ProgressBar from '../../../common/components/Progressbar/Progressbar';
+import Portal from '../../Portal/Modal';
 
 class Login extends Component {
   state = {
@@ -24,10 +26,15 @@ class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.logToApp(this.state)
+    this.props.showProgressBar();
+
+    setTimeout(() => {
+      this.props.showProgressBar();
+    }, 2000)
   }
 
   render () {
-    const { authError, auth } = (this.props)
+    const { authError, auth, progressBarVisible } = (this.props)
     if (auth.uid) return <Redirect to="/" />
     return (
       <div className={styles.LoginWrapper}>
@@ -41,6 +48,11 @@ class Login extends Component {
           <button className={styles.LoginFormButton}>Zaloguj!</button>
           {authError && <p>{authError}</p>}
         </form>
+        {progressBarVisible && (
+          <Portal>
+            <ProgressBar />
+          </Portal>
+        )}
       </div>
     )
   }
@@ -49,12 +61,14 @@ const mapStateToProps = state => {
   return {
     authError: state.auth.authError,
     auth: state.firebase.auth,
+    progressBarVisible: state.auth.isProgressbarVisible
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    logToApp: data => dispatch(login(data))
+    logToApp: data => dispatch(login(data)),
+    showProgressBar: () => dispatch(toggleProgressbar())
   }
 }
 
