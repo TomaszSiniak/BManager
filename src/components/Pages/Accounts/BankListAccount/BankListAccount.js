@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import AddItemSidepane from '../../../../common/components/AddItemSidepane/AddItemSidepane';
-import Card from '../.././../../common/components/Card/Card';
 import CircleAddButton from '../../../../common/components/CircleAddButton/CircleAddButton';
 import { addBankAccount, removeBankAccount, toggleSidepane } from '../../../../store/actions/accountActions';
 import { togglePromptModal } from '../../../../store/actions/appActions';
 import Portal from '../../../Portal/Modal';
 import PromptModal from '../../../Modal/Prompt/Prompt';
+import Table from '../../../../common/components/Table/Table';
 import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -89,7 +89,7 @@ class BankListAccount extends Component {
   }
 
   render () {
-    const title= "Dodawanie konta"
+    const title = "Dodawanie konta"
     const buttonText = "Dodaj konto";
     const placeholderBankName = "Wpisz nazwę banku...";
     const placeholderName = "Wpisz nazwę konta...";
@@ -101,28 +101,21 @@ class BankListAccount extends Component {
       <div className={styles.ContentWrapper}>
         <div className={styles.BankName}>Konta bankowe</div>
 
-        {accountsList.length === 0 ?
-          (<div className={styles.EmptyAccountListInfo}>Nie posiadasz kont bankowych...</div>)
-          :
-          (<div className={styles.AccountListTitle}>Twoje konta:</div>)
+        {accountsList.length > 0 ? (
+          <Table
+            items={accountsList}
+            source={this.props.match.path}
+            togglePromptModal={this.props.togglePromptModal}
+            setIdToRemove={this.setIdToRemove}
+          />
+        ) : (
+            (<div className={styles.EmptyAccountListInfo}>Nie posiadasz kont bankowych...</div>)
+          )
         }
-        <div className={styles.AccountListWrapper}>
-          {accountsList.map(item => {
-            return (
-              <Card
-                item={item}
-                key={item.id}
-                togglePromptModal={this.props.togglePromptModal}
-                setIdToRemove={this.setIdToRemove}
-                source={this.props.match.path}
-              />
-            )
-          })}
-        </div>
         <CircleAddButton toggleSidepane={toggleSidepane} />
         {isSidepaneVisible && (
           <AddItemSidepane
-          title={title}
+            title={title}
             buttonText={buttonText}
             addAction={this.onSubmit}
             handleInput={this.handleInputChange}

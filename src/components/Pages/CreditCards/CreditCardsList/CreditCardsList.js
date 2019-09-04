@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AddItemSidepane from '../../../../common/components/AddItemSidepane/AddItemSidepane';
-import Card from '../.././../../common/components/Card/Card';
+import Table from '../../../../common/components/Table/Table';
 import CircleAddButton from '../../../../common/components/CircleAddButton/CircleAddButton';
 import { addCreditCard, removeCreditCard, toggleSidepane } from '../../../../store/actions/creditCardsActions';
 import { togglePromptModal } from '../../../../store/actions/appActions';
@@ -36,7 +36,7 @@ class BankListAccount extends Component {
   handleAward = e => {
     const award = e.target.value;
     this.setState({
-     award
+      award
     })
   }
 
@@ -89,7 +89,7 @@ class BankListAccount extends Component {
   }
 
   render () {
-    const title ="Dodawanie karty"
+    const title = "Dodawanie karty"
     const buttonText = "Dodaj kartę";
     const placeholderBankName = "Nazwę banku...";
     const placeholderName = "Nazwę karty...";
@@ -100,24 +100,16 @@ class BankListAccount extends Component {
     return (
       <div className={styles.ContentWrapper}>
         <div className={styles.SectionName}>Karty kredytowe</div>
-        {creditCardsList.length === 0 ?
-          (<div className={styles.EmptyCreditCardsListInfo}>Nie posiadasz kart kredytowych...</div>)
-          :
-          (<div className={styles.CreditCardsListTitle}>Twoje karty:</div>)
+        {creditCardsList.length > 0 ? (
+          <Table
+            items={creditCardsList}
+            source={this.props.match.path}
+            togglePromptModal={this.props.togglePromptModal}
+            setIdToRemove={this.setIdToRemove}
+          />) : 
+          ((<div className={styles.EmptyCreditCardsListInfo}>Nie posiadasz kart kredytowych...</div>))
         }
-        <div className={styles.CreditCardsListWrapper}>
-          {creditCardsList.map(item => {
-            return (
-              <Card
-                item={item}
-                key={item.id}
-                togglePromptModal={this.props.togglePromptModal}
-                setIdToRemove={this.setIdToRemove}
-                source={this.props.match.path}
-              />
-            )
-          })}
-        </div>
+
         <CircleAddButton toggleSidepane={toggleSidepane} />
         {isSidepaneVisible && (
           <AddItemSidepane
@@ -175,7 +167,7 @@ export default compose(
       collection: 'creditCards',
       where: [
         ['authorId', '==', `${props.userId}`],
-     
+
       ],
     },
   ])

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DepositTile from '../DepositTile/DepositTile';
+import Table from '../Table/Table';
 import { addDeposit, toggleSidepane, removeDeposit } from '../../../../store/actions/depositActions';
 import DepositSidepane from '../DepositSidepane/DepositSidepane';
 import CircleAddButton from '../../../../common/components/CircleAddButton/CircleAddButton';
@@ -17,15 +17,10 @@ class DespositList extends Component {
       <div className={styles.BankDepositsWrapper}>
         <div className={styles.DespositTitle}>Lokaty</div>
         <div className={styles.DepositsListTitle}>
-          {deposits.length > 0 ? 'Twoje lokaty:' : 'Nie posiadasz żadnych lokat...'}
-      </div>
-        <div className={styles.DepositsList}>
-          {deposits.map(item => {
-            return <DepositTile item={item} key={item.id} removeDeposit={removeDeposit}/>
-          })}
+          {deposits.length > 0 ? <Table items={deposits} removeDeposit={removeDeposit} /> : 'Nie posiadasz żadnych lokat...'}
         </div>
         {isDepositSidepaneOpen && <DepositSidepane addNewDeposit={addNewDeposit} toggleSidepane={toggleSidepane} />}
-        <CircleAddButton toggleSidepane={toggleSidepane}/>
+        <CircleAddButton toggleSidepane={toggleSidepane} />
       </div>
     )
   }
