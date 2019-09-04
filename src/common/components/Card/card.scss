@@ -3,7 +3,6 @@
 .CardWrapper {
   position: relative;
   width: 100%;
-  max-width: 500px;
   box-sizing: border-box;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   border-radius: 5px;
@@ -86,7 +85,7 @@
 .CardInfoDetailsAward {
   font-size: 20px;
   font-weight: bold;
-  margin-left: 5vw;
+  margin-left:50px;
   color: $accent-green-color;
 }
 
@@ -122,13 +121,4 @@
     margin: 20px 1%;
   }
  }
-
- 
-@media screen and (min-width: 1224px) {
-  .CardInfoDetailsAward {
-    margin-left: 10vw;
-  }
- }
- 
-
  

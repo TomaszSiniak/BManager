@@ -3,13 +3,13 @@
 .DepositListItem {
   position: relative;
   width: 100%;
-  max-width: 500px;
   box-sizing: border-box;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   border-radius: 5px;
   margin: 20px 0;
   background: #fff;
   opacity: 0.9;
+  padding: 15px;
 }
 
 .DepositDetails {
@@ -27,10 +27,7 @@
 .AdditionalInfoRow {
   display: flex;
   justify-content: space-between;
-  padding: 5px;
 }
-
-
 
 .CloseIcon {
   position: absolute;
@@ -57,7 +54,7 @@
 .DepositInfoDetailsAmount {
   font-size: 25px;
   font-weight: bold;
-  margin-left: 5vw;
+  margin-left:50px;
   color: $accent-green-color;
 }
 
@@ -94,13 +91,5 @@
   .DepositListItem {
     width: 48%;
     margin: 20px 1%;
-  }
- 
-}
-
-@media screen and (min-width: 1224px) {
-
-  .DepositInfoDetailsAmount{
-    margin-left: 10vw;
   }
 }
