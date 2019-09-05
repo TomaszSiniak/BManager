@@ -57,7 +57,7 @@ class DespositSidepane extends Component {
             <input className={styles.DepositFormInput} placeholder="Wpisz nazwę banku..." onChange={this.handleDepositData} name="bankName" maxLength="9" />
             <input className={styles.DepositFormInput} type="number" placeholder="Kwota..." onChange={this.handleDepositData} name="amount" />
             <div className={styles.DepositFormDateWrapper}>
-              <div className={styles.DepositFormDateTitle}>Data otwarcia:</div>
+              <div className={styles.DepositFormDateTitle}>Data zakończenia:</div>
               <DatePicker startDate={startDate} handlePickerDate={this.handlePickerDate} />
             </div>
             <select
