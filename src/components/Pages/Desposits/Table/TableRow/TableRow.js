@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DeleteIcon from '../../../../../assets/images/trash.svg';
-import styles from './tableRow.scss';
+import styles from '../../../../../styles/main.scss';
 
 const TableRow = props => {
 
@@ -8,9 +8,9 @@ const TableRow = props => {
     props.removeDeposit(props.item.id)
   }
 
-  const { amount, bankName, endDate, percentage } = props.item;
+  const { amount, bankName, startDate, percentage } = props.item;
 
-  const parsedStartDate = new Date(endDate).toLocaleDateString();
+  const parsedStartDate = new Date(startDate).toLocaleDateString();
 
   return (
     <div className={styles.TableRow}>

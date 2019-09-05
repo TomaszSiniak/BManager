@@ -19,8 +19,8 @@ const AddItemSidepane = props => {
             <img src={LogoIcon} alt="" />
           </figure>
           <div className={styles.SidepaneTitle}>{title}</div>
-          <input onChange={(e) => handleInput(e)} className={styles.AddItemInput} maxLength="20" placeholder={placeholderBankName} name="bankName"/>
-          <input onChange={(e) => handleInput(e)} className={styles.AddItemInput} maxLength="20" placeholder={placeholderName} name="name"/>
+          <input onChange={(e) => handleInput(e)} className={styles.AddItemInput} maxLength="9" placeholder={placeholderBankName} name="bankName"/>
+          <input onChange={(e) => handleInput(e)} className={styles.AddItemInput} maxLength="9" placeholder={placeholderName} name="name"/>
           {error && <span>{error}</span>}
           <div className={styles.AddItemDateWrapper}>
             <div className={styles.AddItemDateTitle}>Data otwarcia:</div>

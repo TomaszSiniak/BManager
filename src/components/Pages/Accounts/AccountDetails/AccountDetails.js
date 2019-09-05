@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import EditAccountModal from '../../../Modal/EditAccount/EditAccount';
 import AddPromotionConditionModal from '../../../Modal/AddPromotionCondition/AddPromotionCondition';
 import { togglePromptModal } from '../../../../store/actions/appActions';
 import PromptModal from '../../../Modal/Prompt/Prompt';
 import Portal from '../../../Portal/Modal';
 import ConditionTile from '../ConditionTile/ConditionTile';
-import { removePromotionCondition, updateConditionStatus } from '../../../../store/actions/conditionActions';
+import Table from '../Table/Table';
+import { removePromotionCondition, updateConditionStatus } from '../../../../store/actions/accountActions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { get } from 'lodash';
@@ -18,6 +19,7 @@ class AccountDetails extends Component {
   state = {
     isEditModlaOpen: false,
     isTermPromotionsModalOpen: false,
+    incomeTableActive: true,
   }
 
   handleEditModal = () => {
@@ -38,9 +40,22 @@ class AccountDetails extends Component {
     })
   }
 
+  showIncomeTable = () => {
+    this.setState({
+      incomeTableActive: true
+    })
+  }
+
+  showConditionTable = () => {
+    this.setState({
+      incomeTableActive: false
+    })
+  }
+
   render () {
     const { account: { name, status, startDate }, auth, conditions, removeCondition, updateConditionStatus, togglePromptModal } = this.props;
     const parsedStartDate = new Date(startDate).toLocaleDateString();
+    const { incomeTableActive } = this.state;
     if (!auth.uid) return <Redirect to="/login" />
     return (
       <div className={styles.ContentWrapper}>
@@ -51,25 +66,32 @@ class AccountDetails extends Component {
             {status === 'active' ? (<span className={stylesMain.DotActive} />) : (<span className={stylesMain.DotInactive} />)}
           </div>
           <div className={styles.DetailsRow}>Data otwarcia: {parsedStartDate}</div>
+          <div className={styles.DetailsRow}>Zysk z konta: {0} pln</div>
           <div className={styles.ButtonWrapper}>
             <button onClick={this.handleEditModal} className={styles.EditBtn}>Edycja</button>
-            <button className={styles.AddPromotionBtn} onClick={this.handleTermPromotionsModal}>Dodaj warunek promocji konta</button>
+            <button className={styles.EditBtn} onClick={this.handleTermPromotionsModal}>Dodaj warunek promocji konta</button>
+            <button className={styles.AddPromotionBtn}>Dodaj zysk</button>
           </div>
         </div>
+        <div className={styles.AccountsTableDetails}>
+          <div className={styles.AccountDetailsTabWrapper}>
+            <button onClick={this.showIncomeTable} className={incomeTableActive ? styles.AccountDetailsTabActive : styles.AccountDetailsTab}>Tabela zysków</button>
+            <button onClick={this.showConditionTable} className={!incomeTableActive ? styles.AccountDetailsTabActive : styles.AccountDetailsTab}>Tabela warunków</button>
+          </div>
+          {incomeTableActive ?
+            (<div>Tabela zysków ble ble tutaj bedzie druga tabela z wprowadzonymi zyskami z konta
 
-        <div className={styles.ConditionsWrapper}>
-          {conditions.map(item => {
-            return (
-              <ConditionTile
-                item={item}
-                key={item.id}
+            </div>
+            ) : (
+              <Table
+                items={conditions}
                 setIdToRemove={this.setIdToRemove}
                 updateConditionStatus={updateConditionStatus}
                 togglePromptModal={togglePromptModal}
               />
-            )
-          })}
+            )}
         </div>
+
         {this.state.isEditModalOpen && (
           <Portal>
             <EditAccountModal item={this.props.account} closeModal={this.handleEditModal} match={this.props.match} />

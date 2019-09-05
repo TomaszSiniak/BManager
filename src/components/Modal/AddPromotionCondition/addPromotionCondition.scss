@@ -38,8 +38,8 @@
 .ConditionTitle {
   font-size: 20px;
   border-bottom: solid 1px $line-separate-color;
-  margin-bottom: 30px;
   padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 .ButtonWrapper {
   display: flex;
@@ -64,5 +64,11 @@
 
 .LabelInfo {
   font-size: 12px;
+  color: $secondary-text-color;
+}
+
+.ConditionTip {
+  font-size: $font-size-sm;
+  margin-bottom: 30px;
   color: $secondary-text-color;
 }

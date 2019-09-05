@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addPromotionCondition } from '../../../store/actions/conditionActions';
+import { addPromotionCondition } from '../../../store/actions/accountActions';
 import DatePicker from '../../../common/components/DatePicker/DatePicker';
 import { connect } from 'react-redux';
 import { get } from 'lodash';
@@ -69,6 +69,7 @@ class AddPromotionCondition extends Component {
       <div className={styles.AddTermPromotionContainer}>
         <form className={styles.AddTermPromotionsForm} onSubmit={this.onSubmit}>
           <div className={styles.ConditionTitle}>Dodaj warunek promocji:</div>
+          <div className={styles.ConditionTip}>Konto otwarte w promocji? Dodaj warunek i termin niezbędne do otrzymania bonusu</div>
           <label className={styles.LabelInfo}>Warunek promocji</label>
           <select
             className={styles.ConditionPromotionSelect}
@@ -77,17 +78,17 @@ class AddPromotionCondition extends Component {
             name="conditionName"
           >
             <option disabled>Wybierz warunek...</option>
-            <option value="płatność 300 PLN kartą">płatność 300 PLN kartą</option>
-            <option value="płatność 500 PLN kartą">płatność 500 PLN kartą</option>
-            <option value="płatność 1000 PLN kartą">płatność 1000 PLN kartą</option>
+            <option value="płatność 300 PLN">płatność 300 PLN kartą</option>
+            <option value="płatność 500 PLN">płatność 500 PLN kartą</option>
+            <option value="płatność 1000 PLN">płatność 1000 PLN kartą</option>
             <option disabled />
-            <option value="wpływ 500 PLN na konto">wpływ 500 PLN na konto</option>
-            <option value="wpływ 1000 PLN na konto">wpływ 1000 PLN na konto</option>
-            <option value="wpływ 1500 PLN na konto">wpływ 1500 PLN na konto</option>
+            <option value="wpływ 500 PLN">wpływ 500 PLN na konto</option>
+            <option value="wpływ 1000 PLN">wpływ 1000 PLN na konto</option>
+            <option value="wpływ 1500 PLN">wpływ 1500 PLN na konto</option>
             <option disabled />
-            <option value="wykonanie 1 transakcji kartą">wykonanie 1 transakcji kartą</option>
-            <option value="wykonanie 3 transakcji kartą">wykonanie 3 transakcji kartą</option>
-            <option value="wykonanie 5 transakcji kartą">wykonanie 5 transakcji kartą</option>
+            <option value="1 transakcja kartą">wykonanie 1 transakcji kartą</option>
+            <option value="3 transakcje kartą">wykonanie 3 transakcji kartą</option>
+            <option value="5 transakcje kartą">wykonanie 5 transakcji kartą</option>
 
           </select>
           <div className={styles.DatePickerWrapper}>

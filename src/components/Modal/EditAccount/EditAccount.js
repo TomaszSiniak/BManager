@@ -47,6 +47,7 @@ class EditAccount extends Component {
             onChange={this.handleInputChange}
             placeholder="Enter account name..."
             name="name"
+            maxLength="12"
           />
           <label className={styles.InputLabel}>Status</label>
           <select

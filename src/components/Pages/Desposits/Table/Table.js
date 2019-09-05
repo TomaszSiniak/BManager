@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TableRow from './TableRow/TableRow';
-import styles from './table.scss';
+import styles from '../../../../styles/main.scss';
 
-class Table extends Component {
-  render() {
-    const { items, removeDeposit } = this.props;
+const Table = props => {
+    const { items, removeDeposit } = props;
     return (
       <div className={styles.Table}>
         <div className={styles.TableHeaderRow}>
@@ -24,7 +23,7 @@ class Table extends Component {
         })}
       </div>
     )
-  }
+  
 }
 
 export default Table;

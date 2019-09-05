@@ -1,17 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import LogoIcon from '../../../../assets/images/logo.png';
+import DatePicker from '../../../../common/components/DatePicker/DatePicker';
 import styles from './depositSidepane.scss';
 
 class DespositSidepane extends Component {
 
   state = {
     status: 'active',
+    startDate: null,
   }
 
   onSubmit = e => {
     e.preventDefault();
-    const { status, bankName, percentage, period } = this.state;
-    if (!status || !bankName  || !percentage || !period) return;
+    const { status, bankName, percentage, startDate } = this.state;
+    if (!status || !bankName || !percentage || !startDate) return;
     this.props.addNewDeposit(this.state);
     this.props.toggleSidepane();
   }
@@ -25,14 +27,6 @@ class DespositSidepane extends Component {
     this.setState({
       [name]: value,
     });
-
-    const { amount, percentage, period } = this.state;
- 
-    this.calcDepoEndDate(period)
-
-
-    if (!amount || !percentage || !period) return;
-    this.calcDeposit(amount, percentage, period);
   }
 
   closeSidepane = e => {
@@ -41,46 +35,17 @@ class DespositSidepane extends Component {
       this.props.toggleSidepane();
     }
   }
-
-  //zbugowane
-  calcDeposit = (amount, percentage, period) => {
-    const days = period * 30;
-    const percent = (percentage / 100)
-    let interest = (amount * percent * days) / 365;
-    interest = interest.toFixed(2);
-
-    // tax
-    let tax = interest * 0.19;
-    tax = tax.toFixed(2);
-
-    // profit
-    let profit = interest - tax;
-    profit = profit.toFixed(2);
-
+  
+  handlePickerDate = date => {
+    const parsedDate = Date.parse(date);
     this.setState({
-      interest,
-      tax,
-      profit
-    })
-  }
-
-  //zbugowane
-  calcDepoEndDate = period => {
-    if(!period) return;
-
-    const days = period * 30;
-    const date = new Date();
-    const parsedDate = Date.parse(date)
-    const endDateInMilisec = parsedDate + 1000 * 60 * 60 * 24 * days;
-
-    const endDate = new Date(endDateInMilisec).toLocaleDateString();
-
-    this.setState({
-      endDate
+      startDate: parsedDate
     });
   }
 
   render () {
+   const { startDate } = this.state;
+   console.log(this.state)
     return (
       <div className={styles.DepositFormWrapper} onClick={this.closeSidepane}>
         <form className={styles.DepositForm} onSubmit={this.onSubmit}>
@@ -89,22 +54,12 @@ class DespositSidepane extends Component {
               <img src={LogoIcon} alt="" />
             </figure>
             <div className={styles.AddDepositTitle}>Dodaj lokatę:</div>
-            <input className={styles.DepositFormInput} placeholder="Wpisz nazwę banku..." onChange={this.handleDepositData} name="bankName" />
+            <input className={styles.DepositFormInput} placeholder="Wpisz nazwę banku..." onChange={this.handleDepositData} name="bankName" maxLength="9" />
             <input className={styles.DepositFormInput} type="number" placeholder="Kwota..." onChange={this.handleDepositData} name="amount" />
-            <select
-              className={styles.DepositFormSelect}
-              onChange={this.handleDepositData}
-              name="period"
-              defaultValue="Czas trwania lokaty..."
-            >
-              <option disabled>Czas trwania lokaty...</option>
-              <option value="1">1 miesiąc</option>
-              <option value="2">2 miesiące</option>
-              <option value="3">3 miesiące</option>
-              <option value="4">4 miesiące</option>
-              <option value="5">5 miesięcy</option>
-              <option value="6">6 miesięcy</option>
-            </select>
+            <div className={styles.DepositFormDateWrapper}>
+              <div className={styles.DepositFormDateTitle}>Data otwarcia:</div>
+              <DatePicker startDate={startDate} handlePickerDate={this.handlePickerDate} />
+            </div>
             <select
               className={styles.DepositFormSelect}
               onChange={this.handleDepositData}
@@ -125,11 +80,6 @@ class DespositSidepane extends Component {
               <option value="2.9">2.9 %</option>
               <option value="3.0">3.0 %</option>
             </select>
-            <div>
-              <div>Przychód: {this.state.interest} </div>
-              <div>Podatek(19%): {this.state.tax}</div>
-              <div>Zysk: {this.state.profit}</div>
-            </div>
           </div>
           <div>
             <button className={styles.AddNewDepositBtn}>Dodaj</button>

@@ -99,7 +99,7 @@ class BankListAccount extends Component {
     if (!auth.uid) return <Redirect to='/login' />
     return (
       <div className={styles.ContentWrapper}>
-        <div className={styles.BankName}>Konta bankowe</div>
+        <div className={styles.SectionName}>Konta bankowe</div>
 
         {accountsList.length > 0 ? (
           <Table
@@ -149,7 +149,7 @@ const mapStateToProps = (state, props) => {
     auth: state.firebase.auth,
     userId: state.firebase.auth.uid,
     isPromptModalVisible: state.app.isPromptModalVisible,
-    isSidepaneVisible: state.bankAccounts.isSidepaneVisible,
+    isSidepaneVisible: state.accounts.isSidepaneVisible,
   }
 }
 

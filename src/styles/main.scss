@@ -75,20 +75,22 @@ html, body {
   margin-right: 0.5rem;
 }
 
-.item-enter {
-  opacity: 0;
-}
-.item-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-.item-exit {
-  opacity: 1;
-}
-.item-exit-active {
-  opacity: 0;
-  transition: opacity 500ms ease-in;
-}
+// .item-enter {
+//   opacity: 0;
+// }
+// .item-enter-active {
+//   opacity: 1;
+//   transition: opacity 500ms ease-in;
+// }
+// .item-exit {
+//   opacity: 1;
+// }
+// .item-exit-active {
+//   opacity: 0;
+//   transition: opacity 500ms ease-in;
+// }
+
+
 .BtnDefault {
   background: $accent-color;
   border: none;
@@ -119,4 +121,73 @@ html, body {
   background: $inactive-account-color;
   margin-left: 5px;
   border-radius: 100%;
+}
+
+
+// table main styles
+
+.Table {
+  background: $background-white;
+  border-radius: 5px;
+  padding: 20px 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.TableHeaderRow {
+  display: flex;
+  border-bottom: 1px solid $secondary-line-separate-color;
+  padding-bottom: 5px;
+}
+.TableColumn {
+  flex-grow: 1;
+  font-size: $font-size-sm;
+  font-weight: bold;
+  width: 100px;
+}
+
+.TableColumn:nth-child(3),
+.TableColumn:nth-child(2){
+  text-align: center;
+}
+.TableRow {
+  display: flex;
+  position: relative;
+  text-decoration: none;
+  &:hover {
+    background: $background-opacity-dark;
+  }
+}
+
+.TableRowInfo {
+  flex-grow:1;
+  font-size: 12px;
+  line-height: 40px; 
+  width: 100px;
+  border-bottom: 1px dashed $secondary-line-separate-color;
+}
+.TableRowInfo:nth-child(3),
+.TableRowInfo:nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.TableNoDataInfo {
+  padding-top: 20px;
+  text-align: center;
+}
+
+
+.DeleteIconWrapper {
+  position: absolute;
+  top:0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{ 
+    width: 40%;
+    height: 40%;
+  }
 }
